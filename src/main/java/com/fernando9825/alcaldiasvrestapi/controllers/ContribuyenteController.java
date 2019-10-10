@@ -5,11 +5,11 @@ import com.fernando9825.alcaldiasvrestapi.models.services.IContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,25 +25,73 @@ public class ContribuyenteController {
         this.taxpayerService = taxpayerService;
     }
 
+    // CRUD
+
+    // create
+    @PostMapping(path = "/contribuyentes")
+    public ResponseEntity<?> create(@Valid @RequestBody Contribuyente contribuyente, BindingResult result){
+        Map<String, Object> response = new HashMap<>();
+
+        if (result.hasErrors()){
+        	for(ObjectError error : result.getFieldErrors()) {
+        		response.put(error.getCode(), error.getDefaultMessage());
+        	}
+            response.put("error", response);
+            
+            
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(this.taxpayerService.save(contribuyente), HttpStatus.CREATED);
+    }
+
+
+    // read mappings
     @GetMapping(path = "/contribuyentes")
     public List<Contribuyente> getAllContribuyentes() {
         return taxpayerService.findAll();
     }
 
     // TODO: check this function
-    @GetMapping(path = "/contribuyentes/{dui}")
-    public ResponseEntity<?> getContribuyente(@PathVariable String dui) {
-        Contribuyente contribuyente = taxpayerService.findById(dui);
+    @GetMapping(path = "/contribuyentes/{contribuyenteId}")
+    public Contribuyente getContribuyente(@PathVariable long contribuyenteId) {
+        return this.taxpayerService.findById(contribuyenteId);
+    }
 
-        Map<String, Object> response = new HashMap<>();
+    // update
+    @PutMapping(path = "/contribuyentes/{contribuyenteId}")
+    public ResponseEntity<?> updateContribuyente(
+            @Valid @RequestBody Contribuyente updatedContribuyente,
+            @PathVariable long contribuyenteId, BindingResult result){
+        if (result.hasErrors())
+            return new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST);
 
-        if (contribuyente == null) {
-            response.put("informacion", "contribuyente no encontrado");
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-        }
+        Contribuyente contribuyente = this.taxpayerService.findById(contribuyenteId);
 
-        response.put("contribuyente", contribuyente);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if (contribuyente == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        // updating values
+        contribuyente.setCodigoCuenta(updatedContribuyente.getCodigoCuenta());
+        contribuyente.setNombres(updatedContribuyente.getNombres());
+        contribuyente.setApellidos(updatedContribuyente.getApellidos());
+        contribuyente.setDUI(updatedContribuyente.getDUI());
+        contribuyente.setTelefonoPrincipal(updatedContribuyente.getTelefonoPrincipal());
+        contribuyente.setTelefonoSecundario(updatedContribuyente.getTelefonoSecundario());
+        contribuyente.setNIT(updatedContribuyente.getNIT());
+        contribuyente.setDireccion(updatedContribuyente.getDireccion());
+        contribuyente.setDepartamento(updatedContribuyente.getDepartamento());
+        contribuyente.setMunicipioId(updatedContribuyente.getMunicipioId());
+
+        this.taxpayerService.save(contribuyente);
+        return new ResponseEntity<>(contribuyente, HttpStatus.CREATED);
+
+    }
+
+    // delete
+    @DeleteMapping(path = "/contribuentes/{contribuyenteId}")
+    public void deleteByContribuyenteId(@PathVariable long contribuyenteId){
+        this.taxpayerService.delete(contribuyenteId);
     }
 
 }

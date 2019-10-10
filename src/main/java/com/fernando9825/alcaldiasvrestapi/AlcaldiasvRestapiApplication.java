@@ -17,7 +17,7 @@ public class AlcaldiasvRestapiApplication {
 		SpringApplication.run(AlcaldiasvRestapiApplication.class, args);
 	}
 
-    @EnableWebSecurity(debug = true)
+    @EnableWebSecurity
     @Configuration
     class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 

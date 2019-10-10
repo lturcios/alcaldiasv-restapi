@@ -10,30 +10,31 @@ import java.util.List;
 @Service
 public class ContribuyenteImpl implements IContribuyenteService {
 
-    private final IContribuyenteDao taxpayerDao;
+    private final IContribuyenteDao contribuyenteDao;
 
     @Autowired
-    public ContribuyenteImpl(IContribuyenteDao taxpayerDao) {
-        this.taxpayerDao = taxpayerDao;
+    public ContribuyenteImpl(IContribuyenteDao contribuyenteDao) {
+        this.contribuyenteDao = contribuyenteDao;
     }
+
 
     @Override
     public List<Contribuyente> findAll() {
-        return (List<Contribuyente>) taxpayerDao.findAll();
+        return this.contribuyenteDao.findAll();
     }
 
     @Override
-    public Contribuyente findById(String DUI) {
-        return taxpayerDao.findById(DUI).orElse(null);
+    public Contribuyente findById(Long contribuyenteId) {
+        return this.contribuyenteDao.findById(contribuyenteId).orElse(null);
     }
 
     @Override
     public Contribuyente save(Contribuyente contribuyente) {
-        return taxpayerDao.save(contribuyente);
+        return this.contribuyenteDao.save(contribuyente);
     }
 
     @Override
-    public void delete(String DUI) {
-        taxpayerDao.deleteById(DUI);
+    public void delete(Long contribuyenteId) {
+        this.contribuyenteDao.deleteById(contribuyenteId);
     }
 }

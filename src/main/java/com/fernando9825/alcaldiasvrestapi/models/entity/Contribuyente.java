@@ -1,10 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -14,12 +11,34 @@ import java.util.Calendar;
 public class Contribuyente implements Serializable {
 
     @Id
-    @Pattern(regexp = "[0-9]{8}-[0-9]")
-    private String DUI;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long contrib_id;
+
+    @Column(name = "institucion_id")
+    private short institucionId;
+
+    @Column(name = "codigo_cta")
+    private String codigoCuenta;
 
     @NotBlank
     @Size(min = 5, max = 255)
-    private String nombre;
+    private String nombres;
+
+    @NotBlank
+    @Size(min = 5, max = 255)
+    private String apellidos;
+
+    @Column(name = "dui")
+    @Pattern(regexp = "[0-9]{8}-[0-9]")
+    private String DUI;
+
+    
+    private String telefonoPrincipal;
+
+    private String telefonoSecundario;
+
+    @Column(name = "nit")
+    private String NIT;
 
     @NotBlank
     @Size(min = 5, max = 255)
@@ -29,22 +48,50 @@ public class Contribuyente implements Serializable {
     @Size(min = 4, max = 20)
     private String departamento;
 
-    @NotNull
-    private double impuesto;
+    private String municipioId;
 
-    // these values are expressed in meters
-    private double anchoLocal;
-    private double largoLocal;
 
     @Column(insertable = false, updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Calendar fechaCreacion;
 
-    public Calendar getFechaCreacion() {
-        return fechaCreacion;
+    public long getContrib_id() {
+        return contrib_id;
     }
 
-    public void setFechaCreacion(Calendar fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setContrib_id(long contrib_id) {
+        this.contrib_id = contrib_id;
+    }
+
+    public short getInstitucionId() {
+        return institucionId;
+    }
+
+    public void setInstitucionId(short institucionId) {
+        this.institucionId = institucionId;
+    }
+
+    public String getCodigoCuenta() {
+        return codigoCuenta;
+    }
+
+    public void setCodigoCuenta(String codigoCuenta) {
+        this.codigoCuenta = codigoCuenta;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getDUI() {
@@ -55,12 +102,28 @@ public class Contribuyente implements Serializable {
         this.DUI = DUI;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTelefonoPrincipal() {
+        return telefonoPrincipal;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTelefonoPrincipal(String telefonoPrincipal) {
+        this.telefonoPrincipal = telefonoPrincipal;
+    }
+
+    public String getTelefonoSecundario() {
+        return telefonoSecundario;
+    }
+
+    public void setTelefonoSecundario(String telefonoSecundario) {
+        this.telefonoSecundario = telefonoSecundario;
+    }
+
+    public String getNIT() {
+        return NIT;
+    }
+
+    public void setNIT(String NIT) {
+        this.NIT = NIT;
     }
 
     public String getDireccion() {
@@ -79,27 +142,19 @@ public class Contribuyente implements Serializable {
         this.departamento = departamento;
     }
 
-    public double getImpuesto() {
-        return impuesto;
+    public String getMunicipioId() {
+        return municipioId;
     }
 
-    public void setImpuesto(double impuesto) {
-        this.impuesto = impuesto;
+    public void setMunicipioId(String municipioId) {
+        this.municipioId = municipioId;
     }
 
-    public double getAnchoLocal() {
-        return anchoLocal;
+    public Calendar getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setAnchoLocal(double anchoLocal) {
-        this.anchoLocal = anchoLocal;
-    }
-
-    public double getLargoLocal() {
-        return largoLocal;
-    }
-
-    public void setLargoLocal(double largoLocal) {
-        this.largoLocal = largoLocal;
+    public void setFechaCreacion(Calendar fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 }

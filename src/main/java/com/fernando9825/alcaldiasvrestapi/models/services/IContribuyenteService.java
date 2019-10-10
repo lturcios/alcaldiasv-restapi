@@ -8,10 +8,10 @@ public interface IContribuyenteService {
 
     List<Contribuyente> findAll();
 
-    Contribuyente findById(String DUI);
+    Contribuyente findById(Long contribuyenteId);
 
     Contribuyente save(Contribuyente contribuyente);
 
-    void delete(String DUI);
+    void delete(Long contribuyenteId);
 
 }
