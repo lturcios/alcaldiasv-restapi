@@ -5,7 +5,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 public class Contribuyente implements Serializable {
@@ -14,7 +16,19 @@ public class Contribuyente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contrib_id;
 
-    @Column(name = "institucion_id")
+    // otras pruebas
+    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Puesto.class)
+    @JoinColumn(name = "puestoId", table = "puesto")*/
+
+    // creacion de tabla intermedia
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Puesto> puestos = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Municipio municipio;
+
+//    @OneToOne(cascade = CascadeType.ALL, targetEntity = Institucion.class, mappedBy = "institucionId")
+//    @JoinColumn(referencedColumnName = "institucionId")
     private short institucionId;
 
     @Column(name = "codigo_cta")
@@ -32,7 +46,7 @@ public class Contribuyente implements Serializable {
     @Pattern(regexp = "[0-9]{8}-[0-9]")
     private String DUI;
 
-    
+
     private String telefonoPrincipal;
 
     private String telefonoSecundario;
@@ -100,6 +114,14 @@ public class Contribuyente implements Serializable {
 
     public void setDUI(String DUI) {
         this.DUI = DUI;
+    }
+
+    public List<Puesto> getPuestos() {
+        return puestos;
+    }
+
+    public void setPuestos(List<Puesto> puestos) {
+        this.puestos = puestos;
     }
 
     public String getTelefonoPrincipal() {
