@@ -1,7 +1,9 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,6 +21,10 @@ public class User {
     @NotBlank
     @Size(min = 8, max = 16)
     private String password;
+
+    // llave foranea
+    @OneToOne(cascade = CascadeType.ALL)
+    private Institucion institucion;
 
 
     // getters and setters

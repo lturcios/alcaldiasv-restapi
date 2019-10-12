@@ -6,22 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "institucion")
 public class Institucion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long institucionId;
-
-//    @OneToOne(mappedBy = "institucion")
-//    private Contribuyente contribuyente;
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Contribuyente contribuyente;
-
-    // lista de giros
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Giro> giros = new ArrayList<>();
 
     @NotBlank
     private String institucionNombre;
@@ -33,4 +22,19 @@ public class Institucion {
 
     @NotBlank
     private String institucionEstado;
+
+    // llaves foraneas - relaciones
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Puesto> puestos = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Contribuyente> contribuyentes = new ArrayList<>();
+
+    // lista de giros
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Giro> giros = new ArrayList<>();
+
+    // lista de tarifas
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Tarifa> tarifas = new ArrayList<>();
 }

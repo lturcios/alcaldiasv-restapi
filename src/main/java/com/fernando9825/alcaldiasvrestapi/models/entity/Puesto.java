@@ -16,8 +16,4 @@ public class Puesto {
 
     private String puestoEstado;
 
-    // llaves foraneas
-    private Long institucionId;
-    //private Long sectorId;
-    private Long contribuyenteId;
 }

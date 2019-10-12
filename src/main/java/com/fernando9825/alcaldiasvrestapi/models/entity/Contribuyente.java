@@ -16,21 +16,6 @@ public class Contribuyente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contrib_id;
 
-    // otras pruebas
-    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Puesto.class)
-    @JoinColumn(name = "puestoId", table = "puesto")*/
-
-    // creacion de tabla intermedia
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Puesto> puestos = new ArrayList<>();
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Municipio municipio;
-
-//    @OneToOne(cascade = CascadeType.ALL, targetEntity = Institucion.class, mappedBy = "institucionId")
-//    @JoinColumn(referencedColumnName = "institucionId")
-    private short institucionId;
-
     @Column(name = "codigo_cta")
     private String codigoCuenta;
 
@@ -46,7 +31,6 @@ public class Contribuyente implements Serializable {
     @Pattern(regexp = "[0-9]{8}-[0-9]")
     private String DUI;
 
-
     private String telefonoPrincipal;
 
     private String telefonoSecundario;
@@ -58,15 +42,22 @@ public class Contribuyente implements Serializable {
     @Size(min = 5, max = 255)
     private String direccion;
 
-    @NotBlank
+    /*@NotBlank
     @Size(min = 4, max = 20)
-    private String departamento;
-
-    private String municipioId;
+    private String departamento;*/
 
 
     @Column(insertable = false, updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Calendar fechaCreacion;
+
+    // llaves foraneas
+
+    // creacion de tabla intermedia
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Puesto> puestos = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Municipio municipio;
 
     public long getContrib_id() {
         return contrib_id;
@@ -74,14 +65,6 @@ public class Contribuyente implements Serializable {
 
     public void setContrib_id(long contrib_id) {
         this.contrib_id = contrib_id;
-    }
-
-    public short getInstitucionId() {
-        return institucionId;
-    }
-
-    public void setInstitucionId(short institucionId) {
-        this.institucionId = institucionId;
     }
 
     public String getCodigoCuenta() {
@@ -116,14 +99,6 @@ public class Contribuyente implements Serializable {
         this.DUI = DUI;
     }
 
-    public List<Puesto> getPuestos() {
-        return puestos;
-    }
-
-    public void setPuestos(List<Puesto> puestos) {
-        this.puestos = puestos;
-    }
-
     public String getTelefonoPrincipal() {
         return telefonoPrincipal;
     }
@@ -156,27 +131,27 @@ public class Contribuyente implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public String getMunicipioId() {
-        return municipioId;
-    }
-
-    public void setMunicipioId(String municipioId) {
-        this.municipioId = municipioId;
-    }
-
     public Calendar getFechaCreacion() {
         return fechaCreacion;
     }
 
     public void setFechaCreacion(Calendar fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public List<Puesto> getPuestos() {
+        return puestos;
+    }
+
+    public void setPuestos(List<Puesto> puestos) {
+        this.puestos = puestos;
+    }
+
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
     }
 }

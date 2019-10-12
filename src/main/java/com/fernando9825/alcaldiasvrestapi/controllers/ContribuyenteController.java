@@ -80,8 +80,7 @@ public class ContribuyenteController {
         contribuyente.setTelefonoSecundario(updatedContribuyente.getTelefonoSecundario());
         contribuyente.setNIT(updatedContribuyente.getNIT());
         contribuyente.setDireccion(updatedContribuyente.getDireccion());
-        contribuyente.setDepartamento(updatedContribuyente.getDepartamento());
-        contribuyente.setMunicipioId(updatedContribuyente.getMunicipioId());
+        contribuyente.setMunicipio(updatedContribuyente.getMunicipio());
 
         this.taxpayerService.save(contribuyente);
         return new ResponseEntity<>(contribuyente, HttpStatus.CREATED);

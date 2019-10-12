@@ -16,6 +16,4 @@ public class Giro {
     @NotBlank
     private String giroNombre;
 
-    // llave foranea
-    private Long institucionId;
 }
