@@ -5,16 +5,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 @Entity
+@Table(name = "contribuyentes")
 public class Contribuyente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long contrib_id;
+    private long contribId;
 
     @Column(name = "codigo_cta")
     private String codigoCuenta;
@@ -27,7 +26,7 @@ public class Contribuyente implements Serializable {
     @Size(min = 5, max = 255)
     private String apellidos;
 
-    @Column(name = "dui")
+    @Column(name = "dui", unique = true)
     @Pattern(regexp = "[0-9]{8}-[0-9]")
     private String DUI;
 
@@ -42,29 +41,32 @@ public class Contribuyente implements Serializable {
     @Size(min = 5, max = 255)
     private String direccion;
 
-    /*@NotBlank
-    @Size(min = 4, max = 20)
-    private String departamento;*/
-
-
     @Column(insertable = false, updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Calendar fechaCreacion;
 
-    // llaves foraneas
+    // LLAVES FORANEAS
 
-    // creacion de tabla intermedia
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Puesto> puestos = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "institucionId")
+    private Institucion institucion;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
+    @JoinColumn(name = "municipioId")
     private Municipio municipio;
 
-    public long getContrib_id() {
-        return contrib_id;
+    /*@OneToMany(mappedBy = "contribuyente")
+    private List<Puesto> puestos = new ArrayList<>();*/
+
+
+    // getters and setters
+
+
+    public long getContribId() {
+        return contribId;
     }
 
-    public void setContrib_id(long contrib_id) {
-        this.contrib_id = contrib_id;
+    public void setContribId(long contribId) {
+        this.contribId = contribId;
     }
 
     public String getCodigoCuenta() {
@@ -139,12 +141,12 @@ public class Contribuyente implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public List<Puesto> getPuestos() {
-        return puestos;
+    public Institucion getInstitucion() {
+        return institucion;
     }
 
-    public void setPuestos(List<Puesto> puestos) {
-        this.puestos = puestos;
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
     }
 
     public Municipio getMunicipio() {

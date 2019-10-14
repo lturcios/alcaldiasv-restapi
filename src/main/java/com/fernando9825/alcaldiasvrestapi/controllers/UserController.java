@@ -1,6 +1,6 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
-import com.fernando9825.alcaldiasvrestapi.models.entity.User;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
 import com.fernando9825.alcaldiasvrestapi.models.services.IUserService;
 import com.fernando9825.alcaldiasvrestapi.security.SecurityConstants;
 import io.jsonwebtoken.Jwts;
@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(path = "/api")
 public class UserController {
 
     private final IUserService userService;
@@ -36,11 +38,11 @@ public class UserController {
                                    @RequestParam("password") String pwd) {
 
 
-        User user = userService.findById(username);
+        Usuario usuario = userService.findById(username);
         Map<String, Object> response = new HashMap<>();
 
-        if (user != null) {
-            if (pwd.equals(user.getPassword())) {
+        if (usuario != null) {
+            if (pwd.equals(usuario.getPassword())) {
 
                 // generar el token
                 String token = getJWTToken(username);

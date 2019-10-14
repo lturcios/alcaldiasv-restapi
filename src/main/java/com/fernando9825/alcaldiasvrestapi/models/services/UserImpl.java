@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IUserDao;
-import com.fernando9825.alcaldiasvrestapi.models.entity.User;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +18,18 @@ public class UserImpl implements IUserService {
     }
 
     @Override
-    public List<User> findAll() {
-        return (List<User>) userDao.findAll();
+    public List<Usuario> findAll() {
+        return (List<Usuario>) userDao.findAll();
     }
 
     @Override
-    public User findById(String username) {
+    public Usuario findById(String username) {
         return userDao.findById(username).orElse(null);
     }
 
     @Override
-    public User save(User user) {
-        return userDao.save(user);
+    public Usuario save(Usuario usuario) {
+        return userDao.save(usuario);
     }
 
     @Override

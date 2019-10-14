@@ -6,6 +6,7 @@ import javax.validation.constraints.PositiveOrZero;
 import java.util.Date;
 
 @Entity
+@Table(name = "asignaciones")
 public class Asignacion {
 
     @Id

@@ -1,12 +1,10 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "giros")
 public class Giro {
 
     @Id

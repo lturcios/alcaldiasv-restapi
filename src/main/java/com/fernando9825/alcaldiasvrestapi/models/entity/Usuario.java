@@ -1,15 +1,13 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class User {
+@Table(name = "usuarios")
+public class Usuario {
 
     @Id
     @Size(min = 4, max = 16)

@@ -1,12 +1,10 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "sectores")
 public class Sector {
 
     @Id
@@ -16,8 +14,10 @@ public class Sector {
     @NotBlank
     private String sectorNombre;
 
-    // TODO
     // llave foranea de institucion
-    private Long institucionId;
+
+    @ManyToOne
+    @JoinColumn(name = "institucionId")
+    private Institucion institucion;
 
 }
