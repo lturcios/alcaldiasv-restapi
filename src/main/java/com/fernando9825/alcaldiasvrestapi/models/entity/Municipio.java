@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class Municipio {
 
     @Id
-    private Long municipioId;
+    private Integer municipioId;
 
     @NotBlank
     @Size(min = 5)

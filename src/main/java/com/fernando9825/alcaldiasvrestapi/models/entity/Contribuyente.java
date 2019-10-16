@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -52,6 +53,7 @@ public class Contribuyente implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "municipioId")
+    @NotNull
     private Municipio municipio;
 
     /*@OneToMany(mappedBy = "contribuyente")
