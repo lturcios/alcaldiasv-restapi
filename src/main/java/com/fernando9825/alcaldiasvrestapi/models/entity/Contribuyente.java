@@ -16,7 +16,7 @@ public class Contribuyente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contribId;
 
-    @Column(name = "codigo_cta")
+    @Column(name = "codigo_cta", unique = true)
     private String codigoCuenta;
 
     @NotBlank
@@ -56,12 +56,7 @@ public class Contribuyente implements Serializable {
     @NotNull
     private Municipio municipio;
 
-    /*@OneToMany(mappedBy = "contribuyente")
-    private List<Puesto> puestos = new ArrayList<>();*/
-
-
     // getters and setters
-
 
     public long getContribId() {
         return contribId;

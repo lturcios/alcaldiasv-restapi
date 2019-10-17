@@ -1,6 +1,9 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "puestos")
@@ -10,24 +13,34 @@ public class Puesto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long puestoId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "sectorId")
     private Sector sector;
 
+    @NotNull
+    @PositiveOrZero
+    private double medidaFrente;
+
+    @NotNull
+    @PositiveOrZero
+    private double medidaFondo;
+
+    @NotNull
+    @PositiveOrZero
+    private double medidaCompensa;
+
+    @NotBlank
     private String puestoModulo;
 
+    @NotBlank
     private String puestoEstado;
 
     @ManyToOne
     @JoinColumn(name = "institucionId", nullable = false)
     private Institucion institucion;
 
-    @ManyToOne
-    @JoinColumn(name="contribId")
-    private Contribuyente contribuyente;
 
     // getters and setters
-
-
     public Long getPuestoId() {
         return puestoId;
     }
@@ -68,11 +81,11 @@ public class Puesto {
         this.institucion = institucion;
     }
 
-    public Contribuyente getContribuyente() {
+    /*public Contribuyente getContribuyente() {
         return contribuyente;
     }
 
     public void setContribuyente(Contribuyente contribuyente) {
         this.contribuyente = contribuyente;
-    }
+    }*/
 }

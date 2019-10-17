@@ -16,6 +16,7 @@ public class Tarifa {
     private Long tarifaId;
 
     @Column(name = "codigo_presup")
+    //@OneToOne(mappedBy = "tarifas")
     @NotNull
     private long codigoPresupuestario;
 
