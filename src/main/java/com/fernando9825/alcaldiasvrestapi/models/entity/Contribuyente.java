@@ -7,6 +7,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 @Table(name = "contribuyentes")
@@ -15,6 +16,16 @@ public class Contribuyente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contribId;
+
+    //@OneToMany
+//    @JoinTable(
+//            name = "course_like",
+//            joinColumns = @JoinColumn(name = "student_id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    //private Set<Asignacion> asignaciones;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribuyente")
+    private List<Asignacion> asignaciones;
+
 
     @Column(name = "codigo_cta", unique = true)
     private String codigoCuenta;

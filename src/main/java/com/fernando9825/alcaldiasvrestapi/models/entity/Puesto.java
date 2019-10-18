@@ -11,6 +11,7 @@ public class Puesto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "puesto_id")
     private Long puestoId;
 
     @OneToOne
@@ -39,6 +40,8 @@ public class Puesto {
     @JoinColumn(name = "institucionId", nullable = false)
     private Institucion institucion;
 
+    /*@OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL)
+    private Ruta ruta;*/
 
     // getters and setters
     public Long getPuestoId() {

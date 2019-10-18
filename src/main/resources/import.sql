@@ -299,6 +299,6 @@ INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, ref
 
 
 
-INSERT INTO asignaciones (codigo_presup, fecha_ingreso, fecha_egreso, observaciones, ultimo_pago, contribuyente_contrib_id, puesto_puesto_id) VALUES
+/*INSERT INTO asignaciones (codigo_presup, fecha_ingreso, fecha_egreso, observaciones, ultimo_pago, contribuyente_contrib_id, puesto_puesto_id) VALUES
 (12115001, '2010/02/25', null, 'contribuyente activo', '2019/10/10', 1, 1),
-(12115001, '2010/02/25', null, 'contribuyente activo', '2019/10/10', 2, 1);
+(12115001, '2010/02/25', null, 'contribuyente activo', '2019/10/10', 2, 1);*/
