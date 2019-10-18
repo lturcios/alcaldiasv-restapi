@@ -13,5 +13,5 @@ public interface IMunicipioService {
 
     Institucion save(Municipio municipio);
 
-    void delete(Long municipioId);
+    void delete(Integer municipioId);
 }

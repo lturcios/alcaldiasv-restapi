@@ -2,10 +2,12 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 @Table(name = "contribuyentes")
@@ -15,7 +17,17 @@ public class Contribuyente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contribId;
 
-    @Column(name = "codigo_cta")
+    //@OneToMany
+//    @JoinTable(
+//            name = "course_like",
+//            joinColumns = @JoinColumn(name = "student_id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    //private Set<Asignacion> asignaciones;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribuyente")
+    private List<Asignacion> asignaciones;
+
+
+    @Column(name = "codigo_cta", unique = true)
     private String codigoCuenta;
 
     @NotBlank
@@ -52,14 +64,10 @@ public class Contribuyente implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "municipioId")
+    @NotNull
     private Municipio municipio;
 
-    /*@OneToMany(mappedBy = "contribuyente")
-    private List<Puesto> puestos = new ArrayList<>();*/
-
-
     // getters and setters
-
 
     public long getContribId() {
         return contribId;
