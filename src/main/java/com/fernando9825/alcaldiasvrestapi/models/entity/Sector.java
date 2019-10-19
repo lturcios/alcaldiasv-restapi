@@ -2,8 +2,6 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -18,9 +16,9 @@ public class Sector {
     @Size(max = 100)
     private String sectorNombre;
 
-    @NotNull
+    /*@NotNull
     @PositiveOrZero
-    private double sectorCalificacion;
+    private double sectorCalificacion;*/
 
     // llave foranea de institucion
     @ManyToOne

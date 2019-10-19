@@ -1,10 +1,12 @@
 INSERT INTO instituciones (institucion_nombre, institucion_estado, institucion_telefono, institucion_direccion) VALUES
-('San Miguel', 'Activo', '2661-0515', '2A Avenida Norte, San Miguel');
+('Alcaldía Municipal de San Miguel', 'Activo', '2661-0515', '2A Avenida Norte, San Miguel'),
+('Alcaldía Municipal de Cojutepeque', 'Activo', '2379-3900', '6A Avenida Sur, Cojutepeque'),
+('Alcaldía Municipal de Zaragoza', 'Activo', '2349-0900', '2A Calle Poniente y Avenida España Sur, Zaragoza');
 
-INSERT INTO sectores (sector_nombre, sector_calificacion, institucion_id) VALUES
-('Mercado de Mariscos', 8.4,  1),
-('Mercado de Verduras', 9.0, 1),
-('Zapaterias', 6.3, 1);
+INSERT INTO sectores (sector_nombre, institucion_id) VALUES
+('Mercado de Mariscos',  1),
+('Mercado de Verduras', 1),
+('Zapaterias', 1);
 
 -- USUARIOS DEL SISTEMA
 INSERT INTO usuarios (username, email, password, institucion_institucion_id) VALUES
@@ -280,11 +282,11 @@ INSERT INTO contribuyentes (dui, codigo_cta, nombres, apellidos, direccion, tele
 ('03234543-0', 'LT/001', 'Luis', 'Turcios', 'Colonia Urbesa, Polígono D, pasaje B #17', '6007-4974', '6152-6344', '1206-280879-111-6', 1, 0301),
 ('02756131-0', 'FV/002', 'Fernando Roman', 'Ventura Alvarado', 'Barrio San Francisco, 14 C. Pnte.', '7530-6697', null, '1206-240799-111-7', 1, 0301);
 
-INSERT INTO puestos (puesto_modulo, puesto_estado, medida_frente, medida_fondo, medida_compensa, institucion_id, sector_id) VALUES
-(  '1-A', 'ARRENDADO', 10.2, 3.3, 0.0, 1, 1),
-(  '2-A', 'DISPONIBLE', 4.0, 4.3, 0.5,1, 1),
-(  '1-B', 'ARRENDADO', 5.4, 5.3, 2.0,1, 2),
-(  '2-B', 'NECESITA REPARACIÓN', 10.2, 8.1, 0.0,1, 3);
+INSERT INTO puestos (puesto_modulo, puesto_estado, medida_frente, medida_fondo, medida_compensa, medida_calificaion, institucion_id, sector_id) VALUES
+(  '1-A', 'ARRENDADO', 10.2, 3.3, 0.0,  33.66, 1, 1),
+(  '2-A', 'DISPONIBLE', 4.0, 4.3, 0.5,  16.7,1, 1),
+(  '1-B', 'ARRENDADO', 5.4, 5.3, 2.0,   26.62,26.62, 2),
+(  '2-B', 'NECESITA REPARACIÓN', 10.2, 8.1, 0.0,  82.62,1, 3);
 
 INSERT INTO giros (giro_nombre) VALUES
 ('VERDURAS'),
@@ -296,9 +298,3 @@ INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, ref
 (12115001,0.20, '2010/01/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.'),
 (12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.'),
 (12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.');
-
-
-
-/*INSERT INTO asignaciones (codigo_presup, fecha_ingreso, fecha_egreso, observaciones, ultimo_pago, contribuyente_contrib_id, puesto_puesto_id) VALUES
-(12115001, '2010/02/25', null, 'contribuyente activo', '2019/10/10', 1, 1),
-(12115001, '2010/02/25', null, 'contribuyente activo', '2019/10/10', 2, 1);*/
