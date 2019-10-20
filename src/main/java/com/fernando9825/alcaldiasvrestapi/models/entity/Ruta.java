@@ -23,5 +23,6 @@ public class Ruta {
             cascade = CascadeType.ALL
     )
     //@JoinColumn(name = "puesto_id")
+    //@Column(unique = true)
     private List<Puesto> puestos = new ArrayList<>();
 }

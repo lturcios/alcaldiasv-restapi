@@ -14,4 +14,8 @@ public class Giro {
     @NotBlank
     private String giroNombre;
 
+    @ManyToOne
+    @JoinColumn(name = "institucionId")
+    private Institucion institucion;
+
 }

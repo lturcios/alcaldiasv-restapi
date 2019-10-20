@@ -22,4 +22,43 @@ public class Institucion {
     @NotBlank
     private String institucionEstado;
 
+    public Long getInstitucionId() {
+        return institucionId;
+    }
+
+    public void setInstitucionId(Long institucionId) {
+        this.institucionId = institucionId;
+    }
+
+    public String getInstitucionNombre() {
+        return institucionNombre;
+    }
+
+    public void setInstitucionNombre(String institucionNombre) {
+        this.institucionNombre = institucionNombre;
+    }
+
+    public String getInstitucionDireccion() {
+        return institucionDireccion;
+    }
+
+    public void setInstitucionDireccion(String institucionDireccion) {
+        this.institucionDireccion = institucionDireccion;
+    }
+
+    public String getInstitucionTelefono() {
+        return institucionTelefono;
+    }
+
+    public void setInstitucionTelefono(String institucionTelefono) {
+        this.institucionTelefono = institucionTelefono;
+    }
+
+    public String getInstitucionEstado() {
+        return institucionEstado;
+    }
+
+    public void setInstitucionEstado(String institucionEstado) {
+        this.institucionEstado = institucionEstado;
+    }
 }
