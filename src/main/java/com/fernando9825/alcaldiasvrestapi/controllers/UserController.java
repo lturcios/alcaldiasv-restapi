@@ -34,29 +34,29 @@ public class UserController {
 
 
     @PostMapping("/user")
-    public ResponseEntity<?> login(@RequestParam("user") String username,
+    public ResponseEntity<?> login(@RequestParam("email") String email,
                                    @RequestParam("password") String pwd) {
 
 
-        Usuario usuario = userService.findById(username);
+        Usuario usuario = userService.findById(email);
         Map<String, Object> response = new HashMap<>();
 
         if (usuario != null) {
             if (pwd.equals(usuario.getPassword())) {
 
                 // generar el token
-                String token = getJWTToken(username);
+                String token = getJWTToken(email);
 
                 response.put("information", "Please use the given token in every request, in order to " +
                         "get access to all API");
-                response.put("username", username);
+                response.put("email", email);
                 response.put("token", token);
 
                 return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
             }
         }
 
-        response.put("error", "username or password incorrect!");
+        response.put("error", "email or password incorrect!");
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 

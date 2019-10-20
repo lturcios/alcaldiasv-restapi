@@ -16,4 +16,20 @@ public class Municipio {
     @NotBlank
     @Size(min = 5)
     private String municipioDepartamento;
+
+    public Integer getMunicipioId() {
+        return municipioId;
+    }
+
+    public void setMunicipioId(Integer municipioId) {
+        this.municipioId = municipioId;
+    }
+
+    public String getMunicipioDepartamento() {
+        return municipioDepartamento;
+    }
+
+    public void setMunicipioDepartamento(String municipioDepartamento) {
+        this.municipioDepartamento = municipioDepartamento;
+    }
 }

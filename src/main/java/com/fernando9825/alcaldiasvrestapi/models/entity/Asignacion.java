@@ -26,19 +26,10 @@ public class Asignacion {
     private String observaciones;
 
     // llaves foraneas
-    /*@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne
+    @JoinColumn(name = "institucionId")
     private Institucion institucion;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Sector sector;
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Giro giro;*/
-
-    //@NotNull
-    //@Column(name = "contrib_id")
-    //@OneToMany(targetEntity = Contribuyente.class)
-    //@JoinColumn(name = "fk_contrib_id", referencedColumnName = "contrib_id", table = "contribuyentes")
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contrib_id")
@@ -53,11 +44,23 @@ public class Asignacion {
     @JoinColumn(name = "puesto_id", unique = true)
     private Puesto puesto;
 
+    /*
+    * Este campo se va actualizar automaticamente, si el vendedor, deja el puesto
+    * registrando asi el puesto que tenia, y tambien se tomara la fecha en que dejó
+    * el puesto (la fecha debe ser ingresada manualmente) */
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "puesto_id")
+    private Puesto puestoEgreso;
 
     @NotNull
     @Column(name = "codigo_presup")
     private Long codigoPresupuestario;
 
+    @PreUpdate
+    public void guardarUltimoPuesto(){
+        if (this.puesto != null)
+            setPuestoEgreso(this.puesto);
+    }
 
     public Long getAsignacionId() {
         return asignacionId;
@@ -99,12 +102,43 @@ public class Asignacion {
         this.observaciones = observaciones;
     }
 
-    /*public Contribuyente getContribuyente() {
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
+    }
+
+    public Contribuyente getContribuyente() {
         return contribuyente;
     }
 
     public void setContribuyente(Contribuyente contribuyente) {
         this.contribuyente = contribuyente;
-    }*/
+    }
 
+    public Puesto getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(Puesto puesto) {
+        this.puesto = puesto;
+    }
+
+    public Puesto getPuestoEgreso() {
+        return puestoEgreso;
+    }
+
+    public void setPuestoEgreso(Puesto puestoEgreso) {
+        this.puestoEgreso = puestoEgreso;
+    }
+
+    public Long getCodigoPresupuestario() {
+        return codigoPresupuestario;
+    }
+
+    public void setCodigoPresupuestario(Long codigoPresupuestario) {
+        this.codigoPresupuestario = codigoPresupuestario;
+    }
 }

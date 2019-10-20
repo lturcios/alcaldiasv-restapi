@@ -30,6 +30,10 @@ public class Puesto {
     @PositiveOrZero
     private double medidaCompensa;
 
+    @NotNull
+    @PositiveOrZero
+    private double medidaCalificaion;
+
     @NotBlank
     private String puestoModulo;
 
@@ -39,6 +43,8 @@ public class Puesto {
     @ManyToOne
     @JoinColumn(name = "institucionId", nullable = false)
     private Institucion institucion;
+
+
 
     /*@OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL)
     private Ruta ruta;*/

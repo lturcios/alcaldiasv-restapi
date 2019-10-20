@@ -10,9 +10,6 @@ import javax.validation.constraints.Size;
 public class Usuario {
 
     @Id
-    @Size(min = 4, max = 16)
-    private String username;
-
     @Email
     private String email;
 
@@ -24,15 +21,6 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     private Institucion institucion;
 
-
-    // getters and setters
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getEmail() {
         return email;

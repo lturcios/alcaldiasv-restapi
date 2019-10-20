@@ -58,6 +58,11 @@ public class Contribuyente implements Serializable {
 
     // LLAVES FORANEAS
 
+    /*
+    * Esta llave la deje de modo de que un contribuyente, pueda tener
+    * o estar vinculado a muchas instituciones, por si acaso, existe algun
+    * vendedor que sea empresario con puestos asignados en varias alcaldias*/
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "institucionId")
     private Institucion institucion;

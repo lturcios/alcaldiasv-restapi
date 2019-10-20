@@ -15,6 +15,10 @@ public class Tarifa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tarifaId;
 
+    @ManyToOne
+    @JoinColumn(name = "institucionId")
+    private Institucion institucion;
+
     @Column(name = "codigo_presup")
     //@OneToOne(mappedBy = "tarifas")
     @NotNull
