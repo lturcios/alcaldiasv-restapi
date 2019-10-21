@@ -9,56 +9,59 @@ public class Institucion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long institucionId;
+    private Long id;
 
     @NotBlank
-    private String institucionNombre;
+    private String nombre;
 
     @NotBlank
-    private String institucionDireccion;
+    private String direccion;
 
-    private String institucionTelefono;
+    private String telefono;
 
     @NotBlank
-    private String institucionEstado;
+    private String estado;
 
-    public Long getInstitucionId() {
-        return institucionId;
+    // getters and setters
+
+
+    public Long getId() {
+        return id;
     }
 
-    public void setInstitucionId(Long institucionId) {
-        this.institucionId = institucionId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getInstitucionNombre() {
-        return institucionNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setInstitucionNombre(String institucionNombre) {
-        this.institucionNombre = institucionNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getInstitucionDireccion() {
-        return institucionDireccion;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setInstitucionDireccion(String institucionDireccion) {
-        this.institucionDireccion = institucionDireccion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getInstitucionTelefono() {
-        return institucionTelefono;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setInstitucionTelefono(String institucionTelefono) {
-        this.institucionTelefono = institucionTelefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getInstitucionEstado() {
-        return institucionEstado;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setInstitucionEstado(String institucionEstado) {
-        this.institucionEstado = institucionEstado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

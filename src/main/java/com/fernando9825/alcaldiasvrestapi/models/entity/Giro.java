@@ -9,29 +9,32 @@ public class Giro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long giroId;
+    private Long id;
 
     @NotBlank
-    private String giroNombre;
+    private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "institucionId")
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
     private Institucion institucion;
 
-    public Long getGiroId() {
-        return giroId;
+    // getters and setters
+
+
+    public Long getId() {
+        return id;
     }
 
-    public void setGiroId(Long giroId) {
-        this.giroId = giroId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getGiroNombre() {
-        return giroNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setGiroNombre(String giroNombre) {
-        this.giroNombre = giroNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Institucion getInstitucion() {

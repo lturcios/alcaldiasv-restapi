@@ -10,7 +10,7 @@ public class Asignacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long asignacionId;
+    private Long id;
 
     @NotNull
     @Temporal(value = TemporalType.DATE)
@@ -27,12 +27,12 @@ public class Asignacion {
 
     // llaves foraneas
     @ManyToOne
-    @JoinColumn(name = "institucionId")
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contrib_id")
+    @JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
     private Contribuyente contribuyente;
 
     /*
@@ -41,7 +41,7 @@ public class Asignacion {
         pueda tomar su lugar, y si le asigne el puesto
      */
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Puesto.class)
-    @JoinColumn(name = "puesto_id", unique = true)
+    @JoinColumn(name = "puesto_id_fk", referencedColumnName = "id", unique = true)
     private Puesto puesto;
 
     /*
@@ -49,25 +49,20 @@ public class Asignacion {
     * registrando asi el puesto que tenia, y tambien se tomara la fecha en que dejó
     * el puesto (la fecha debe ser ingresada manualmente) */
     @ManyToOne
-    @JoinColumn(referencedColumnName = "puesto_id")
+    @JoinColumn(name = "puesto_egreso_fk", referencedColumnName = "id")
     private Puesto puestoEgreso;
 
     @NotNull
     @Column(name = "codigo_presup")
     private Long codigoPresupuestario;
 
-    @PreUpdate
-    public void guardarUltimoPuesto(){
-        if (this.puesto != null)
-            setPuestoEgreso(this.puesto);
+
+    public Long getId() {
+        return id;
     }
 
-    public Long getAsignacionId() {
-        return asignacionId;
-    }
-
-    public void setAsignacionId(Long asignacionId) {
-        this.asignacionId = asignacionId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getFechaIngreso() {

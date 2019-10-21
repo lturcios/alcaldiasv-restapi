@@ -22,7 +22,7 @@ public class Movimiento {
     *   codigo_presupuestaria (de tarifa)
     *   InstitucionId*/
     @ManyToOne
-    @JoinColumn(name = "asignacionId")
+    @JoinColumn(name = "asignacion_id_fk", referencedColumnName = "id", nullable = false)
     private Asignacion asignacion;
 
     private double precioUnitario;

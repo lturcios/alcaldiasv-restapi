@@ -10,34 +10,34 @@ public class Sector {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sectorId;
+    private Long id;
 
     @NotBlank
     @Size(max = 100)
-    private String sectorNombre;
+    private String nombre;
 
     // llave foranea de institucion
     @ManyToOne
-    @JoinColumn(name = "institucionId")
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
     private Institucion institucion;
 
     // getters and setters
 
 
-    public Long getSectorId() {
-        return sectorId;
+    public Long getId() {
+        return id;
     }
 
-    public void setSectorId(Long sectorId) {
-        this.sectorId = sectorId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getSectorNombre() {
-        return sectorNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setSectorNombre(String sectorNombre) {
-        this.sectorNombre = sectorNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Institucion getInstitucion() {

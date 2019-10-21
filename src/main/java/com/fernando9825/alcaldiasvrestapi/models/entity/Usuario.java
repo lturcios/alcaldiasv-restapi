@@ -19,6 +19,7 @@ public class Usuario {
 
     // llave foranea
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
     private Institucion institucion;
 
     // getters and setters

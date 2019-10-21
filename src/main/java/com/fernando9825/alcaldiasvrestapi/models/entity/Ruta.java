@@ -11,11 +11,11 @@ public class Ruta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ruta_id;
+    private Long id;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "institucionId")
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
     private Institucion institucion;
 
     // nombre de la ruta
@@ -26,17 +26,18 @@ public class Ruta {
     private String descripcion;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @Column(nullable = false)
     private List<Puesto> puestos = new ArrayList<>();
 
     // getters and setters
 
 
-    public Long getRuta_id() {
-        return ruta_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setRuta_id(Long ruta_id) {
-        this.ruta_id = ruta_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Institucion getInstitucion() {

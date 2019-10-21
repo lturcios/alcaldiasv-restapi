@@ -2,7 +2,6 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -15,7 +14,7 @@ public class Contribuyente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long contribId;
+    private long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribuyente")
     private List<Asignacion> asignaciones;
@@ -33,6 +32,7 @@ public class Contribuyente implements Serializable {
 
     @Column(name = "dui", unique = true)
     @Pattern(regexp = "[0-9]{8}-[0-9]")
+    @Size(min = 10, max = 10)
     private String DUI;
 
     private String telefonoPrincipal;
@@ -52,27 +52,34 @@ public class Contribuyente implements Serializable {
     // LLAVES FORANEAS
 
     /*
-    * Esta llave la deje de modo de que un contribuyente, pueda tener
-    * o estar vinculado a muchas instituciones, por si acaso, existe algun
-    * vendedor que sea empresario con puestos asignados en varias alcaldias*/
-    @NotNull
+     * Esta llave la deje de modo de que un contribuyente, pueda tener
+     * o estar vinculado a muchas instituciones, por si acaso, existe algun
+     * vendedor que sea empresario con puestos asignados en varias alcaldias*/
     @ManyToOne
-    @JoinColumn(name = "institucionId")
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
     @OneToOne
-    @JoinColumn(name = "municipioId")
-    @NotNull
+    @JoinColumn(name = "municipio_id_fk", referencedColumnName = "id", nullable = false)
     private Municipio municipio;
+
 
     // getters and setters
 
-    public long getContribId() {
-        return contribId;
+    public long getId() {
+        return id;
     }
 
-    public void setContribId(long contribId) {
-        this.contribId = contribId;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Asignacion> getAsignaciones() {
+        return asignaciones;
+    }
+
+    public void setAsignaciones(List<Asignacion> asignaciones) {
+        this.asignaciones = asignaciones;
     }
 
     public String getCodigoCuenta() {

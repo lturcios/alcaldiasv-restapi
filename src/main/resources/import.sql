@@ -1,9 +1,9 @@
-INSERT INTO instituciones (institucion_nombre, institucion_estado, institucion_telefono, institucion_direccion) VALUES
+INSERT INTO instituciones (nombre, estado, telefono, direccion) VALUES
 ('Alcaldía Municipal de San Miguel', 'Activo', '2661-0515', '2A Avenida Norte, San Miguel'),
 ('Alcaldía Municipal de Cojutepeque', 'Activo', '2379-3900', '6A Avenida Sur, Cojutepeque'),
 ('Alcaldía Municipal de Zaragoza', 'Activo', '2349-0900', '2A Calle Poniente y Avenida España Sur, Zaragoza');
 
-INSERT INTO sectores (sector_nombre, institucion_id) VALUES
+INSERT INTO sectores (nombre, institucion_id_fk) VALUES
 ('Mercado de Mariscos',  1),
 ('Mercado de Verduras', 1),
 ('Zapaterias', 1),
@@ -14,12 +14,12 @@ INSERT INTO sectores (sector_nombre, institucion_id) VALUES
 ('Mercado de Verduras', 3),
 ('Zapaterias', 3);
 
-INSERT INTO usuarios (email, password, institucion_institucion_id) VALUES
+INSERT INTO usuarios (email, password, institucion_id_fk) VALUES
 ('admin@sanmiguel', '1234', 1),
 ('admin@cojutepeque', '1234', 2),
 ('admin@zaragoza', '1234', 3);
 
-INSERT INTO municipios (municipio_id, municipio_departamento) VALUES
+INSERT INTO municipios (id, municipio_departamento) VALUES
 (101, 'San Salvador, San Salvador'),
 (102, 'Ciudad Delgado, San Salvador'),
 (103, 'Mejicanos, San Salvador'),
@@ -284,17 +284,17 @@ INSERT INTO municipios (municipio_id, municipio_departamento) VALUES
 (1409, 'Guacotecti, Cabañas'),
 (1501, 'Residentes En El Exterior, Res. Exterior');
 
-INSERT INTO contribuyentes (dui, codigo_cta, nombres, apellidos, direccion, telefono_principal, telefono_secundario, nit,  institucion_id, municipio_id) VALUES
+INSERT INTO contribuyentes (dui, codigo_cta, nombres, apellidos, direccion, telefono_principal, telefono_secundario, nit,  institucion_id_fk, municipio_id_fk) VALUES
 ('03234543-0', 'LT/001', 'Luis', 'Turcios', 'Colonia Urbesa, Polígono D, pasaje B #17', '6007-4974', '6152-6344', '1206-280879-111-6', 1, 0301),
 ('02756131-0', 'FV/002', 'Fernando Roman', 'Ventura Alvarado', 'Barrio San Francisco, 14 C. Pnte.', '7530-6697', null, '1206-240799-111-7', 1, 0301);
 
-INSERT INTO puestos (puesto_modulo, puesto_estado, medida_frente, medida_fondo, medida_compensa, medida_calificaion, institucion_id, sector_id) VALUES
+INSERT INTO puestos (modulo, estado, medida_frente, medida_fondo, medida_compensa, medida_calificaion, institucion_id_fk, sector_id_fk) VALUES
 (  '1-A', 'ARRENDADO', 10.2, 3.3, 0.0,  33.66, 1, 1),
 (  '2-A', 'DISPONIBLE', 4.0, 4.3, 0.5,  16.7,1, 1),
 (  '1-B', 'ARRENDADO', 5.4, 5.3, 2.0,   26.62,1, 2),
 (  '2-B', 'NECESITA REPARACIÓN', 10.2, 8.1, 0.0,  82.62,1, 3);
 
-INSERT INTO giros (giro_nombre, institucion_id) VALUES
+INSERT INTO giros (nombre, institucion_id_fk) VALUES
 ('VERDURAS', 1),
 ('LACTEOS', 1),
 ('PLÁSTICOS', 1),
@@ -308,7 +308,7 @@ INSERT INTO giros (giro_nombre, institucion_id) VALUES
 ('PLÁSTICOS', 3),
 ('CRISTALERIA', 3);
 
-INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, referencia, institucion_id) VALUES
+INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, referencia, institucion_id_fk) VALUES
 (12115001,0.20, '2010/01/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.', 1),
 (12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.', 1),
 (12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.', 1),
@@ -319,19 +319,19 @@ INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, ref
 (12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.', 3),
 (12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.', 3);
 
-INSERT INTO rutas (nombre, descripcion, institucion_id) VALUES
+INSERT INTO rutas (nombre, descripcion, institucion_id_fk) VALUES
 ('Ruta #1', 'La ruta del bloque completo del parque barrios', 1),
 ('Ruta #2', 'La ruta del parque Guzman', 1),
 ('Ruta #1', 'La ruta de Cojutepeque', 2);
 
-INSERT INTO rutas_puestos (ruta_ruta_id, puestos_puesto_id) VALUES
+INSERT INTO rutas_puestos (ruta_id, puestos_id) VALUES
 (1, 1),
 (1, 2),
 (2, 3),
 (3, 4);
 
-INSERT INTO asignaciones (codigo_presup, fecha_egreso, fecha_ingreso, observaciones, ultimo_pago, institucion_id, puesto_id, contrib_id) VALUES
+INSERT INTO asignaciones (codigo_presup, fecha_egreso, fecha_ingreso, observaciones, ultimo_pago, institucion_id_fk, puesto_id_fk, contrib_id_fk) VALUES
 (12115001, null, '2019/01/01', null, '2019/09/15', 1, 1, 1);
 
-INSERT INTO movimientos (pago_id, actualizado, fecha_fin, fecha_hora_anula, fecha_horapago, fecha_inicio, valor_agregado, monto_total, observaciones, pago_estado, precio_unitario, tarifa_unitario, asignacion_id) VALUES
+INSERT INTO movimientos (pago_id, actualizado, fecha_fin, fecha_hora_anula, fecha_horapago, fecha_inicio, valor_agregado, monto_total, observaciones, pago_estado, precio_unitario, tarifa_unitario, asignacion_id_fk) VALUES
 ('qwertyui', false, '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , true, 0.25, 2.13, 1);

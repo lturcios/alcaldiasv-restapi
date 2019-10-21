@@ -11,15 +11,14 @@ public class Puesto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "puesto_id")
-    private Long puestoId;
+    private Long id;
 
     @OneToOne
-    @JoinColumn(name = "sectorId")
+    @JoinColumn(name = "sector_id_fk", referencedColumnName = "id", nullable = false)
     private Sector sector;
 
     @ManyToOne
-    @JoinColumn(name = "institucionId", nullable = false)
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
     @NotNull
@@ -39,19 +38,21 @@ public class Puesto {
     private double medidaCalificaion;
 
     @NotBlank
-    private String puestoModulo;
+    private String modulo;
 
     @NotBlank
-    private String puestoEstado;
+    private String estado;
 
 
     // getters and setters
-    public Long getPuestoId() {
-        return puestoId;
+
+
+    public Long getId() {
+        return id;
     }
 
-    public void setPuestoId(Long puestoId) {
-        this.puestoId = puestoId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Sector getSector() {
@@ -62,22 +63,6 @@ public class Puesto {
         this.sector = sector;
     }
 
-    public String getPuestoModulo() {
-        return puestoModulo;
-    }
-
-    public void setPuestoModulo(String puestoModulo) {
-        this.puestoModulo = puestoModulo;
-    }
-
-    public String getPuestoEstado() {
-        return puestoEstado;
-    }
-
-    public void setPuestoEstado(String puestoEstado) {
-        this.puestoEstado = puestoEstado;
-    }
-
     public Institucion getInstitucion() {
         return institucion;
     }
@@ -86,4 +71,51 @@ public class Puesto {
         this.institucion = institucion;
     }
 
+    public double getMedidaFrente() {
+        return medidaFrente;
+    }
+
+    public void setMedidaFrente(double medidaFrente) {
+        this.medidaFrente = medidaFrente;
+    }
+
+    public double getMedidaFondo() {
+        return medidaFondo;
+    }
+
+    public void setMedidaFondo(double medidaFondo) {
+        this.medidaFondo = medidaFondo;
+    }
+
+    public double getMedidaCompensa() {
+        return medidaCompensa;
+    }
+
+    public void setMedidaCompensa(double medidaCompensa) {
+        this.medidaCompensa = medidaCompensa;
+    }
+
+    public double getMedidaCalificaion() {
+        return medidaCalificaion;
+    }
+
+    public void setMedidaCalificaion(double medidaCalificaion) {
+        this.medidaCalificaion = medidaCalificaion;
+    }
+
+    public String getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(String modulo) {
+        this.modulo = modulo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

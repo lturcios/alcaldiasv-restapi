@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class Municipio {
 
     @Id
-    private Integer municipioId;
+    private Integer id;
 
     @NotBlank
     @Size(min = 5)
@@ -19,12 +19,14 @@ public class Municipio {
 
 
     // getters and setters
-    public Integer getMunicipioId() {
-        return municipioId;
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setMunicipioId(Integer municipioId) {
-        this.municipioId = municipioId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getMunicipioDepartamento() {

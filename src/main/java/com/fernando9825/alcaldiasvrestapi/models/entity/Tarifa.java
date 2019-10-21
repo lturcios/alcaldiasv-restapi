@@ -13,10 +13,10 @@ public class Tarifa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tarifaId;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "institucionId")
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
     @NotNull
@@ -36,14 +36,23 @@ public class Tarifa {
 
     private String referencia;
 
-    public Long getTarifaId() {
-        return tarifaId;
-    }
 
     // getters and setters
 
-    public void setTarifaId(Long tarifaId) {
-        this.tarifaId = tarifaId;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
     }
 
     public long getCodigoPresupuestario() {
