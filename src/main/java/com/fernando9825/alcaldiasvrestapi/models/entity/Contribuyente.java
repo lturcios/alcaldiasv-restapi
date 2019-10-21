@@ -17,15 +17,8 @@ public class Contribuyente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contribId;
 
-    //@OneToMany
-//    @JoinTable(
-//            name = "course_like",
-//            joinColumns = @JoinColumn(name = "student_id"),
-//            inverseJoinColumns = @JoinColumn(name = "course_id"))
-    //private Set<Asignacion> asignaciones;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribuyente")
     private List<Asignacion> asignaciones;
-
 
     @Column(name = "codigo_cta", unique = true)
     private String codigoCuenta;

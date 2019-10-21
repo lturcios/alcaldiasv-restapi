@@ -18,6 +18,10 @@ public class Puesto {
     @JoinColumn(name = "sectorId")
     private Sector sector;
 
+    @ManyToOne
+    @JoinColumn(name = "institucionId", nullable = false)
+    private Institucion institucion;
+
     @NotNull
     @PositiveOrZero
     private double medidaFrente;
@@ -40,14 +44,6 @@ public class Puesto {
     @NotBlank
     private String puestoEstado;
 
-    @ManyToOne
-    @JoinColumn(name = "institucionId", nullable = false)
-    private Institucion institucion;
-
-
-
-    /*@OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL)
-    private Ruta ruta;*/
 
     // getters and setters
     public Long getPuestoId() {
@@ -90,11 +86,4 @@ public class Puesto {
         this.institucion = institucion;
     }
 
-    /*public Contribuyente getContribuyente() {
-        return contribuyente;
-    }
-
-    public void setContribuyente(Contribuyente contribuyente) {
-        this.contribuyente = contribuyente;
-    }*/
 }

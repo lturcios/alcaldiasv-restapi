@@ -16,13 +16,14 @@ public class Movimiento {
     private String pagoId;
 
 
-    @Column(name = "codigo_cta")
-    //@OneToMany(targetEntity = Contribuyente.class)
-    //@JoinColumn(name = "codigo_cta")
-    private String codigoCuenta;
-
-    @Column(name = "codigo_presup")
-    private Long codigoPresupuestario;
+    /*
+    * llaves que tiene asignacion:
+    *   contrib_id
+    *   codigo_presupuestaria (de tarifa)
+    *   InstitucionId*/
+    @ManyToOne
+    @JoinColumn(name = "asignacionId")
+    private Asignacion asignacion;
 
     private double precioUnitario;
 
@@ -52,4 +53,110 @@ public class Movimiento {
     private String observaciones;
 
     private boolean actualizado;
+
+
+    // getters and setters
+    public String getPagoId() {
+        return pagoId;
+    }
+
+    public void setPagoId(String pagoId) {
+        this.pagoId = pagoId;
+    }
+
+    public Asignacion getAsignacion() {
+        return asignacion;
+    }
+
+    public void setAsignacion(Asignacion asignacion) {
+        this.asignacion = asignacion;
+    }
+
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
+    public double getTarifaUnitario() {
+        return tarifaUnitario;
+    }
+
+    public void setTarifaUnitario(double tarifaUnitario) {
+        this.tarifaUnitario = tarifaUnitario;
+    }
+
+    public double getIva() {
+        return iva;
+    }
+
+    public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public double getMontoTotal() {
+        return montoTotal;
+    }
+
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public Date getFechaHorapago() {
+        return fechaHorapago;
+    }
+
+    public void setFechaHorapago(Date fechaHorapago) {
+        this.fechaHorapago = fechaHorapago;
+    }
+
+    public boolean isPagoEstado() {
+        return pagoEstado;
+    }
+
+    public void setPagoEstado(boolean pagoEstado) {
+        this.pagoEstado = pagoEstado;
+    }
+
+    public Date getFechaHoraAnula() {
+        return fechaHoraAnula;
+    }
+
+    public void setFechaHoraAnula(Date fechaHoraAnula) {
+        this.fechaHoraAnula = fechaHoraAnula;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public boolean isActualizado() {
+        return actualizado;
+    }
+
+    public void setActualizado(boolean actualizado) {
+        this.actualizado = actualizado;
+    }
 }

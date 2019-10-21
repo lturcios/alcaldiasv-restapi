@@ -18,4 +18,27 @@ public class Giro {
     @JoinColumn(name = "institucionId")
     private Institucion institucion;
 
+    public Long getGiroId() {
+        return giroId;
+    }
+
+    public void setGiroId(Long giroId) {
+        this.giroId = giroId;
+    }
+
+    public String getGiroNombre() {
+        return giroNombre;
+    }
+
+    public void setGiroNombre(String giroNombre) {
+        this.giroNombre = giroNombre;
+    }
+
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
+    }
 }

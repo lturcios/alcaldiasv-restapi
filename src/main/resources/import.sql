@@ -319,10 +319,10 @@ INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, ref
 (12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.', 3),
 (12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, facilis.', 3);
 
-INSERT INTO rutas (nombre, descripcion) VALUES
-('Ruta #1', 'La ruta del bloque completo del parque barrios'),
-('Ruta #2', 'La ruta del parque Guzman'),
-('Ruta #1', 'La ruta de Cojutepeque');
+INSERT INTO rutas (nombre, descripcion, institucion_id) VALUES
+('Ruta #1', 'La ruta del bloque completo del parque barrios', 1),
+('Ruta #2', 'La ruta del parque Guzman', 1),
+('Ruta #1', 'La ruta de Cojutepeque', 2);
 
 INSERT INTO rutas_puestos (ruta_ruta_id, puestos_puesto_id) VALUES
 (1, 1),
@@ -332,3 +332,6 @@ INSERT INTO rutas_puestos (ruta_ruta_id, puestos_puesto_id) VALUES
 
 INSERT INTO asignaciones (codigo_presup, fecha_egreso, fecha_ingreso, observaciones, ultimo_pago, institucion_id, puesto_id, contrib_id) VALUES
 (12115001, null, '2019/01/01', null, '2019/09/15', 1, 1, 1);
+
+INSERT INTO movimientos (pago_id, actualizado, fecha_fin, fecha_hora_anula, fecha_horapago, fecha_inicio, valor_agregado, monto_total, observaciones, pago_estado, precio_unitario, tarifa_unitario, asignacion_id) VALUES
+('qwertyui', false, '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , true, 0.25, 2.13, 1);

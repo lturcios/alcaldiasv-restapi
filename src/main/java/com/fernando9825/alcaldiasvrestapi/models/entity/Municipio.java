@@ -17,6 +17,8 @@ public class Municipio {
     @Size(min = 5)
     private String municipioDepartamento;
 
+
+    // getters and setters
     public Integer getMunicipioId() {
         return municipioId;
     }

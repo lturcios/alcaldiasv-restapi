@@ -16,13 +16,35 @@ public class Sector {
     @Size(max = 100)
     private String sectorNombre;
 
-    /*@NotNull
-    @PositiveOrZero
-    private double sectorCalificacion;*/
-
     // llave foranea de institucion
     @ManyToOne
     @JoinColumn(name = "institucionId")
     private Institucion institucion;
 
+    // getters and setters
+
+
+    public Long getSectorId() {
+        return sectorId;
+    }
+
+    public void setSectorId(Long sectorId) {
+        this.sectorId = sectorId;
+    }
+
+    public String getSectorNombre() {
+        return sectorNombre;
+    }
+
+    public void setSectorNombre(String sectorNombre) {
+        this.sectorNombre = sectorNombre;
+    }
+
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
+    }
 }

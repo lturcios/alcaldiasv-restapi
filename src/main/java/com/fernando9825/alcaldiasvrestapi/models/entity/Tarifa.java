@@ -19,9 +19,8 @@ public class Tarifa {
     @JoinColumn(name = "institucionId")
     private Institucion institucion;
 
-    @Column(name = "codigo_presup")
-    //@OneToOne(mappedBy = "tarifas")
     @NotNull
+    @Column(name = "codigo_presup")
     private long codigoPresupuestario;
 
     @NotBlank
@@ -40,6 +39,8 @@ public class Tarifa {
     public Long getTarifaId() {
         return tarifaId;
     }
+
+    // getters and setters
 
     public void setTarifaId(Long tarifaId) {
         this.tarifaId = tarifaId;

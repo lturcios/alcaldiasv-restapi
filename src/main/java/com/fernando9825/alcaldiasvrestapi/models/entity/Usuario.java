@@ -21,6 +21,7 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     private Institucion institucion;
 
+    // getters and setters
 
     public String getEmail() {
         return email;
