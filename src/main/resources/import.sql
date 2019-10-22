@@ -15,9 +15,9 @@ INSERT INTO sectores (nombre, institucion_id_fk) VALUES
 ('Zapaterias', 3);
 
 INSERT INTO usuarios (email, password, institucion_id_fk) VALUES
-('admin@sanmiguel', '1234', 1),
-('admin@cojutepeque', '1234', 2),
-('admin@zaragoza', '1234', 3);
+('admin@sanmiguel', '123456', 1),
+('admin@cojutepeque', '123456', 2),
+('admin@zaragoza', '123456', 3);
 
 INSERT INTO municipios (id, municipio_departamento) VALUES
 (101, 'San Salvador, San Salvador'),
@@ -330,8 +330,8 @@ INSERT INTO rutas_puestos (ruta_id, puestos_id) VALUES
 (2, 3),
 (3, 4);
 
-INSERT INTO asignaciones (codigo_presup, fecha_egreso, fecha_ingreso, observaciones, ultimo_pago, institucion_id_fk, puesto_id_fk, contrib_id_fk) VALUES
-(12115001, null, '2019/01/01', null, '2019/09/15', 1, 1, 1);
+INSERT INTO asignaciones (codigo_presup, fecha_egreso, fecha_ingreso, observaciones, ultimo_pago, institucion_id_fk, puesto_id_fk, giro_id_fk, contrib_id_fk) VALUES
+(12115001, null, '2019/01/01', null, '2019/09/15', 1, 1, 3, 1);
 
 INSERT INTO movimientos (pago_id, actualizado, fecha_fin, fecha_hora_anula, fecha_horapago, fecha_inicio, valor_agregado, monto_total, observaciones, pago_estado, precio_unitario, tarifa_unitario, asignacion_id_fk) VALUES
 ('qwertyui', false, '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , true, 0.25, 2.13, 1);

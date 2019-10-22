@@ -44,6 +44,10 @@ public class Asignacion {
     @JoinColumn(name = "puesto_id_fk", referencedColumnName = "id", unique = true)
     private Puesto puesto;
 
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = Giro.class)
+    @JoinColumn(name = "giro_id_fk", referencedColumnName = "id")
+    private Giro giro;
+
     /*
     * Este campo se va actualizar automaticamente, si el vendedor, deja el puesto
     * registrando asi el puesto que tenia, y tambien se tomara la fecha en que dejó
