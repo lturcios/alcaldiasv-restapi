@@ -15,9 +15,10 @@ INSERT INTO sectores (nombre, institucion_id_fk) VALUES
 ('Zapaterias', 3);
 
 INSERT INTO usuarios (email, password, institucion_id_fk) VALUES
-('admin@sanmiguel', '123456', 1),
-('admin@cojutepeque', '123456', 2),
-('admin@zaragoza', '123456', 3);
+('admin@sanmiguel.com', '123456', 1),
+('admin@cojutepeque.com', '123456', 2),
+('admin@zaragoza.com', '123456', 3),
+('fer25alvarado@gmail.com', '123456', 1);
 
 INSERT INTO municipios (id, municipio_departamento) VALUES
 (101, 'San Salvador, San Salvador'),
