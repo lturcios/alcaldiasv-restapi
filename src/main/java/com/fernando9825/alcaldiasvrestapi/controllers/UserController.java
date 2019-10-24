@@ -47,10 +47,12 @@ public class UserController {
                 // generar el token
                 String token = getJWTToken(email);
 
-                response.put("information", "Please use the given token in every request, in order to " +
+                response.put("message", "Please use the given token in every request, in order to " +
                         "get access to all API");
-                response.put("email", email);
+                response.put("nombre", usuario.getNombre());
+                response.put("email", email.trim());
                 response.put("token", token);
+                response.put("institucion", usuario.getInstitucion());
 
                 return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
             }

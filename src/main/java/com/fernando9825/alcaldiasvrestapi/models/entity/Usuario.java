@@ -14,6 +14,10 @@ public class Usuario {
     private String email;
 
     @NotBlank
+    @Size(min = 8, max = 120)
+    private String nombre;
+
+    @NotBlank
     @Size(min = 8, max = 16)
     private String password;
 
@@ -24,12 +28,21 @@ public class Usuario {
 
     // getters and setters
 
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPassword() {
@@ -40,4 +53,11 @@ public class Usuario {
         this.password = password;
     }
 
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
+    }
 }

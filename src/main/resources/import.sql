@@ -14,11 +14,11 @@ INSERT INTO sectores (nombre, institucion_id_fk) VALUES
 ('Mercado de Verduras', 3),
 ('Zapaterias', 3);
 
-INSERT INTO usuarios (email, password, institucion_id_fk) VALUES
-('admin@sanmiguel.com', '123456', 1),
-('admin@cojutepeque.com', '123456', 2),
-('admin@zaragoza.com', '123456', 3),
-('fer25alvarado@gmail.com', '123456', 1);
+INSERT INTO usuarios (email, nombre, password, institucion_id_fk) VALUES
+('admin@sanmiguel.com', 'administrador de San Miguel', '123456', 1),
+('admin@cojutepeque.com', 'administrador de Cojutepeque', '123456', 2),
+('admin@zaragoza.com', 'administrador de Zaragoza', '123456', 3),
+('fer25alvarado@gmail.com', 'Fernando Roman Ventura Alvarado', '123456', 1);
 
 INSERT INTO municipios (id, municipio_departamento) VALUES
 (101, 'San Salvador, San Salvador'),
