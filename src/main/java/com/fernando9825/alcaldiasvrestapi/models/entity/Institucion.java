@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "instituciones")
@@ -12,14 +13,18 @@ public class Institucion {
     private Long id;
 
     @NotBlank
+    @Size(max = 100)
     private String nombre;
 
     @NotBlank
+    @Size(max = 125)
     private String direccion;
 
+    @Size(max = 10)
     private String telefono;
 
     @NotBlank
+    @Size(max = 10)
     private String estado;
 
     // getters and setters

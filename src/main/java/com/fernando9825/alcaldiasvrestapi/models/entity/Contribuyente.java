@@ -20,6 +20,7 @@ public class Contribuyente implements Serializable {
     private List<Asignacion> asignaciones;
 
     @Column(name = "codigo_cta", unique = true)
+    @Size(max = 10)
     private String codigoCuenta;
 
     @NotBlank
