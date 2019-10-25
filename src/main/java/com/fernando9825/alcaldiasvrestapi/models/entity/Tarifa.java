@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -24,6 +25,7 @@ public class Tarifa {
     private long codigoPresupuestario;
 
     @NotBlank
+    @Size(max = 50)
     private String descripcion;
 
     @NotNull
@@ -34,6 +36,7 @@ public class Tarifa {
     @Temporal(value = TemporalType.DATE)
     private Date vigencia;
 
+    @Size(max = 200)
     private String referencia;
 
 

@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -23,6 +24,7 @@ public class Asignacion {
     @Temporal(value = TemporalType.DATE)
     private Date fechaEgreso;
 
+    @Size(max = 200)
     private String observaciones;
 
     // llaves foraneas

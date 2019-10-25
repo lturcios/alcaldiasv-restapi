@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,12 @@ public class Ruta {
     private Institucion institucion;
 
     // nombre de la ruta
+    @Size(max = 25)
     private String nombre;
 
     // descripcion de la ruta
     // por ejemplo, la ruta empiece desde la calle, que corta con ... hasta la avenida x
+    @Size(max = 50)
     private String descripcion;
 
     @OneToMany(cascade = CascadeType.ALL)

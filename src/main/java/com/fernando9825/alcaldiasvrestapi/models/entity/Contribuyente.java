@@ -23,11 +23,11 @@ public class Contribuyente implements Serializable {
     private String codigoCuenta;
 
     @NotBlank
-    @Size(min = 5, max = 255)
+    @Size(min = 4, max = 50)
     private String nombres;
 
     @NotBlank
-    @Size(min = 5, max = 255)
+    @Size(min = 4, max = 50)
     private String apellidos;
 
     @Column(name = "dui", unique = true)
@@ -35,15 +35,18 @@ public class Contribuyente implements Serializable {
     @Size(min = 10, max = 10)
     private String DUI;
 
+    @Size(max = 10)
     private String telefonoPrincipal;
 
+    @Size(max = 10)
     private String telefonoSecundario;
 
     @Column(name = "nit")
+    @Size(max = 20)
     private String NIT;
 
     @NotBlank
-    @Size(min = 5, max = 255)
+    @Size(min = 5, max = 125)
     private String direccion;
 
     @Column(insertable = false, updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

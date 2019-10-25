@@ -50,6 +50,7 @@ public class Movimiento {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHoraAnula;
 
+    @Size(max = 200)
     private String observaciones;
 
     private boolean actualizado;

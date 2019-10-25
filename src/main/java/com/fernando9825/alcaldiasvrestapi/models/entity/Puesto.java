@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "puestos")
@@ -38,9 +39,11 @@ public class Puesto {
     private double medidaCalificaion;
 
     @NotBlank
+    @Size(max = 10)
     private String modulo;
 
     @NotBlank
+    @Size(max = 20)
     private String estado;
 
 

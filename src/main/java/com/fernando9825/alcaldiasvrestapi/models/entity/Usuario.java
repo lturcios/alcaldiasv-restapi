@@ -11,6 +11,7 @@ public class Usuario {
 
     @Id
     @Email
+    @Size(max = 200)
     private String email;
 
     @NotBlank
