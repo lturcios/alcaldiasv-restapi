@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/")
 public class UserController {
 
     private final IUserService userService;
@@ -33,7 +33,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/user")
+    @PostMapping("user")
     public ResponseEntity<?> login(@RequestParam("email") String email,
                                    @RequestParam("password") String pwd) {
 

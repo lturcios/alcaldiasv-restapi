@@ -14,7 +14,7 @@ public class Municipio {
     private Integer id;
 
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 50)
     private String municipioDepartamento;
 
 

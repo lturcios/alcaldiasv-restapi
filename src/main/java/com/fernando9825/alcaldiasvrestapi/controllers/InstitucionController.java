@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/")
 public class InstitucionController {
 
     private final InstitucionInterfaceService institucionService;
@@ -20,7 +20,7 @@ public class InstitucionController {
         this.institucionService =  institucionService;
     }
 
-    @GetMapping("/prueba")
+    @GetMapping("prueba")
     public List<Contribuyente> getContribuyentesByInstitucionId(Long institucionId){
         return this.getContribuyentesByInstitucionId(institucionId);
     }

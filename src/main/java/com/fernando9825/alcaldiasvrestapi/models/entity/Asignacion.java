@@ -17,7 +17,6 @@ public class Asignacion {
     @Temporal(value = TemporalType.DATE)
     private Date fechaIngreso;
 
-    @NotNull
     @Temporal(value = TemporalType.DATE)
     private Date ultimoPago;
 

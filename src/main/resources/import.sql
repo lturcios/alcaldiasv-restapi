@@ -320,10 +320,10 @@ INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, ref
 (12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 3),
 (12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 3);
 
-INSERT INTO rutas (nombre, descripcion, institucion_id_fk) VALUES
-('Ruta #1', 'La ruta del bloque completo del parque barrios', 1),
-('Ruta #2', 'La ruta del parque Guzman', 1),
-('Ruta #1', 'La ruta de Cojutepeque', 2);
+INSERT INTO rutas (nombre, descripcion, institucion_id_fk, usuario_email_fk) VALUES
+('Ruta #1', 'La ruta del bloque completo del parque barrios', 1, 'fer25alvarado@gmail.com'),
+('Ruta #2', 'La ruta del parque Guzman', 1, 'fer25alvarado@gmail.com'),
+('Ruta #1', 'La ruta de Cojutepeque', 2, 'admin@cojutepeque.com');
 
 INSERT INTO rutas_puestos (ruta_id, puestos_id) VALUES
 (1, 1),
