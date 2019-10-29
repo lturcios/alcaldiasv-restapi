@@ -289,7 +289,7 @@ INSERT INTO contribuyentes (dui, codigo_cta, nombres, apellidos, direccion, tele
 ('03234543-0', 'LT/001', 'Luis', 'Turcios', 'Colonia Urbesa, Polígono D, pasaje B #17', '6007-4974', '6152-6344', '1206-280879-111-6', 1, 0301),
 ('02756131-0', 'FV/002', 'Fernando Roman', 'Ventura Alvarado', 'Barrio San Francisco, 14 C. Pnte.', '7530-6697', null, '1206-240799-111-7', 1, 0301);
 
-INSERT INTO puestos (modulo, estado, medida_frente, medida_fondo, medida_compensa, medida_calificaion, institucion_id_fk, sector_id_fk) VALUES
+INSERT INTO puestos (modulo, estado, medida_frente, medida_fondo, medida_compensa, medida_calificacion, institucion_id_fk, sector_id_fk) VALUES
 (  '1-A', 'ARRENDADO', 10.2, 3.3, 0.0,  33.66, 1, 1),
 (  '2-A', 'DISPONIBLE', 4.0, 4.3, 0.5,  16.7,1, 1),
 (  '1-B', 'ARRENDADO', 5.4, 5.3, 2.0,   26.62,1, 2),

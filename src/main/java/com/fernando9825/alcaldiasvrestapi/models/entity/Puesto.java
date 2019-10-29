@@ -36,7 +36,7 @@ public class Puesto {
 
     @NotNull
     @PositiveOrZero
-    private double medidaCalificaion;
+    private double medidaCalificacion;
 
     @NotBlank
     @Size(max = 10)
@@ -99,11 +99,11 @@ public class Puesto {
     }
 
     public double getMedidaCalificaion() {
-        return medidaCalificaion;
+        return medidaCalificacion;
     }
 
     public void setMedidaCalificaion(double medidaCalificaion) {
-        this.medidaCalificaion = medidaCalificaion;
+        this.medidaCalificacion = medidaCalificaion;
     }
 
     public String getModulo() {
