@@ -10,4 +10,5 @@ import java.util.List;
 public interface IRutaDao extends JpaRepository<Ruta, Long> {
 
     List<Ruta> findByInstitucionAndUsuario(Institucion institucion, Usuario usuario);
+
 }
