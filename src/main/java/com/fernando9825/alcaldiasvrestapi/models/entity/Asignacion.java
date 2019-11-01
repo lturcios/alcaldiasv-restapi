@@ -1,5 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,12 +29,16 @@ public class Asignacion {
     private String observaciones;
 
     // llaves foraneas
+    @JsonIgnore // ignorar la institucion de la respuesta
     @ManyToOne
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
+
+    // here and json ignore and stop bug
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore // ignorar el contribuyente de la respuesta
+    @ManyToOne
     @JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
     private Contribuyente contribuyente;
 
@@ -41,11 +47,11 @@ public class Asignacion {
         debe haber la posibilidad de dejar el campo nulo, para que otro vendedor
         pueda tomar su lugar, y si le asigne el puesto
      */
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Puesto.class)
+    @OneToOne(targetEntity = Puesto.class)
     @JoinColumn(name = "puesto_id_fk", referencedColumnName = "id", unique = true)
     private Puesto puesto;
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Giro.class)
+    @OneToOne(targetEntity = Giro.class)
     @JoinColumn(name = "giro_id_fk", referencedColumnName = "id")
     private Giro giro;
 
