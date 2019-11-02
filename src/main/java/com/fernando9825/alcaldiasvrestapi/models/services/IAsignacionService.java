@@ -11,6 +11,9 @@ public interface IAsignacionService {
     // Encontrar una sola asignacion
     Asignacion findByInstitucionIdAndPuestoId(Long institucionId, Long puestoId);
 
+    // Todas las asignaciones
+    List<Asignacion> findByInstitucionId(Long institucionId);
+
     Asignacion findById(Long asignacionId);
 
     Asignacion save(Asignacion asignacion);

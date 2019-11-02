@@ -1,14 +1,13 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
-import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
 import com.fernando9825.alcaldiasvrestapi.models.services.IAsignacionService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/")
@@ -18,6 +17,11 @@ public class AsignacionController {
 
     public AsignacionController(IAsignacionService asignacionService) {
         this.asignacionService = asignacionService;
+    }
+
+    @GetMapping(path = "asignaciones/{institucionId}")
+    public List<Asignacion> findAllByInstitucionId(@PathVariable Long institucionId){
+        return this.asignacionService.findByInstitucionId(institucionId);
     }
 
     @GetMapping(path = "asignaciones/{institucionId}/{puestoId}")

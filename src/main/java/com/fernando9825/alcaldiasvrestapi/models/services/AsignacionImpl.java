@@ -13,7 +13,7 @@ import java.util.List;
 public class AsignacionImpl implements IAsignacionService {
 
 
-    private final  IAsignacionDao asignacionDao;
+    private final IAsignacionDao asignacionDao;
     private final InstitucionDao institucionDao;
     private final IPuestoDao puestoDao;
 
@@ -36,6 +36,12 @@ public class AsignacionImpl implements IAsignacionService {
                 this.puestoDao.findById(puestoId).orElse(null)
         );
 
+    }
+
+    @Override
+    public List<Asignacion> findByInstitucionId(Long institucionId) {
+        return this.asignacionDao.findByInstitucion(
+                this.institucionDao.findById(institucionId).orElse(null));
     }
 
     @Override
