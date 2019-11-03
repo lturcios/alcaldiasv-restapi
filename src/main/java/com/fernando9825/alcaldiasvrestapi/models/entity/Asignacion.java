@@ -37,10 +37,10 @@ public class Asignacion {
 
     // here and json ignore and stop bug
     @NotNull
-    @JsonIgnore // ignorar el contribuyente de la respuesta
-    @ManyToOne
-    @JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
-    private Contribuyente contribuyente;
+    //@JsonIgnore // ignorar el contribuyente de la respuesta
+    //@JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
+    @Column(name = "contrib_id_fk")
+    private Long contribuyente;
 
     /*
         Este campo puede ser nulo, porque si en el futuro el vendedor deja el puesto
@@ -116,11 +116,11 @@ public class Asignacion {
         this.institucion = institucion;
     }
 
-    public Contribuyente getContribuyente() {
+    public Long getContribuyente() {
         return contribuyente;
     }
 
-    public void setContribuyente(Contribuyente contribuyente) {
+    public void setContribuyente(Long contribuyente) {
         this.contribuyente = contribuyente;
     }
 
