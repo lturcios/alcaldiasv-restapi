@@ -53,9 +53,9 @@ public class ContribuyenteController {
     }
 
     // TODO: check this function
-    @GetMapping(path = "/contribuyentes/{contribuyenteId}")
-    public Contribuyente getContribuyente(@PathVariable long contribuyenteId) {
-        return this.taxpayerService.findById(contribuyenteId);
+    @GetMapping(path = "/contribuyentes/{institucionId}")
+    public List<Contribuyente> getContribuyente(@PathVariable long institucionId) {
+        return this.taxpayerService.findByInstitucionId(institucionId);
     }
 
     // update

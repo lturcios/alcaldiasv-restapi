@@ -10,6 +10,8 @@ public interface IContribuyenteService {
 
     Contribuyente findById(Long contribuyenteId);
 
+    List<Contribuyente> findByInstitucionId(Long institucionId);
+
     Contribuyente save(Contribuyente contribuyente);
 
     void delete(Long contribuyenteId);
