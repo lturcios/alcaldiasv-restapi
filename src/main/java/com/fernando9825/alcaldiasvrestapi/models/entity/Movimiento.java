@@ -11,10 +11,10 @@ import java.util.Date;
 @Table(name = "movimientos")
 public class Movimiento {
 
+
     @Id
     @Size(min = 8, max = 8)
     private String pagoId;
-
 
     /*
     * llaves que tiene asignacion:
@@ -45,18 +45,22 @@ public class Movimiento {
     @CreationTimestamp
     private Date fechaHorapago;
 
-    private boolean pagoEstado;
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHoraAnula;
 
     @Size(max = 200)
     private String observaciones;
 
-    private boolean actualizado;
+
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "usuario_email_fk")
+    private Usuario usuario;
 
 
     // getters and setters
+
     public String getPagoId() {
         return pagoId;
     }
@@ -129,14 +133,6 @@ public class Movimiento {
         this.fechaHorapago = fechaHorapago;
     }
 
-    public boolean isPagoEstado() {
-        return pagoEstado;
-    }
-
-    public void setPagoEstado(boolean pagoEstado) {
-        this.pagoEstado = pagoEstado;
-    }
-
     public Date getFechaHoraAnula() {
         return fechaHoraAnula;
     }
@@ -153,11 +149,11 @@ public class Movimiento {
         this.observaciones = observaciones;
     }
 
-    public boolean isActualizado() {
-        return actualizado;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setActualizado(boolean actualizado) {
-        this.actualizado = actualizado;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

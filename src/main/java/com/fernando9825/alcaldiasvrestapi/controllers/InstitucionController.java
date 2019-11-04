@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
-import com.fernando9825.alcaldiasvrestapi.models.services.InstitucionInterfaceService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

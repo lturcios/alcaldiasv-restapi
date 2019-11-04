@@ -1,4 +1,4 @@
-package com.fernando9825.alcaldiasvrestapi.models.services;
+package com.fernando9825.alcaldiasvrestapi.models.services.interfaces;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
 

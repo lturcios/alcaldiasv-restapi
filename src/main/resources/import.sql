@@ -336,5 +336,6 @@ INSERT INTO asignaciones (codigo_presup, fecha_egreso, fecha_ingreso, observacio
 (12115001, null, '2019/01/10', null, '2019/09/28', 1, 2, 12, 1);
 
 
-INSERT INTO movimientos (pago_id, actualizado, fecha_fin, fecha_hora_anula, fecha_horapago, fecha_inicio, valor_agregado, monto_total, observaciones, pago_estado, precio_unitario, tarifa_unitario, asignacion_id_fk) VALUES
-('qwertyui', false, '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , true, 0.25, 2.13, 1);
+INSERT INTO movimientos (pago_id, usuario_email_fk, fecha_fin, fecha_hora_anula, fecha_horapago, fecha_inicio, valor_agregado, monto_total, observaciones, precio_unitario, tarifa_unitario, asignacion_id_fk) VALUES
+('qwertyui', 'fer25alvarado@gmail.com', '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , 0.25, 2.13, 1),
+('qwertyas', 'fer25alvarado@gmail.com', '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , 0.25, 2.13, 1);

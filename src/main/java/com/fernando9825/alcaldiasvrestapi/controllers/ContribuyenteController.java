@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
-import com.fernando9825.alcaldiasvrestapi.models.services.IContribuyenteService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -81,6 +81,7 @@ public class ContribuyenteController {
         contribuyente.setNIT(updatedContribuyente.getNIT());
         contribuyente.setDireccion(updatedContribuyente.getDireccion());
         //contribuyente.setMunicipio(updatedContribuyente.getMunicipio());
+
 
         this.taxpayerService.save(contribuyente);
         return new ResponseEntity<>(contribuyente, HttpStatus.CREATED);

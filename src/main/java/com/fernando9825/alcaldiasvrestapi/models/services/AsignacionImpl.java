@@ -4,6 +4,7 @@ import com.fernando9825.alcaldiasvrestapi.models.dao.IAsignacionDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.IPuestoDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IAsignacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

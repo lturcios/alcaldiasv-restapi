@@ -1,6 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Institucion;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

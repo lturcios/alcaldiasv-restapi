@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
-import com.fernando9825.alcaldiasvrestapi.models.services.IUserService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IUserService;
 import com.fernando9825.alcaldiasvrestapi.security.SecurityConstants;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

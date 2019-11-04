@@ -4,6 +4,7 @@ import com.fernando9825.alcaldiasvrestapi.models.dao.IRutaDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.IUserDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Ruta;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IRutaService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
-import com.fernando9825.alcaldiasvrestapi.models.services.IAsignacionService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IAsignacionService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

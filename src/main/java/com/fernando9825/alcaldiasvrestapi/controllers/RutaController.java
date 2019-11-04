@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Ruta;
-import com.fernando9825.alcaldiasvrestapi.models.services.IRutaService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IRutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

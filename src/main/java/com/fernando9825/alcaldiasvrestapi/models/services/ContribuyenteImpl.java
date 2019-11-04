@@ -3,6 +3,7 @@ package com.fernando9825.alcaldiasvrestapi.models.services;
 import com.fernando9825.alcaldiasvrestapi.models.dao.IContribuyenteDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
