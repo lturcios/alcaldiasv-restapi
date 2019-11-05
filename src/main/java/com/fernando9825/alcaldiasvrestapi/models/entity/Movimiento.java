@@ -1,5 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -21,6 +23,16 @@ public class Movimiento {
     *   contrib_id
     *   codigo_presupuestaria (de tarifa)
     *   InstitucionId*/
+    @JsonIgnoreProperties(value = {
+            "fechaIngreso",
+            "ultimoPago",
+            "fechaEgreso",
+            "observaciones",
+            "contribuyente",
+            "puesto",
+            "puestoEgreso",
+            "codigoPresupuestario"
+    })
     @ManyToOne
     @JoinColumn(name = "asignacion_id_fk", referencedColumnName = "id", nullable = false)
     private Asignacion asignacion;
@@ -53,6 +65,7 @@ public class Movimiento {
 
 
 
+    @JsonIgnore
     @NotNull
     @OneToOne
     @JoinColumn(name = "usuario_email_fk")

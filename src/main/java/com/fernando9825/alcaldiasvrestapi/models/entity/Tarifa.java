@@ -1,5 +1,6 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,6 +17,8 @@ public class Tarifa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // ignorar la institucion de la respuesta
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
