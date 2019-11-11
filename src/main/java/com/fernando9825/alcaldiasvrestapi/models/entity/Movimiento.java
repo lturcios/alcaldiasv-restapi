@@ -13,6 +13,22 @@ import java.util.Date;
 @Table(name = "movimientos")
 public class Movimiento {
 
+    public Movimiento() {
+    }
+
+    public Movimiento(@Size(min = 8, max = 8) String pagoId, Asignacion asignacion, double precioUnitario, double tarifaUnitario, double iva, double montoTotal, @NotNull Date fechaInicio, Date fechaFin, Date fechaHorapago, @Size(max = 200) String observaciones, @NotNull Usuario usuario) {
+        this.pagoId = pagoId;
+        this.asignacion = asignacion;
+        this.precioUnitario = precioUnitario;
+        this.tarifaUnitario = tarifaUnitario;
+        this.iva = iva;
+        this.montoTotal = montoTotal;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.fechaHorapago = fechaHorapago;
+        this.observaciones = observaciones;
+        this.usuario = usuario;
+    }
 
     @Id
     @Size(min = 8, max = 8)

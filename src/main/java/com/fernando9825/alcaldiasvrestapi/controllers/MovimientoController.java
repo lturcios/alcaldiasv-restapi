@@ -1,17 +1,21 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
+import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Movimiento;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IAsignacionService;
-import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IContribuyenteService;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IMovimientoService;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Size;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 @RestController
@@ -21,13 +25,13 @@ public class MovimientoController {
     private final IMovimientoService movimientoService;
     private final IUserService userService;
     private final IAsignacionService asignacionService;
-    private final IContribuyenteService contribuyenteService;
 
-    public MovimientoController(IMovimientoService movimientoService, IUserService userService, IAsignacionService asignacionService, IContribuyenteService contribuyenteService) {
+    public MovimientoController(IMovimientoService movimientoService,
+                                IUserService userService,
+                                IAsignacionService asignacionService) {
         this.movimientoService = movimientoService;
         this.userService = userService;
         this.asignacionService = asignacionService;
-        this.contribuyenteService = contribuyenteService;
     }
 
     // obtener todas los movimientos por id del usuario que los efectuo
@@ -48,51 +52,74 @@ public class MovimientoController {
 
     // Guardar movimiento
     @PostMapping(path = "movimientos")
-    public ResponseEntity<?> insertMovimiento(@RequestBody Movimiento movimiento,
-                                              BindingResult result) {
-
-        if (result.hasErrors()){
-            Map<String, Object> message = new HashMap<>();
-            message.put("message", "solve the errors in order to save");
-            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
-        }
-
-        this.movimientoService.save(movimiento);
-        return new ResponseEntity<>(movimiento, HttpStatus.CREATED);
-    }
-
-    /*@PostMapping(path = "movimientos")
     public ResponseEntity<?> insertMovimiento(
-            @RequestParam String pagoId,
+            @Size(min = 8, max = 8) @RequestParam String pagoId,
             @RequestParam Long asignacionId,
+            @RequestParam String ultimoPago,
+            @RequestParam(required = false) String observaciones,
             @RequestParam Double precioUnitario,
-                @RequestParam Double tarifaUnitario,
+            @RequestParam Double tarifaUnitario,
             @RequestParam Double iva,
             @RequestParam Double montoTotal,
-            @RequestParam String fechaInicio,
+            @RequestParam String fechaIncio,
             @RequestParam String fechaFin,
-            @RequestParam String fechaHorapago,
-            @RequestParam String usuarioEmail,
+            @RequestParam String fechaHoraPago,
             @RequestParam(required = false) String fechaHoraAnula,
-            @RequestParam(required = false) String observaciones) throws ParseException {
+            @RequestParam String usuarioEmail) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        Asignacion asignacion = this.asignacionService.findById(asignacionId);
+        Usuario usuario = this.userService.findById(usuarioEmail);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
 
 
-        Movimiento movimiento = new Movimiento(
-                pagoId,
-                this.asignacionService.findById(asignacionId),
-                precioUnitario,
-                tarifaUnitario,
-                iva,
-                montoTotal,
-                new SimpleDateFormat("yyyy-MM-dd").parse(fechaInicio),
-                new SimpleDateFormat("yyyy-MM-dd").parse(fechaFin),
-                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZ").parse(fechaHorapago),
-                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZ").parse(fechaHoraAnula),
-                observaciones,
-                this.userService.findById(usuarioEmail)
-        );
+        Date ultimoPagoDate = null;
+        Date fechaInicioDate = null;
+        Date fechaFinDate = null;
+        Date fechaHoraPagoDate = null;
+        try {
+            ultimoPagoDate = simpleDateFormat.parse(ultimoPago);
+            fechaInicioDate = simpleDateFormat.parse(fechaIncio);
+            fechaFinDate = simpleDateFormat.parse(fechaFin);
+            fechaHoraPagoDate = sdfFechaHoraPago.parse(fechaHoraPago);
 
-        this.movimientoService.save(movimiento);
-        return new ResponseEntity<>(movimiento, HttpStatus.CREATED);
-    }*/
+            // codigo del camino feliz
+            if (asignacion != null && usuario != null) {
+
+                // cambiando estado del ultimo pago
+                asignacion.setUltimoPago(ultimoPagoDate);
+
+                Movimiento movimiento = new Movimiento(
+                        pagoId,
+                        asignacion,
+                        precioUnitario,
+                        tarifaUnitario,
+                        iva,
+                        montoTotal,
+                        fechaInicioDate,
+                        fechaFinDate,
+                        fechaHoraPagoDate,
+                        observaciones,
+                        usuario);
+
+                this.movimientoService.save(movimiento);
+                response.put("status", HttpStatus.CREATED.value());
+
+                return new ResponseEntity<>(response, HttpStatus.CREATED);
+            } else {
+                // codigo si falla algo
+                response.put("status", HttpStatus.NOT_FOUND.value());
+                return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            response.put("status", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
 }
