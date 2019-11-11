@@ -117,6 +117,7 @@ public class MovimientoController {
         } catch (ParseException e) {
             e.printStackTrace();
             response.put("status", HttpStatus.BAD_REQUEST.value());
+            response.put("error", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
