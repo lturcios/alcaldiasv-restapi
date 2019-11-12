@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -76,7 +77,7 @@ public class MovimientoController {
 
         Usuario usuario = this.userService.findById(usuarioEmail);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+        SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
 
         Date ultimoPagoDate;
@@ -87,8 +88,10 @@ public class MovimientoController {
             ultimoPagoDate = simpleDateFormat.parse(ultimoPago);
             fechaInicioDate = simpleDateFormat.parse(fechaInicio);
             fechaFinDate = simpleDateFormat.parse(fechaFin);
-            fechaHoraPagoDate = sdfFechaHoraPago.parse(fechaHoraPago);
 
+
+            fechaHoraPagoDate = sdfFechaHoraPago.parse(fechaHoraPago);
+            Timestamp timestamp = new java.sql.Timestamp(fechaHoraPagoDate.getTime());
             // codigo del camino feliz
             if (asignacion != null && usuario != null) {
 
@@ -107,7 +110,7 @@ public class MovimientoController {
                         montoTotal,
                         fechaInicioDate,
                         fechaFinDate,
-                        fechaHoraPagoDate,
+                        timestamp,
                         observaciones,
                         usuario);
 
@@ -125,7 +128,7 @@ public class MovimientoController {
                         montoTotal,
                         fechaInicioDate,
                         fechaFinDate,
-                        fechaHoraPagoDate,
+                        timestamp,
                         observaciones,
                         usuario);
 
