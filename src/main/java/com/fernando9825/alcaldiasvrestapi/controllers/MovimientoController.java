@@ -69,7 +69,11 @@ public class MovimientoController {
 
         Map<String, Object> response = new HashMap<>();
 
-        Asignacion asignacion = this.asignacionService.findById(asignacionId);
+        Asignacion asignacion = null;
+        if (asignacionId != null){
+            asignacion = this.asignacionService.findById(asignacionId);
+        }
+
         Usuario usuario = this.userService.findById(usuarioEmail);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
