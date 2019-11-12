@@ -54,14 +54,14 @@ public class MovimientoController {
     @PostMapping(path = "movimientos")
     public ResponseEntity<?> insertMovimiento(
             @Size(min = 8, max = 8) @RequestParam String pagoId,
-            @RequestParam Long asignacionId,
+            @RequestParam(required = false) Long asignacionId,
             @RequestParam String ultimoPago,
             @RequestParam(required = false) String observaciones,
             @RequestParam Double precioUnitario,
             @RequestParam Double tarifaUnitario,
             @RequestParam Double iva,
             @RequestParam Double montoTotal,
-            @RequestParam String fechaIncio,
+            @RequestParam String fechaInicio,
             @RequestParam String fechaFin,
             @RequestParam String fechaHoraPago,
             @RequestParam(required = false) String fechaHoraAnula,
@@ -75,21 +75,24 @@ public class MovimientoController {
         SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
 
 
-        Date ultimoPagoDate = null;
-        Date fechaInicioDate = null;
-        Date fechaFinDate = null;
-        Date fechaHoraPagoDate = null;
+        Date ultimoPagoDate;
+        Date fechaInicioDate;
+        Date fechaFinDate;
+        Date fechaHoraPagoDate;
         try {
             ultimoPagoDate = simpleDateFormat.parse(ultimoPago);
-            fechaInicioDate = simpleDateFormat.parse(fechaIncio);
+            fechaInicioDate = simpleDateFormat.parse(fechaInicio);
             fechaFinDate = simpleDateFormat.parse(fechaFin);
             fechaHoraPagoDate = sdfFechaHoraPago.parse(fechaHoraPago);
 
             // codigo del camino feliz
             if (asignacion != null && usuario != null) {
 
-                // cambiando estado del ultimo pago
-                asignacion.setUltimoPago(ultimoPagoDate);
+                /*  verificar que la fecha del ultimo pago recibida, sea siempre la ultima*/
+                if (asignacion.getUltimoPago().before(fechaFinDate)){
+                    // cambiando estado del ultimo pago
+                    asignacion.setUltimoPago(ultimoPagoDate);
+                }
 
                 Movimiento movimiento = new Movimiento(
                         pagoId,
@@ -108,7 +111,24 @@ public class MovimientoController {
                 response.put("status", HttpStatus.CREATED.value());
 
                 return new ResponseEntity<>(response, HttpStatus.CREATED);
-            } else {
+            } else if (asignacion == null && usuario != null){ // Vendedor ambulante
+                Movimiento movimiento = new Movimiento(
+                        pagoId,
+                        null,
+                        precioUnitario,
+                        tarifaUnitario,
+                        iva,
+                        montoTotal,
+                        fechaInicioDate,
+                        fechaFinDate,
+                        fechaHoraPagoDate,
+                        observaciones,
+                        usuario);
+
+                this.movimientoService.save(movimiento);
+                response.put("status", HttpStatus.CREATED.value());
+                return new ResponseEntity<>(response, HttpStatus.CREATED);
+            } else{
                 // codigo si falla algo
                 response.put("status", HttpStatus.NOT_FOUND.value());
                 return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
@@ -120,7 +140,9 @@ public class MovimientoController {
             response.put("error", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-
     }
-
 }
+
+
+
+
