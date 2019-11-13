@@ -3,22 +3,11 @@ INSERT INTO instituciones (nombre, estado, telefono, direccion) VALUES
 ('Alcaldía Municipal de Cojutepeque', 'Activo', '2379-3900', '6A Avenida Sur, Cojutepeque'),
 ('Alcaldía Municipal de Zaragoza', 'Activo', '2349-0900', '2A Calle Poniente y Avenida España Sur, Zaragoza');
 
-INSERT INTO sectores (nombre, institucion_id_fk) VALUES
-('Mercado de Mariscos',  1),
-('Mercado de Verduras', 1),
-('Zapaterias', 1),
-('Mercado de Mariscos',  2),
-('Mercado de Verduras', 2),
-('Zapaterias', 2),
-('Mercado de Mariscos',  3),
-('Mercado de Verduras', 3),
-('Zapaterias', 3);
 
 INSERT INTO usuarios (email, nombre, password, institucion_id_fk) VALUES
 ('admin@sanmiguel.com', 'administrador de San Miguel', '123456', 1),
 ('admin@cojutepeque.com', 'administrador de Cojutepeque', '123456', 2),
-('admin@zaragoza.com', 'administrador de Zaragoza', '123456', 3),
-('fer25alvarado@gmail.com', 'Fernando Roman Ventura Alvarado', '123456', 1);
+('admin@zaragoza.com', 'administrador de Zaragoza', '123456', 3);
 
 INSERT INTO municipios (id, municipio_departamento) VALUES
 (101, 'San Salvador, San Salvador'),
@@ -285,15 +274,6 @@ INSERT INTO municipios (id, municipio_departamento) VALUES
 (1409, 'Guacotecti, Cabañas'),
 (1501, 'Residentes En El Exterior, Res. Exterior');
 
-INSERT INTO contribuyentes (dui, codigo_cta, nombres, apellidos, direccion, telefono_principal, telefono_secundario, nit,  institucion_id_fk, municipio_id_fk) VALUES
-('03234543-0', 'LT/001', 'Luis', 'Turcios', 'Colonia Urbesa, Polígono D, pasaje B #17', '6007-4974', '6152-6344', '1206-280879-111-6', 1, 0301),
-('02756131-0', 'FV/002', 'Fernando Roman', 'Ventura Alvarado', 'Barrio San Francisco, 14 C. Pnte.', '7530-6697', null, '1206-240799-111-7', 1, 0301);
-
-INSERT INTO puestos (modulo, estado, medida_frente, medida_fondo, medida_compensa, medida_calificacion, institucion_id_fk, sector_id_fk) VALUES
-(  '1-A', 'ARRENDADO', 10.2, 3.3, 0.0,  33.66, 1, 1),
-(  '2-A', 'DISPONIBLE', 4.0, 4.3, 0.5,  16.7,1, 1),
-(  '1-B', 'ARRENDADO', 5.4, 5.3, 2.0,   26.62,1, 2),
-(  '2-B', 'NECESITA REPARACIÓN', 10.2, 8.1, 0.0,  82.62,1, 3);
 
 INSERT INTO giros (nombre, institucion_id_fk) VALUES
 ('VERDURAS', 1),
@@ -310,33 +290,6 @@ INSERT INTO giros (nombre, institucion_id_fk) VALUES
 ('CRISTALERIA', 3);
 
 INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, referencia, institucion_id_fk) VALUES
-(12115001,0.20, '2010/01/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 1),
-(12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 1),
-(12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 1),
-(12115001,0.20, '2010/01/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 2),
-(12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 2),
-(12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 2),
-(12115001,0.20, '2010/01/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 3),
-(12115002, 0.22, '2010/01/01', 'Puesto calle', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 3),
-(12115001, 0.28, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 3),
-(12115999, 0.6, '2016/06/01', 'Puesto acera', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro eum totam cum laboriosam aut nam veniam ut vero delectus hic nemo assumenda laudantium, omnis praesentium et est architecto. Officia, fa', 1);
-
-INSERT INTO rutas (nombre, descripcion, institucion_id_fk, usuario_email_fk) VALUES
-('Ruta #1', 'La ruta del bloque completo del parque barrios', 1, 'fer25alvarado@gmail.com'),
-('Ruta #2', 'La ruta del parque Guzman', 1, 'fer25alvarado@gmail.com'),
-('Ruta #1', 'La ruta de Cojutepeque', 2, 'admin@cojutepeque.com');
-
-INSERT INTO rutas_puestos (ruta_id, puestos_id) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(3, 4);
-
-INSERT INTO asignaciones (codigo_presup, fecha_egreso, fecha_ingreso, observaciones, ultimo_pago, institucion_id_fk, puesto_id_fk, giro_id_fk, contrib_id_fk) VALUES
-(12115001, null, '2019/01/01', null, '2019/09/15', 1, 1, 3, 1),
-(12115001, null, '2019/01/10', null, '2019/09/28', 1, 2, 12, 1);
-
-
-INSERT INTO movimientos (pago_id, usuario_email_fk, fecha_fin, fecha_hora_anula, fecha_horapago, fecha_inicio, valor_agregado, monto_total, observaciones, precio_unitario, tarifa_unitario, asignacion_id_fk) VALUES
-('qwertyui', 'fer25alvarado@gmail.com', '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , 0.25, 2.13, 1),
-('qwertyas', 'fer25alvarado@gmail.com', '2019/10/07', null, CURRENT_TIMESTAMP, '2019/10/01', 0.13, 2.33, null , 0.25, 2.13, 1);
+(12115999, 0.5, '2016/06/01', 'Vendedor Ambulante', null, 1),
+(12115999, 0.5, '2016/06/01', 'Vendedor Ambulante', null, 2),
+(12115999, 0.5, '2016/06/01', 'Vendedor Ambulante', null, 3);

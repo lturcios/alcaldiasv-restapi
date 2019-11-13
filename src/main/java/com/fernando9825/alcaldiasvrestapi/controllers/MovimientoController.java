@@ -96,7 +96,7 @@ public class MovimientoController {
             if (asignacion != null && usuario != null) {
 
                 /*  verificar que la fecha del ultimo pago recibida, sea siempre la ultima*/
-                if (asignacion.getUltimoPago().before(fechaFinDate)){
+                if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()){
                     // cambiando estado del ultimo pago
                     asignacion.setUltimoPago(ultimoPagoDate);
                 }
