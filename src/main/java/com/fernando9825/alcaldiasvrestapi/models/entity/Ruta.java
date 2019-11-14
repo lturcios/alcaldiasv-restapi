@@ -19,12 +19,11 @@ public class Ruta {
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
     private Institucion institucion;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_email_fk", referencedColumnName = "email", nullable = false)
-    private Usuario usuario;
 
     // nombre de la ruta
+
     @Size(max = 25)
+    @Column(nullable = false)
     private String nombre;
 
     // descripcion de la ruta

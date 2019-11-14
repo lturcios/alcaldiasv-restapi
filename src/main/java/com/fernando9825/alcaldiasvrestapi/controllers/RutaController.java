@@ -21,9 +21,9 @@ public class RutaController {
         this.rutaService = rutaService;
     }
 
-    @GetMapping(path = "rutas/{institucionId}/{usuarioEmail}")
-    public List<Ruta> getRutas(@PathVariable Long institucionId, @PathVariable String usuarioEmail){
-        return this.rutaService.findByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail);
+    @GetMapping(path = "rutas/{institucionId}")
+    public List<Ruta> getAllRutasByInstitucionId(@PathVariable Long institucionId){
+        return this.rutaService.findByInstitucionId(institucionId);
     }
-
+    
 }

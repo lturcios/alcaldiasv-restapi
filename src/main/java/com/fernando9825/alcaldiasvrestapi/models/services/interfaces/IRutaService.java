@@ -10,7 +10,7 @@ public interface IRutaService {
 
     Ruta findById(Long rutaId);
 
-    List<Ruta> findByInstitucionIdAndUsuarioEmail(Long institucionId, String usuarioEmail);
+    List<Ruta> findByInstitucionId(Long institucionId);
 
     Ruta save(Ruta ruta);
 
