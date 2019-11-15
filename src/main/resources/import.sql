@@ -281,9 +281,5 @@ INSERT  INTO tarifas (codigo_presup, precio_unitario, vigencia, descripcion, ref
 (12115999, 0.5, '2016/06/01', 'Vendedor Ambulante', null, 3);
 
 
-INSERT INTO contribuyentes (dui, codigo_cta, nombres, apellidos, direccion, telefono_principal, telefono_secundario, nit,  institucion_id_fk, municipio_id_fk) VALUES
-('03234543-0', 'LT/001', 'Luis', 'Turcios', 'Colonia Urbesa, Polígono D, pasaje B #17', '6007-4974', '6152-6344', '1206-280879-111-6', 1, 0301),
-('02756131-0', 'FV/002', 'Fernando Roman', 'Ventura Alvarado', 'Barrio San Francisco, 14 C. Pnte.', '7530-6697', null, '1206-240799-111-7', 1, 0301);
-
 
 
