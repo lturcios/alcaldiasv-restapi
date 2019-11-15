@@ -16,7 +16,7 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(@Size(min = 8, max = 8) String pagoId, Asignacion asignacion, double precioUnitario, double tarifaUnitario, double iva, double montoTotal, @NotNull Date fechaInicio, Date fechaFin, Timestamp fechaHorapago, @Size(max = 200) String observaciones, @NotNull Usuario usuario) {
+    public Movimiento(@Size(min = 8, max = 8) String pagoId, Asignacion asignacion, double precioUnitario, double tarifaUnitario, double montoTotal, @NotNull Date fechaInicio, Date fechaFin, Timestamp fechaHorapago, @Size(max = 200) String observaciones, @NotNull Usuario usuario) {
         this.pagoId = pagoId;
         this.asignacion = asignacion;
         this.precioUnitario = precioUnitario;
