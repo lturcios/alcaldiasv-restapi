@@ -21,7 +21,6 @@ public class Movimiento {
         this.asignacion = asignacion;
         this.precioUnitario = precioUnitario;
         this.tarifaUnitario = tarifaUnitario;
-        this.iva = iva;
         this.montoTotal = montoTotal;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -57,9 +56,6 @@ public class Movimiento {
     private double precioUnitario;
 
     private double tarifaUnitario;
-
-    @Column(name = "valor_agregado")
-    private double iva;
 
     private double montoTotal;
 
@@ -121,14 +117,6 @@ public class Movimiento {
 
     public void setTarifaUnitario(double tarifaUnitario) {
         this.tarifaUnitario = tarifaUnitario;
-    }
-
-    public double getIva() {
-        return iva;
-    }
-
-    public void setIva(double iva) {
-        this.iva = iva;
     }
 
     public double getMontoTotal() {

@@ -14,10 +14,8 @@ import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.time.Duration;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/api/")
@@ -43,6 +41,28 @@ public class MovimientoController {
         if (usuario != null) {
             return new ResponseEntity<>(this.movimientoService.findAllByUsuarioEmail(usuarioEmail),
                     HttpStatus.OK);
+        } else {
+            Map<String, Object> message = new HashMap<>();
+            message.put("message", "User " + usuarioEmail + " does not exists");
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+
+    @GetMapping(path = "movimientos/last-thirty")
+    public ResponseEntity<?> getAllMovimientosOfLastThirtyDaysByUsuarioEmail(@RequestParam(name = "email") String usuarioEmail) {
+        Usuario usuario = this.userService.findById(usuarioEmail);
+
+        if (usuario != null) {
+
+            Date fechaActual = new Date();
+
+            Duration temporalAmount = Duration.ofDays(31);
+            Timestamp fechaMenosThirtyDays = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
+            List<Movimiento> movimientos = this.movimientoService
+                    .findAllByUsuarioAndThirtyDays(usuario, fechaMenosThirtyDays);
+            return new ResponseEntity<>(movimientos, HttpStatus.OK);
         } else {
             Map<String, Object> message = new HashMap<>();
             message.put("message", "User " + usuarioEmail + " does not exists");
