@@ -1,5 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -16,6 +18,7 @@ public class Contribuyente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribuyente")
     private List<Asignacion> asignaciones;
 
@@ -59,10 +62,12 @@ public class Contribuyente implements Serializable {
      * Esta llave la deje de modo de que un contribuyente, pueda tener
      * o estar vinculado a muchas instituciones, por si acaso, existe algun
      * vendedor que sea empresario con puestos asignados en varias alcaldias*/
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "municipio_id_fk", referencedColumnName = "id", nullable = false)
     private Municipio municipio;
