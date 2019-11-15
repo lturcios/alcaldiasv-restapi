@@ -12,6 +12,8 @@ public interface IRutaService {
 
     List<Ruta> findByInstitucionId(Long institucionId);
 
+    List<Ruta> findByInstitucionIdAndUsuarioEmail(Long institucionId, String usuarioEmail);
+
     Ruta save(Ruta ruta);
 
     void delete(Long rutaId);

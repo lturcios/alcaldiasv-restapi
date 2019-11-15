@@ -25,5 +25,10 @@ public class RutaController {
     public List<Ruta> getAllRutasByInstitucionId(@PathVariable Long institucionId){
         return this.rutaService.findByInstitucionId(institucionId);
     }
+
+    @GetMapping(path = "rutas/{institucionId}/{usuarioEmail}")
+    public List<Ruta> getRutas(@PathVariable Long institucionId, @PathVariable String usuarioEmail) {
+        return this.rutaService.findByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail);
+    }
     
 }

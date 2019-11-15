@@ -20,6 +20,11 @@ public class Ruta {
     private Institucion institucion;
 
 
+    // cuando el usuario no tenga asignada ninguna ruta se le van a mostrar todas
+    @ManyToOne
+    @JoinColumn(name = "usuario_email_fk", referencedColumnName = "email", nullable = true)
+    private Usuario usuario;
+
     // nombre de la ruta
 
     @Size(max = 25)
@@ -76,5 +81,13 @@ public class Ruta {
 
     public void setPuestos(List<Puesto> puestos) {
         this.puestos = puestos;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

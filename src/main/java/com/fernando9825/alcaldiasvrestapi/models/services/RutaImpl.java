@@ -38,6 +38,12 @@ public class RutaImpl implements IRutaService {
         return this.rutaDao.findAllByInstitucion(this.institucionDao.findById(institucionId).orElse(null));
     }
 
+    public List<Ruta> findByInstitucionIdAndUsuarioEmail(Long institucionId, String usuarioEmail) {
+        return this.rutaDao.findByInstitucionAndUsuario(
+                this.institucionDao.findById(institucionId).orElse(null),
+                this.userDao.findById(usuarioEmail).orElse(null));
+    }
+
     @Override
     public Ruta save(Ruta ruta) {
         return this.rutaDao.save(ruta);
