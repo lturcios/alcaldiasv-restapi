@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/")
@@ -24,21 +22,14 @@ public class AsignacionController {
     }
 
     @GetMapping(path = "asignaciones/{institucionId}")
-    public ResponseEntity<?> findAllByInstitucionId(@PathVariable Long institucionId){
+    public ResponseEntity<?> findAllByInstitucionId(@PathVariable Long institucionId) {
 
-        try{
-            List<Asignacion> asignaciones = this.asignacionService.findByInstitucionId(institucionId);
-            return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (Exception e){
-            Map<String, Object> response = new HashMap<>();
-            response.put("error", e.getCause());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+        List<Asignacion> asignaciones = this.asignacionService.findByInstitucionId(institucionId);
+        return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(path = "asignaciones/{institucionId}/{puestoId}")
-    public Asignacion getAsignaciones(@PathVariable Long institucionId, @PathVariable Long puestoId){
+    public Asignacion getAsignaciones(@PathVariable Long institucionId, @PathVariable Long puestoId) {
         return this.asignacionService.findByInstitucionIdAndPuestoId(institucionId, puestoId);
     }
 

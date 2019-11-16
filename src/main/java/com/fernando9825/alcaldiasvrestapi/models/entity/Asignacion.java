@@ -131,6 +131,14 @@ public class Asignacion {
         this.puesto = puesto;
     }
 
+    public Giro getGiro() {
+        return giro;
+    }
+
+    public void setGiro(Giro giro) {
+        this.giro = giro;
+    }
+
     public Puesto getPuestoEgreso() {
         return puestoEgreso;
     }
@@ -145,13 +153,5 @@ public class Asignacion {
 
     public void setCodigoPresupuestario(Long codigoPresupuestario) {
         this.codigoPresupuestario = codigoPresupuestario;
-    }
-
-    public Giro getGiro() {
-        return giro;
-    }
-
-    public void setGiro(Giro giro) {
-        this.giro = giro;
     }
 }
