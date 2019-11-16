@@ -1,13 +1,14 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,10 +20,10 @@ public class Contribuyente implements Serializable {
     private long id;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribuyente")
+    @OneToMany(mappedBy = "contribuyente")
     private List<Asignacion> asignaciones;
 
-    @Column(name = "codigo_cta", unique = true)
+    @Column(name = "codigo_cta", unique = true, nullable = false)
     @Size(max = 10)
     private String codigoCuenta;
 
@@ -34,7 +35,7 @@ public class Contribuyente implements Serializable {
     @Size(min = 4, max = 50)
     private String apellidos;
 
-    @Column(name = "dui", unique = true)
+    @Column(name = "dui", unique = false)
     @Pattern(regexp = "[0-9]{8}-[0-9]")
     @Size(min = 10, max = 10)
     private String DUI;
@@ -53,8 +54,10 @@ public class Contribuyente implements Serializable {
     @Size(min = 5, max = 125)
     private String direccion;
 
-    @Column(insertable = false, updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Calendar fechaCreacion;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    private Date fechaCreacion;
 
     // LLAVES FORANEAS
 
@@ -155,11 +158,11 @@ public class Contribuyente implements Serializable {
         this.direccion = direccion;
     }
 
-    public Calendar getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Calendar fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

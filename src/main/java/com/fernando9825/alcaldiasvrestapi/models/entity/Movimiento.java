@@ -53,22 +53,26 @@ public class Movimiento {
     @JoinColumn(name = "asignacion_id_fk", referencedColumnName = "id")
     private Asignacion asignacion;
 
+    @NotNull
     private double precioUnitario;
 
+    @NotNull
     private double tarifaUnitario;
 
+    @NotNull
     private double montoTotal;
 
     @NotNull
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
 
-    //@Temporal(TemporalType.TIMESTAMP)
-    //@CreationTimestamp
-    private Timestamp fechaHorapago;
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaHorapago;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHoraAnula;
@@ -143,11 +147,11 @@ public class Movimiento {
         this.fechaFin = fechaFin;
     }
 
-    public Timestamp getFechaHorapago() {
+    public Date getFechaHorapago() {
         return fechaHorapago;
     }
 
-    public void setFechaHorapago(Timestamp fechaHorapago) {
+    public void setFechaHorapago(Date fechaHorapago) {
         this.fechaHorapago = fechaHorapago;
     }
 

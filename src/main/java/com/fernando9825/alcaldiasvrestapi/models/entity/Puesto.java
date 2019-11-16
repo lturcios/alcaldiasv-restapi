@@ -1,7 +1,8 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
@@ -18,6 +19,7 @@ public class Puesto {
     @JoinColumn(name = "sector_id_fk", referencedColumnName = "id", nullable = false)
     private Sector sector;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
@@ -38,11 +40,11 @@ public class Puesto {
     @PositiveOrZero
     private double medidaCalificacion;
 
-    @NotBlank
+    @NotNull
     @Size(max = 10)
     private String modulo;
 
-    @NotBlank
+    @NotNull
     @Size(max = 20)
     private String estado;
 

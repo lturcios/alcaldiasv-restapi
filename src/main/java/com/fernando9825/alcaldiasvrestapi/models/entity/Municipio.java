@@ -3,7 +3,7 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -13,7 +13,7 @@ public class Municipio {
     @Id
     private Integer id;
 
-    @NotBlank
+    @NotNull
     @Size(min = 5, max = 50)
     private String municipioDepartamento;
 

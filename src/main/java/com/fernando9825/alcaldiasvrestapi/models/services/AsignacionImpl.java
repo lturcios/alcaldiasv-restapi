@@ -41,8 +41,7 @@ public class AsignacionImpl implements IAsignacionService {
 
     @Override
     public List<Asignacion> findByInstitucionId(Long institucionId) {
-
-        return this.asignacionDao.findByInstitucion(
+        return this.asignacionDao.findAllByInstitucion(
                 this.institucionDao.findById(institucionId).orElse(null)
         );
     }

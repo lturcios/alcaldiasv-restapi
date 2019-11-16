@@ -14,10 +14,12 @@ public class Institucion {
 
     @NotBlank
     @Size(max = 100)
+    @Column(nullable = false)
     private String nombre;
 
     @NotBlank
     @Size(max = 125)
+    @Column(nullable = false)
     private String direccion;
 
     @Size(max = 10)
@@ -25,6 +27,7 @@ public class Institucion {
 
     @NotBlank
     @Size(max = 10)
+    @Column(nullable = false)
     private String estado;
 
     // getters and setters

@@ -1,7 +1,6 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -19,6 +18,7 @@ public class Tarifa {
 
     // ignorar la institucion de la respuesta
     @JsonIgnore
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
@@ -35,7 +35,7 @@ public class Tarifa {
     private double precioUnitario;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.NONE)
+    //@DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.NONE)
     @Temporal(value = TemporalType.DATE)
     private Date vigencia;
 

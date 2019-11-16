@@ -15,10 +15,11 @@ public class Asignacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date fechaIngreso;
 
+    @Column(nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date ultimoPago;
 
@@ -35,11 +36,8 @@ public class Asignacion {
     private Institucion institucion;
 
 
-    // here and json ignore and stop bug
-    @NotNull
-    //@JsonIgnore // ignorar el contribuyente de la respuesta
     //@JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
-    @Column(name = "contrib_id_fk")
+    @Column(name = "contrib_id_fk", nullable = false)
     private Long contribuyente;
 
     /*
@@ -51,8 +49,9 @@ public class Asignacion {
     @JoinColumn(name = "puesto_id_fk", referencedColumnName = "id", unique = true)
     private Puesto puesto;
 
+
     @OneToOne(targetEntity = Giro.class)
-    @JoinColumn(name = "giro_id_fk", referencedColumnName = "id")
+    @JoinColumn(name = "giro_id_fk", referencedColumnName = "id", nullable = false)
     private Giro giro;
 
     /*
@@ -64,7 +63,7 @@ public class Asignacion {
     private Puesto puestoEgreso;
 
     @NotNull
-    @Column(name = "codigo_presup")
+    @Column(name = "codigo_presup", nullable = false)
     private Long codigoPresupuestario;
 
 
@@ -146,5 +145,13 @@ public class Asignacion {
 
     public void setCodigoPresupuestario(Long codigoPresupuestario) {
         this.codigoPresupuestario = codigoPresupuestario;
+    }
+
+    public Giro getGiro() {
+        return giro;
+    }
+
+    public void setGiro(Giro giro) {
+        this.giro = giro;
     }
 }

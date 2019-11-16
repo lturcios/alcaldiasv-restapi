@@ -13,11 +13,12 @@ public class Giro {
     private Long id;
 
     @NotBlank
+    @Column(nullable = false)
     @Size(max = 100)
     private String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
+    @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
     // getters and setters

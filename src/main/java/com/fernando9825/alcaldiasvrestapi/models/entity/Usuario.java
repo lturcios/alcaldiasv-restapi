@@ -26,6 +26,7 @@ public class Usuario {
     private String password;
 
     // llave foranea
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
     private Institucion institucion;
