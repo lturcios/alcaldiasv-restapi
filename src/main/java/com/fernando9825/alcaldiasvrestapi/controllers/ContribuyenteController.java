@@ -54,7 +54,7 @@ public class ContribuyenteController {
 
     // TODO: check this function
     @GetMapping(path = "/contribuyentes/{institucionId}")
-    public List<Contribuyente> getContribuyente(@PathVariable long institucionId) {
+    public List<Contribuyente> getContribuyente(@PathVariable short institucionId) {
         return this.taxpayerService.findByInstitucionId(institucionId);
     }
 
@@ -62,7 +62,7 @@ public class ContribuyenteController {
     @PutMapping(path = "/contribuyentes/{contribuyenteId}")
     public ResponseEntity<?> updateContribuyente(
             @Valid @RequestBody Contribuyente updatedContribuyente,
-            @PathVariable long contribuyenteId, BindingResult result){
+            @PathVariable int contribuyenteId, BindingResult result){
         if (result.hasErrors())
             return new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST);
 
@@ -90,7 +90,7 @@ public class ContribuyenteController {
 
     // delete
     @DeleteMapping(path = "/contribuentes/{contribuyenteId}")
-    public void deleteByContribuyenteId(@PathVariable long contribuyenteId){
+    public void deleteByContribuyenteId(@PathVariable int contribuyenteId){
         this.taxpayerService.delete(contribuyenteId);
     }
 

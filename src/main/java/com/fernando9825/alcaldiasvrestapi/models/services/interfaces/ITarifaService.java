@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ITarifaService {
 
-    List<Tarifa> getAllTarifasByInstitucion(Long institucionId);
+    List<Tarifa> getAllTarifasByInstitucion(short institucionId);
 }

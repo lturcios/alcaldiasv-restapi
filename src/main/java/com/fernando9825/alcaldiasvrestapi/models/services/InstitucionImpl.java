@@ -1,32 +1,24 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
+import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionInterfaceService;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Institucion;
-import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class InstitucionImpl implements InstitucionInterfaceService {
+public class InstitucionImpl implements com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService {
 
 
-    @Override
-    public List<Institucion> findAll() {
-        return null;
+    private final InstitucionInterfaceService institucionDao;
+
+    @Autowired
+    public InstitucionImpl(InstitucionInterfaceService institucionDao) {
+        this.institucionDao = institucionDao;
     }
 
     @Override
-    public Institucion findById(Long institucionId) {
-        return null;
+    public Institucion findById(short institucionId) {
+        return this.institucionDao.findById(institucionId).orElse(null);
     }
 
-    @Override
-    public Institucion save(Institucion institucion) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long institucionId) {
-
-    }
 }

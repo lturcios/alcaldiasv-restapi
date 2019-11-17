@@ -14,7 +14,7 @@ public class Tarifa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     // ignorar la institucion de la respuesta
     @JsonIgnore
@@ -25,7 +25,7 @@ public class Tarifa {
 
     @NotNull
     @Column(name = "codigo_presup")
-    private long codigoPresupuestario;
+    private int codigoPresupuestario;
 
     @NotBlank
     @Size(max = 50)
@@ -45,11 +45,11 @@ public class Tarifa {
 
     // getters and setters
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,11 +61,11 @@ public class Tarifa {
         this.institucion = institucion;
     }
 
-    public long getCodigoPresupuestario() {
+    public int getCodigoPresupuestario() {
         return codigoPresupuestario;
     }
 
-    public void setCodigoPresupuestario(long codigoPresupuestario) {
+    public void setCodigoPresupuestario(int codigoPresupuestario) {
         this.codigoPresupuestario = codigoPresupuestario;
     }
 

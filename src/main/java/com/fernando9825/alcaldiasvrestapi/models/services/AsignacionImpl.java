@@ -2,9 +2,9 @@ package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IAsignacionDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.IPuestoDao;
-import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IAsignacionService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +13,17 @@ import java.util.List;
 @Service
 public class AsignacionImpl implements IAsignacionService {
 
+    // InstitucionService
+    private final InstitucionInterfaceService institucionService;
 
     private final IAsignacionDao asignacionDao;
-    private final InstitucionDao institucionDao;
+
     private final IPuestoDao puestoDao;
 
     @Autowired
-    public AsignacionImpl(IAsignacionDao asignacionDao, InstitucionDao institucionDao, IPuestoDao puestoDao) {
+    public AsignacionImpl(IAsignacionDao asignacionDao, InstitucionInterfaceService institucionService, IPuestoDao puestoDao) {
         this.asignacionDao = asignacionDao;
-        this.institucionDao = institucionDao;
+        this.institucionService = institucionService;
         this.puestoDao = puestoDao;
     }
 
@@ -31,23 +33,23 @@ public class AsignacionImpl implements IAsignacionService {
     }
 
     @Override
-    public Asignacion findByInstitucionIdAndPuestoId(Long institucionId, Long puestoId) {
+    public Asignacion findByInstitucionIdAndPuestoId(short institucionId, int puestoId) {
         return this.asignacionDao.findByInstitucionAndPuesto(
-                this.institucionDao.findById(institucionId).orElse(null),
+                this.institucionService.findById(institucionId),
                 this.puestoDao.findById(puestoId).orElse(null)
         );
 
     }
 
     @Override
-    public List<Asignacion> findByInstitucionId(Long institucionId) {
+    public List<Asignacion> findByInstitucionId(short institucionId) {
         return this.asignacionDao.findAllByInstitucion(
-                this.institucionDao.findById(institucionId).orElse(null)
+                this.institucionService.findById(institucionId)
         );
     }
 
     @Override
-    public Asignacion findById(Long asignacionId) {
+    public Asignacion findById(int asignacionId) {
         return this.asignacionDao.findById(asignacionId).orElse(null);
     }
 
@@ -57,7 +59,7 @@ public class AsignacionImpl implements IAsignacionService {
     }
 
     @Override
-    public void delete(Long asignacionId) {
+    public void delete(int asignacionId) {
         this.asignacionDao.deleteById(asignacionId);
     }
 }

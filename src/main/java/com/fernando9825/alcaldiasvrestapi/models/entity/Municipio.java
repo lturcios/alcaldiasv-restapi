@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class Municipio {
 
     @Id
-    private Integer id;
+    private short id;
 
     @NotNull
     @Size(min = 5, max = 50)
@@ -21,11 +21,11 @@ public class Municipio {
     // getters and setters
 
 
-    public Integer getId() {
+    public short getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(short id) {
         this.id = id;
     }
 

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ITarifaDao extends JpaRepository<Tarifa, Long> {
+public interface ITarifaDao extends JpaRepository<Tarifa, Short> {
 
     List<Tarifa> findAllByInstitucion(Institucion institucion);
 }

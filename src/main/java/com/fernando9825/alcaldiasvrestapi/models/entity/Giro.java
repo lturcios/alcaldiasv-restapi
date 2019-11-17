@@ -12,7 +12,7 @@ public class Giro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private short id;
 
     @NotBlank
     @Column(nullable = false)
@@ -27,11 +27,11 @@ public class Giro {
     // getters and setters
 
 
-    public Long getId() {
+    public short getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(short id) {
         this.id = id;
     }
 

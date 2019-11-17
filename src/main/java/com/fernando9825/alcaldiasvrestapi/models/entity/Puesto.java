@@ -13,7 +13,7 @@ public class Puesto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @OneToOne
     @JoinColumn(name = "sector_id_fk", referencedColumnName = "id", nullable = false)
@@ -52,11 +52,11 @@ public class Puesto {
     // getters and setters
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

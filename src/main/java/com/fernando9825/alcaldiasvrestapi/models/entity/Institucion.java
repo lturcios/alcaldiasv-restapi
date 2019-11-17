@@ -10,7 +10,7 @@ public class Institucion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private short id;
 
     @NotBlank
     @Size(max = 100)
@@ -33,11 +33,11 @@ public class Institucion {
     // getters and setters
 
 
-    public Long getId() {
+    public short getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(short id) {
         this.id = id;
     }
 

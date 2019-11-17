@@ -13,7 +13,7 @@ public class Asignacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
     @Temporal(value = TemporalType.DATE)
@@ -38,7 +38,7 @@ public class Asignacion {
 
     //@JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
     @Column(name = "contrib_id_fk", nullable = false)
-    private Long contribuyente;
+    private int contribuyente;
 
     /*
         Este campo puede ser nulo, porque si en el futuro el vendedor deja el puesto
@@ -64,14 +64,14 @@ public class Asignacion {
 
     @NotNull
     @Column(name = "codigo_presup", nullable = false)
-    private Long codigoPresupuestario;
+    private int codigoPresupuestario;
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -115,11 +115,11 @@ public class Asignacion {
         this.institucion = institucion;
     }
 
-    public Long getContribuyente() {
+    public int getContribuyente() {
         return contribuyente;
     }
 
-    public void setContribuyente(Long contribuyente) {
+    public void setContribuyente(int contribuyente) {
         this.contribuyente = contribuyente;
     }
 
@@ -147,11 +147,11 @@ public class Asignacion {
         this.puestoEgreso = puestoEgreso;
     }
 
-    public Long getCodigoPresupuestario() {
+    public int getCodigoPresupuestario() {
         return codigoPresupuestario;
     }
 
-    public void setCodigoPresupuestario(Long codigoPresupuestario) {
+    public void setCodigoPresupuestario(int codigoPresupuestario) {
         this.codigoPresupuestario = codigoPresupuestario;
     }
 }

@@ -9,15 +9,15 @@ public interface IAsignacionService {
     List<Asignacion> findAll();
 
     // Encontrar una sola asignacion
-    Asignacion findByInstitucionIdAndPuestoId(Long institucionId, Long puestoId);
+    Asignacion findByInstitucionIdAndPuestoId(short institucionId, int puestoId);
 
     // Todas las asignaciones
-    List<Asignacion> findByInstitucionId(Long institucionId);
+    List<Asignacion> findByInstitucionId(short institucionId);
 
-    Asignacion findById(Long asignacionId);
+    Asignacion findById(int asignacionId);
 
     Asignacion save(Asignacion asignacion);
 
-    void delete(Long asignacionId);
+    void delete(int asignacionId);
 
 }

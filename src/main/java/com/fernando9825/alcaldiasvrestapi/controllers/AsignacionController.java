@@ -22,14 +22,14 @@ public class AsignacionController {
     }
 
     @GetMapping(path = "asignaciones/{institucionId}")
-    public ResponseEntity<?> findAllByInstitucionId(@PathVariable Long institucionId) {
+    public ResponseEntity<?> findAllByInstitucionId(@PathVariable short institucionId) {
 
         List<Asignacion> asignaciones = this.asignacionService.findByInstitucionId(institucionId);
         return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(path = "asignaciones/{institucionId}/{puestoId}")
-    public Asignacion getAsignaciones(@PathVariable Long institucionId, @PathVariable Long puestoId) {
+    public Asignacion getAsignaciones(@PathVariable short institucionId, @PathVariable int puestoId) {
         return this.asignacionService.findByInstitucionIdAndPuestoId(institucionId, puestoId);
     }
 

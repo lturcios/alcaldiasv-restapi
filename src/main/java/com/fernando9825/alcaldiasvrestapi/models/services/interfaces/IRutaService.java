@@ -8,13 +8,13 @@ public interface IRutaService {
 
     List<Ruta> findAll();
 
-    Ruta findById(Long rutaId);
+    Ruta findById(short rutaId);
 
-    List<Ruta> findByInstitucionId(Long institucionId);
+    List<Ruta> findByInstitucionId(short institucionId);
 
-    List<Ruta> findByInstitucionIdAndUsuarioEmail(Long institucionId, String usuarioEmail);
+    List<Ruta> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail);
 
     Ruta save(Ruta ruta);
 
-    void delete(Long rutaId);
+    void delete(short rutaId);
 }

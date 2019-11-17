@@ -24,7 +24,7 @@ public class RutaController {
     }
 
     @GetMapping(path = "rutas/{institucionId}")
-    public ResponseEntity<?> getAllRutasByInstitucionId(@PathVariable Long institucionId) {
+    public ResponseEntity<?> getAllRutasByInstitucionId(@PathVariable short institucionId) {
         List<Ruta> rutas = this.rutaService.findByInstitucionId(institucionId);
 
         return (!rutas.isEmpty()) ? new ResponseEntity<>(rutas, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -32,7 +32,7 @@ public class RutaController {
     }
 
     @GetMapping(path = "rutas/{institucionId}/{usuarioEmail}")
-    public ResponseEntity<?> getRutas(@PathVariable Long institucionId, @PathVariable String usuarioEmail) {
+    public ResponseEntity<?> getRutas(@PathVariable short institucionId, @PathVariable String usuarioEmail) {
         List<Ruta> rutas = this.rutaService.findByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail);
         return (!rutas.isEmpty()) ? new ResponseEntity<>(rutas, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

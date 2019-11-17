@@ -75,7 +75,7 @@ public class MovimientoController {
     @PostMapping(path = "movimientos")
     public ResponseEntity<?> insertMovimiento(
             @Size(min = 8, max = 8) @RequestParam String pagoId,
-            @RequestParam(required = false) Long asignacionId,
+            @RequestParam(required = false) Integer asignacionId,
             @RequestParam String ultimoPago,
             @RequestParam(required = false) String observaciones,
             @RequestParam Double precioUnitario,

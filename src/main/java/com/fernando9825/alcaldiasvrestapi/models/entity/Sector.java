@@ -12,7 +12,7 @@ public class Sector {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private short id;
 
     @NotNull
     @Size(max = 100)
@@ -28,11 +28,11 @@ public class Sector {
     // getters and setters
 
 
-    public Long getId() {
+    public short getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(short id) {
         this.id = id;
     }
 

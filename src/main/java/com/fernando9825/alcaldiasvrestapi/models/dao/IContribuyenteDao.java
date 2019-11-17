@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IContribuyenteDao extends JpaRepository<Contribuyente, Long> {
+public interface IContribuyenteDao extends JpaRepository<Contribuyente, Integer> {
 
     // lista de contribuyentes por alcaldia (institucion)
 

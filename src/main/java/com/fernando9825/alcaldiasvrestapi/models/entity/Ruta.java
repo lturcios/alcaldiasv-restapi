@@ -3,6 +3,7 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Ruta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private short id;
 
     @JsonIgnore
     @NotNull
@@ -25,6 +26,8 @@ public class Ruta {
 
     // cuando el usuario no tenga asignada ninguna ruta se le van a mostrar todas
     @JsonIgnore
+    @Email
+    @Size(max = 200)
     @ManyToOne
     @JoinColumn(name = "usuario_email_fk", referencedColumnName = "email", nullable = true)
     private Usuario usuario;
@@ -46,11 +49,11 @@ public class Ruta {
     // getters and setters
 
 
-    public Long getId() {
+    public short getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(short id) {
         this.id = id;
     }
 

@@ -22,7 +22,7 @@ public class TarifaController {
     }
 
     @GetMapping(path = "tarifas/{institucionId}")
-    public List<Tarifa> getAllTarifasByInstitucionId(@PathVariable Long institucionId){
+    public List<Tarifa> getAllTarifasByInstitucionId(@PathVariable short institucionId){
         return this.tarifaService.getAllTarifasByInstitucion(institucionId);
     }
 }

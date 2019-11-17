@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IContribuyenteDao;
-import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
+import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionInterfaceService;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.List;
 public class ContribuyenteImpl implements IContribuyenteService {
 
     private final IContribuyenteDao contribuyenteDao;
-    private final InstitucionDao institucionDao;
+    private final InstitucionInterfaceService institucionDao;
 
     @Autowired
-    public ContribuyenteImpl(IContribuyenteDao contribuyenteDao, InstitucionDao institucionDao) {
+    public ContribuyenteImpl(IContribuyenteDao contribuyenteDao, InstitucionInterfaceService institucionDao) {
         this.contribuyenteDao = contribuyenteDao;
         this.institucionDao = institucionDao;
     }
@@ -28,12 +28,12 @@ public class ContribuyenteImpl implements IContribuyenteService {
     }
 
     @Override
-    public Contribuyente findById(Long contribuyenteId) {
+    public Contribuyente findById(int contribuyenteId) {
         return this.contribuyenteDao.findById(contribuyenteId).orElse(null);
     }
 
     @Override
-    public List<Contribuyente> findByInstitucionId(Long institucionId) {
+    public List<Contribuyente> findByInstitucionId(short institucionId) {
         return this.contribuyenteDao.findByInstitucion(
                 this.institucionDao.findById(institucionId).orElse(null)
         );
@@ -45,7 +45,7 @@ public class ContribuyenteImpl implements IContribuyenteService {
     }
 
     @Override
-    public void delete(Long contribuyenteId) {
+    public void delete(int contribuyenteId) {
         this.contribuyenteDao.deleteById(contribuyenteId);
     }
 }

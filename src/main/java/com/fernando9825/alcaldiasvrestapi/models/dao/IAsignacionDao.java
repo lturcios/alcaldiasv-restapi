@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IAsignacionDao extends JpaRepository<Asignacion, Long> {
+public interface IAsignacionDao extends JpaRepository<Asignacion, Integer> {
 
     Asignacion findByInstitucionAndPuesto(Institucion institucion, Puesto puesto);
 //    Asignacion findAsignacionByIns
-    
+
     List<Asignacion> findAllByInstitucion(Institucion institucion);
 }

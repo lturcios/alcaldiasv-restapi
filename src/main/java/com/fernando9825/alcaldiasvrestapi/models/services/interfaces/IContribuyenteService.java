@@ -8,12 +8,12 @@ public interface IContribuyenteService {
 
     List<Contribuyente> findAll();
 
-    Contribuyente findById(Long contribuyenteId);
+    Contribuyente findById(int contribuyenteId);
 
-    List<Contribuyente> findByInstitucionId(Long institucionId);
+    List<Contribuyente> findByInstitucionId(short institucionId);
 
     Contribuyente save(Contribuyente contribuyente);
 
-    void delete(Long contribuyenteId);
+    void delete(int contribuyenteId);
 
 }
