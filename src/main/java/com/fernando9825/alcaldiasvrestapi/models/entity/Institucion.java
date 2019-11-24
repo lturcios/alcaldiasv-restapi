@@ -2,7 +2,9 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Time;
 
 @Entity
 @Table(name = "instituciones")
@@ -30,8 +32,20 @@ public class Institucion {
     @Column(nullable = false)
     private String estado;
 
+    @NotNull
+    private Time horaCorte;
+
+
     // getters and setters
 
+
+    public Time getHoraCorte() {
+        return horaCorte;
+    }
+
+    public void setHoraCorte(Time horaCorte) {
+        this.horaCorte = horaCorte;
+    }
 
     public short getId() {
         return id;

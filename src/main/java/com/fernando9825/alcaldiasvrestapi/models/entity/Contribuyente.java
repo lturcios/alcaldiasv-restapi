@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -28,10 +29,12 @@ public class Contribuyente implements Serializable {
     private String codigoCuenta;
 
     @NotBlank
+    @NotNull
     @Size(min = 4, max = 50)
     private String nombres;
 
     @NotBlank
+    @NotNull
     @Size(min = 4, max = 50)
     private String apellidos;
 
@@ -55,8 +58,8 @@ public class Contribuyente implements Serializable {
     private String direccion;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
 
     // LLAVES FORANEAS

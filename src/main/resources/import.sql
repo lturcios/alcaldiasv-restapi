@@ -1,7 +1,7 @@
-INSERT INTO instituciones (nombre, estado, telefono, direccion) VALUES
-('Alcaldía Municipal de San Miguel', 'Activo', '2661-0515', '2A Avenida Norte, San Miguel'),
-('Alcaldía Municipal de Cojutepeque', 'Activo', '2379-3900', '6A Avenida Sur, Cojutepeque'),
-('Alcaldía Municipal de Zaragoza', 'Activo', '2349-0900', '2A Calle Poniente y Avenida España Sur, Zaragoza');
+INSERT INTO instituciones (nombre, estado, telefono, direccion, hora_corte) VALUES
+('Alcaldía Municipal de San Miguel', 'Activo', '2661-0515', '2A Avenida Norte, San Miguel', '13:30:00'),
+('Alcaldía Municipal de Cojutepeque', 'Activo', '2379-3900', '6A Avenida Sur, Cojutepeque', '16:30:00'),
+('Alcaldía Municipal de Zaragoza', 'Activo', '2349-0900', '2A Calle Poniente y Avenida España Sur, Zaragoza', '00:00:00');
 
 
 INSERT INTO usuarios (email, nombre, password, institucion_id_fk) VALUES
@@ -865,7 +865,7 @@ INSERT INTO `asignaciones` (codigo_presup, contrib_id_fk, fecha_egreso, fecha_in
 (12115001, 38, NULL, '2019-06-01', NULL, '2019-05-31', 25, 1, 42, NULL),
 (12115001, 39, NULL, '2019-04-01', NULL, '2019-03-31', 25, 1, 43, NULL),
 (12115001, 40, NULL, '2019-06-01', NULL, '2019-05-31', 25, 1, 44, NULL),
-(12115001, 41, NULL, '0000-00-00', NULL, '0000-00-00', 25, 1, 46, NULL),
+# (12115001, 41, NULL, '0000-00-00', NULL, '0000-00-00', 25, 1, 46, NULL),
 (12115001, 42, NULL, '2019-04-01', NULL, '2019-03-31', 25, 1, 47, NULL),
 (12115001, 43, NULL, '2019-06-01', NULL, '2019-05-31', 25, 1, 48, NULL),
 (12115001, 44, NULL, '2019-06-01', NULL, '2019-05-31', 25, 1, 49, NULL),
