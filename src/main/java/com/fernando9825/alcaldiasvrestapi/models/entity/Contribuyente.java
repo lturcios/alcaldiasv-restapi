@@ -73,7 +73,7 @@ public class Contribuyente implements Serializable {
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id", nullable = false)
     private Institucion institucion;
 
-    
+
     @OneToOne
     @JoinColumn(name = "municipio_id_fk", referencedColumnName = "id", nullable = false)
     private Municipio municipio;
