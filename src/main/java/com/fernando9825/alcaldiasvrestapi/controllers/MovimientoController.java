@@ -51,14 +51,14 @@ public class MovimientoController {
 
 
     @GetMapping(path = "movimientos/last-thirty")
-    public ResponseEntity<?> getAllMovimientosOfLastThirtyDaysByUsuarioEmail(@RequestParam(name = "email") String usuarioEmail) {
+    public ResponseEntity<?> getAllMovimientosOfLastFifteenDaysByUsuarioEmail(@RequestParam(name = "email") String usuarioEmail) {
         Usuario usuario = this.userService.findById(usuarioEmail);
 
         if (usuario != null) {
 
             Date fechaActual = new Date();
 
-            Duration temporalAmount = Duration.ofDays(31);
+            Duration temporalAmount = Duration.ofDays(15);
             Timestamp fechaMenosThirtyDays = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
             List<Movimiento> movimientos = this.movimientoService
                     .findAllByUsuarioAndThirtyDays(usuario, fechaMenosThirtyDays);
