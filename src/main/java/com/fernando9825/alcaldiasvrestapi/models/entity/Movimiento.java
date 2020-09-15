@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,18 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(@Size(min = 8, max = 8) String pagoId, Asignacion asignacion, double precioUnitario, double tarifaUnitario, double montoTotal, @NotNull Date fechaInicio, Date fechaFin, Timestamp fechaHorapago, @Size(max = 200) String observaciones, @NotNull Usuario usuario) {
+    public Movimiento(@Size(min = 8, max = 8) String pagoId,
+                      Asignacion asignacion,
+                      double precioUnitario,
+                      double tarifaUnitario,
+                      double montoTotal,
+                      @NotNull Date fechaInicio,
+                      Date fechaFin,
+                      Timestamp fechaHorapago,
+                      @Size(max = 200) String observaciones,
+                      @NotNull Usuario usuario,
+                      @Size(min = 6, max = 12) String serieInicial,
+                      @Size(min = 6, max = 12) String serieFinal) {
         this.pagoId = pagoId;
         this.asignacion = asignacion;
         this.precioUnitario = precioUnitario;
@@ -27,6 +39,8 @@ public class Movimiento {
         this.fechaHorapago = fechaHorapago;
         this.observaciones = observaciones;
         this.usuario = usuario;
+        this.serieInicial = serieInicial;
+        this.serieFinal = serieFinal;
     }
 
     @Id
@@ -80,7 +94,11 @@ public class Movimiento {
     @Size(max = 200)
     private String observaciones;
 
+    @Nullable
+    private String serieInicial;
 
+    @Nullable
+    private String serieFinal;
 
     @JsonIgnore
     @NotNull
@@ -178,4 +196,21 @@ public class Movimiento {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public String getSerieInicial() {
+        return serieInicial;
+    }
+
+    public void setSerieInicial(String serieInicial) {
+        this.serieInicial = serieInicial;
+    }
+
+    public String getSerieFinal() {
+        return serieFinal;
+    }
+
+    public void setSerieFinal(String serieFinal) {
+        this.serieFinal = serieFinal;
+    }
+
 }

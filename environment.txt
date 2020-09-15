@@ -1,0 +1,4 @@
+COBROSALCALDIA_DATASOURCE_URL	jdbc:mysql://sql292.main-hosting.eu/u448952548_mercado?zeroDateTimeBehavior=convertToNull
+COBROSALCALDIA_JWT_SECRET	9<5W?:.#TgAjp5"@fj;`TtG}R^Cz9Vj[.GXM&v#c1elwMcH<sf&$td]/U>W/ls|
+COBROSALCALDIA_PASSWORD		FRNGK45LYFYm
+COBROSALCALDIA_USER		u448952548_fern

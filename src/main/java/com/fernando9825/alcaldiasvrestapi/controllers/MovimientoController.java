@@ -85,7 +85,9 @@ public class MovimientoController {
             @RequestParam String fechaFin,
             @RequestParam String fechaHoraPago,
             @RequestParam(required = false) String fechaHoraAnula,
-            @RequestParam String usuarioEmail) {
+            @RequestParam String usuarioEmail,
+            @RequestParam String serieInicial,
+            @RequestParam String serieFinal) {
 
         Map<String, Object> response = new HashMap<>();
 
@@ -130,7 +132,9 @@ public class MovimientoController {
                         fechaFinDate,
                         timestamp,
                         observaciones,
-                        usuario);
+                        usuario,
+                        serieInicial,
+                        serieFinal);
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());
@@ -147,7 +151,9 @@ public class MovimientoController {
                         fechaFinDate,
                         timestamp,
                         observaciones,
-                        usuario);
+                        usuario,
+                        serieInicial,
+                        serieFinal);
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());
