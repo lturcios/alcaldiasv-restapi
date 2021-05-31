@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IAsignacionService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IRutaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,21 +17,34 @@ import java.util.List;
 public class AsignacionController {
 
     private final IAsignacionService asignacionService;
+    private final IRutaService rutaService;
 
-    public AsignacionController(IAsignacionService asignacionService) {
+    public AsignacionController(IAsignacionService asignacionService, IRutaService rutaService) {
         this.asignacionService = asignacionService;
+        this.rutaService = rutaService;
     }
 
-    @GetMapping(path = "asignaciones/{institucionId}")
+    @GetMapping(path = "asignaciones/1/{institucionId}")
     public ResponseEntity<?> findAllByInstitucionId(@PathVariable short institucionId) {
 
         List<Asignacion> asignaciones = this.asignacionService.findByInstitucionId(institucionId);
         return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(path = "asignaciones/{institucionId}/{puestoId}")
+    @GetMapping(path = "asignaciones/2/{institucionId}/{puestoId}")
     public Asignacion getAsignaciones(@PathVariable short institucionId, @PathVariable int puestoId) {
         return this.asignacionService.findByInstitucionIdAndPuestoId(institucionId, puestoId);
+    }
+
+    @GetMapping(path = "asignaciones/3/{institucionId}/{usuarioEmail}")
+    public ResponseEntity<?> findByInstitucionIdAndUsuarioEmail(@PathVariable short institucionId, @PathVariable String usuarioEmail) {
+        if(!rutaService.findAllByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail).isEmpty()) {
+            List<Asignacion> asignaciones = this.asignacionService.findByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail);
+            return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            List<Asignacion> asignaciones = this.asignacionService.findByInstitucionId(institucionId);
+            return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     /*@PutMapping(path = "asignaciones/{asignacionId}")

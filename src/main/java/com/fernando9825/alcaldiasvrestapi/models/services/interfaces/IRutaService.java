@@ -12,7 +12,7 @@ public interface IRutaService {
 
     List<Ruta> findByInstitucionId(short institucionId);
 
-    List<Ruta> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail);
+    List<Ruta> findAllByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail);
 
     Ruta save(Ruta ruta);
 

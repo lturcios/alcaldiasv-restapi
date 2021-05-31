@@ -88,7 +88,7 @@ public class Asignacion {
     }
 
     public void setUltimoPago(Date ultimoPago) {
-        this.ultimoPago = ultimoPago;
+        if (ultimoPago.after(this.ultimoPago)) this.ultimoPago = ultimoPago;
     }
 
     public Date getFechaEgreso() {

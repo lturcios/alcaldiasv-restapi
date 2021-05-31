@@ -14,6 +14,8 @@ public interface IAsignacionService {
     // Todas las asignaciones
     List<Asignacion> findByInstitucionId(short institucionId);
 
+    List<Asignacion> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail);
+
     Asignacion findById(int asignacionId);
 
     Asignacion save(Asignacion asignacion);

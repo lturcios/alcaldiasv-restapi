@@ -2,6 +2,8 @@ package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IAsignacionDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.IPuestoDao;
+import com.fernando9825.alcaldiasvrestapi.models.dao.IRutaDao;
+import com.fernando9825.alcaldiasvrestapi.models.dao.IUserDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IAsignacionService;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService;
@@ -15,16 +17,18 @@ public class AsignacionImpl implements IAsignacionService {
 
     // InstitucionService
     private final InstitucionInterfaceService institucionService;
-
     private final IAsignacionDao asignacionDao;
-
     private final IPuestoDao puestoDao;
+    private final IRutaDao rutaDao;
+    private final IUserDao userDao;
 
     @Autowired
-    public AsignacionImpl(IAsignacionDao asignacionDao, InstitucionInterfaceService institucionService, IPuestoDao puestoDao) {
+    public AsignacionImpl(IAsignacionDao asignacionDao, InstitucionInterfaceService institucionService, IPuestoDao puestoDao, IRutaDao rutaDao, IUserDao userDao) {
         this.asignacionDao = asignacionDao;
         this.institucionService = institucionService;
         this.puestoDao = puestoDao;
+        this.rutaDao = rutaDao;
+        this.userDao = userDao;
     }
 
     @Override
@@ -46,6 +50,19 @@ public class AsignacionImpl implements IAsignacionService {
         return this.asignacionDao.findAllByInstitucion(
                 this.institucionService.findById(institucionId)
         );
+    }
+
+//    @Override
+//    public List<Asignacion> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail) {
+//        return this.asignacionDao.findAllByInstitucionAndUsuario(
+//                this.rutaDao.findAllByUsuario(
+//                        institucionId, usuarioEmail
+//                ));
+//    }
+
+    @Override
+    public List<Asignacion> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail) {
+        return this.asignacionDao.findAllByInstitucionAndUsuario(institucionId, usuarioEmail);
     }
 
     @Override

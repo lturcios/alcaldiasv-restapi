@@ -21,7 +21,6 @@ public class ContribuyenteImpl implements IContribuyenteService {
         this.institucionDao = institucionDao;
     }
 
-
     @Override
     public List<Contribuyente> findAll() {
         return this.contribuyenteDao.findAll();
@@ -36,6 +35,13 @@ public class ContribuyenteImpl implements IContribuyenteService {
     public List<Contribuyente> findByInstitucionId(short institucionId) {
         return this.contribuyenteDao.findByInstitucion(
                 this.institucionDao.findById(institucionId).orElse(null)
+        );
+    }
+
+    @Override
+    public List<Contribuyente> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail) {
+        return this.contribuyenteDao.findByInstitucionIdAndUsuarioEmail(
+                institucionId, usuarioEmail
         );
     }
 

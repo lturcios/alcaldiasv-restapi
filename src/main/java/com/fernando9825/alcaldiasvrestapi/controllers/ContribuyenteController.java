@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IContribuyenteService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IRutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,12 @@ import java.util.Map;
 public class ContribuyenteController {
 
     private final IContribuyenteService taxpayerService;
+    private final IRutaService rutaService;
 
     @Autowired
-    public ContribuyenteController(IContribuyenteService taxpayerService) {
+    public ContribuyenteController(IContribuyenteService taxpayerService, IRutaService rutaService) {
         this.taxpayerService = taxpayerService;
+        this.rutaService = rutaService;
     }
 
     // CRUD
@@ -57,6 +60,19 @@ public class ContribuyenteController {
     public List<Contribuyente> getContribuyente(@PathVariable short institucionId) {
         return this.taxpayerService.findByInstitucionId(institucionId);
     }
+
+    @GetMapping(path = "/contribuyentes/{institucionId}/{usuarioEmail}")
+    public List<Contribuyente> getContribuyentesByInstitucionIdAndUsuarioEmail(
+            @PathVariable short institucionId,
+            @PathVariable String usuarioEmail) {
+        if(!rutaService.findAllByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail).isEmpty()) {
+            return this.taxpayerService.findByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail);
+        } else {
+            return this.taxpayerService.findByInstitucionId(institucionId);
+        }
+    }
+
+
 
     // update
     @PutMapping(path = "/contribuyentes/{contribuyenteId}")

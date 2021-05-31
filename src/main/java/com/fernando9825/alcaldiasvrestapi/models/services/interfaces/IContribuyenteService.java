@@ -12,6 +12,8 @@ public interface IContribuyenteService {
 
     List<Contribuyente> findByInstitucionId(short institucionId);
 
+    List<Contribuyente> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail);
+
     Contribuyente save(Contribuyente contribuyente);
 
     void delete(int contribuyenteId);

@@ -100,12 +100,12 @@ public class Puesto {
         this.medidaCompensa = medidaCompensa;
     }
 
-    public double getMedidaCalificaion() {
+    public double getMedidaCalificacion() {
         return medidaCalificacion;
     }
 
-    public void setMedidaCalificaion(double medidaCalificaion) {
-        this.medidaCalificacion = medidaCalificaion;
+    public void setMedidaCalificacion(double medidaCalificacion) {
+        this.medidaCalificacion = medidaCalificacion;
     }
 
     public String getModulo() {

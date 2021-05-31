@@ -1,7 +1,6 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IRutaDao;
-import com.fernando9825.alcaldiasvrestapi.models.dao.IUserDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionInterfaceService;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Ruta;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IRutaService;
@@ -14,12 +13,10 @@ public class RutaImpl implements IRutaService {
 
     private final IRutaDao rutaDao;
     private final InstitucionInterfaceService institucionDao;
-    private final IUserDao userDao;
 
-    public RutaImpl(IRutaDao rutaDao, InstitucionInterfaceService institucionDao, IUserDao userDao) {
+    public RutaImpl(IRutaDao rutaDao, InstitucionInterfaceService institucionDao) {
         this.rutaDao = rutaDao;
         this.institucionDao = institucionDao;
-        this.userDao = userDao;
     }
 
     @Override
@@ -29,7 +26,7 @@ public class RutaImpl implements IRutaService {
 
     @Override
     public Ruta findById(short rutaId) {
-        return this.rutaDao.findById(rutaId).orElse(null);
+        return this.rutaDao.findById(rutaId);
     }
 
 
@@ -38,10 +35,9 @@ public class RutaImpl implements IRutaService {
         return this.rutaDao.findAllByInstitucion(this.institucionDao.findById(institucionId).orElse(null));
     }
 
-    public List<Ruta> findByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail) {
-        return this.rutaDao.findByInstitucionAndUsuario(
-                this.institucionDao.findById(institucionId).orElse(null),
-                this.userDao.findById(usuarioEmail).orElse(null));
+    @Override
+    public List<Ruta> findAllByInstitucionIdAndUsuarioEmail(short institucionId, String usuarioEmail) {
+        return this.rutaDao.findAllByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail);
     }
 
     @Override

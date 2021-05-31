@@ -28,7 +28,6 @@ public class MovimientoImpl implements IMovimientoService {
 
     @Override
     public List<Movimiento> findAllByUsuarioAndThirtyDays(Usuario usuario, Timestamp lastThirtyDays) {
-
         return this.movimientoDao.findAllByUsuarioAndThirtyDays(usuario, lastThirtyDays).orElse(null);
     }
 
