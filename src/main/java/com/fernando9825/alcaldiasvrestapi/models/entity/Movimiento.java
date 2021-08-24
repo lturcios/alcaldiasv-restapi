@@ -17,35 +17,11 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(@Size(min = 8, max = 8) String pagoId,
-                      Asignacion asignacion,
-                      double precioUnitario,
-                      double tarifaUnitario,
-                      double montoTotal,
-                      @NotNull Date fechaInicio,
-                      Date fechaFin,
-                      Timestamp fechaHorapago,
-                      @Size(max = 200) String observaciones,
-                      @NotNull Usuario usuario,
-                      @Size(min = 6, max = 12) String serieInicial,
-                      @Size(min = 6, max = 12) String serieFinal) {
-        this.pagoId = pagoId;
-        this.asignacion = asignacion;
-        this.precioUnitario = precioUnitario;
-        this.tarifaUnitario = tarifaUnitario;
-        this.montoTotal = montoTotal;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.fechaHorapago = fechaHorapago;
-        this.observaciones = observaciones;
-        this.usuario = usuario;
-        this.serieInicial = serieInicial;
-        this.serieFinal = serieFinal;
-    }
-
     @Id
-    @Size(min = 8, max = 8)
+    @Size(min = 8, max = 10)
     private String pagoId;
+    @Nullable
+    private Double saldoActual;
 
     /*
     * llaves que tiene asignacion:
@@ -105,9 +81,48 @@ public class Movimiento {
     @OneToOne
     @JoinColumn(name = "usuario_email_fk")
     private Usuario usuario;
+    @Nullable
+    private Double saldoAnterior;
 
+    public Movimiento(@Size(min = 8, max = 10) String pagoId,
+                      Asignacion asignacion,
+                      double precioUnitario,
+                      double tarifaUnitario,
+                      double montoTotal,
+                      @NotNull Date fechaInicio,
+                      Date fechaFin,
+                      Timestamp fechaHorapago,
+                      @Size(max = 200) String observaciones,
+                      @NotNull Usuario usuario,
+                      @Size(min = 6, max = 12) String serieInicial,
+                      @Size(min = 6, max = 12) String serieFinal,
+                      @Nullable Double saldoActual,
+                      @Nullable Double saldoAnterior) {
+        this.pagoId = pagoId;
+        this.asignacion = asignacion;
+        this.precioUnitario = precioUnitario;
+        this.tarifaUnitario = tarifaUnitario;
+        this.montoTotal = montoTotal;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.fechaHorapago = fechaHorapago;
+        this.observaciones = observaciones;
+        this.usuario = usuario;
+        this.serieInicial = serieInicial;
+        this.serieFinal = serieFinal;
+        this.saldoActual = saldoActual;
+        this.saldoAnterior = saldoAnterior;
+    }
 
-    // getters and setters
+    public Date getFechaHorapago() {
+        return fechaHorapago;
+    }
+
+    public void setFechaHorapago(Date fechaHorapago) {
+        this.fechaHorapago = fechaHorapago;
+    }
+
+// getters and setters
 
     public String getPagoId() {
         return pagoId;
@@ -165,13 +180,13 @@ public class Movimiento {
         this.fechaFin = fechaFin;
     }
 
-    public Date getFechaHorapago() {
-        return fechaHorapago;
-    }
-
-    public void setFechaHorapago(Date fechaHorapago) {
-        this.fechaHorapago = fechaHorapago;
-    }
+//    public Date getFechaHorapago() {
+//        return fechaHorapago;
+//    }
+//
+//    public void setFechaHorapago(Date fechaHorapago) {
+//        this.fechaHorapago = fechaHorapago;
+//    }
 
     public Date getFechaHoraAnula() {
         return fechaHoraAnula;
@@ -213,4 +228,21 @@ public class Movimiento {
         this.serieFinal = serieFinal;
     }
 
+    @Nullable
+    public Double getSaldoActual() {
+        return saldoActual;
+    }
+
+    public void setSaldoActual(@Nullable Double saldoActual) {
+        this.saldoActual = saldoActual;
+    }
+
+    @Nullable
+    public Double getSaldoAnterior() {
+        return saldoAnterior;
+    }
+
+    public void setSaldoAnterior(@Nullable Double saldoAnterior) {
+        this.saldoAnterior = saldoAnterior;
+    }
 }

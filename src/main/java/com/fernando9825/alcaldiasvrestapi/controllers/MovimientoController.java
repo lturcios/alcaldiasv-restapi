@@ -58,10 +58,10 @@ public class MovimientoController {
 
             Date fechaActual = new Date();
 
-            Duration temporalAmount = Duration.ofDays(15);
-            Timestamp fechaMenosThirtyDays = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
+            Duration temporalAmount = Duration.ofDays(7);
+            Timestamp fechaMenosLastDays = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
             List<Movimiento> movimientos = this.movimientoService
-                    .findAllByUsuarioAndThirtyDays(usuario, fechaMenosThirtyDays);
+                    .findAllByUsuarioAndThirtyDays(usuario, fechaMenosLastDays);
             return new ResponseEntity<>(movimientos, HttpStatus.OK);
         } else {
             Map<String, Object> message = new HashMap<>();
@@ -87,7 +87,9 @@ public class MovimientoController {
             @RequestParam(required = false) String fechaHoraAnula,
             @RequestParam String usuarioEmail,
             @RequestParam String serieInicial,
-            @RequestParam String serieFinal) {
+            @RequestParam String serieFinal,
+            @RequestParam(required = false) Double saldoActual,
+            @RequestParam(required = false) Double saldoAnterior) {
 
         Map<String, Object> response = new HashMap<>();
 
@@ -134,7 +136,9 @@ public class MovimientoController {
                         observaciones,
                         usuario,
                         serieInicial,
-                        serieFinal);
+                        serieFinal,
+                        saldoActual,
+                        saldoAnterior);
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());
@@ -153,7 +157,9 @@ public class MovimientoController {
                         observaciones,
                         usuario,
                         serieInicial,
-                        serieFinal);
+                        serieFinal,
+                        saldoActual,
+                        saldoAnterior);
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());
