@@ -12,6 +12,8 @@ public interface IFinanciamientoDao extends JpaRepository<Financiamiento, Intege
 
     Financiamiento findByInstitucionAndPuesto(Institucion institucion, Puesto puesto);
 
+    Financiamiento findByContribuyenteId(int contgribuyenteId);
+
     List<Financiamiento> findAllByInstitucion(Institucion institucion);
 
     @Query("select f from Financiamiento AS f WHERE f.institucion.id = :institucion " +

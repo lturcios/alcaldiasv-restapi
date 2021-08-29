@@ -16,6 +16,8 @@ public interface IFinanciamientoService {
 
     Financiamiento findById(int financiamientoId);
 
+    Financiamiento findByContribuyenteId(int contribuyenteId);
+
     Financiamiento save(Financiamiento financiamiento);
 
     void delete(int financiamientoId);

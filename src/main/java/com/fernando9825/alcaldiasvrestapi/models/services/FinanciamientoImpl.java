@@ -65,6 +65,11 @@ public class FinanciamientoImpl implements IFinanciamientoService {
     }
 
     @Override
+    public Financiamiento findByContribuyenteId(int contribuyenteId) {
+        return this.financiamientoDao.findByContribuyenteId(contribuyenteId);
+    }
+
+    @Override
     public Financiamiento save(Financiamiento financiamiento) {
         return this.financiamientoDao.save(financiamiento);
     }
