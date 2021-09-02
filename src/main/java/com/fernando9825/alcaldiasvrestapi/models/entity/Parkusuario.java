@@ -7,11 +7,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "saniusuarios")
-public class Saniusuario {
+@Table(name = "parkusuarios")
+public class Parkusuario {
     @Id
     @Email
-    @Size(max = 100)
+    @Size(max = 120)
     private String email;
 
     @NotBlank
@@ -34,10 +34,10 @@ public class Saniusuario {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ubicacion_id_fk", referencedColumnName = "id")
-    private Saniubicacion ubicacion;
+    private Parkubicacion ubicacion;
 
 
-    // getters and setters
+    /* Getters and Setters */
     public String getEmail() {
         return email;
     }
@@ -70,11 +70,11 @@ public class Saniusuario {
         this.institucion = institucion;
     }
 
-    public Saniubicacion getUbicacion() {
+    public Parkubicacion getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Saniubicacion ubicacion) {
+    public void setUbicacion(Parkubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
 }

@@ -12,7 +12,7 @@ public class Usuario {
 
     @Id
     @Email
-    @Size(max = 200)
+    @Size(max = 100)
     private String email;
 
     @NotBlank

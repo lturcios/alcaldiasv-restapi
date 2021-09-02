@@ -18,7 +18,11 @@ public class SaniTarifaImpl implements ISaniTarifaService {
     private final ISaniUbicacionDao saniubicacionDao;
 
     @Autowired
-    public SaniTarifaImpl(ISaniTarifaDao saniTarifaDao, InstitucionInterfaceService institucionDao, ISaniUbicacionDao saniubicacionDao){
+    public SaniTarifaImpl(
+            ISaniTarifaDao saniTarifaDao,
+            InstitucionInterfaceService institucionDao,
+            ISaniUbicacionDao saniubicacionDao
+    ){
         this.saniTarifaDao = saniTarifaDao;
         this.institucionDao = institucionDao;
         this.saniubicacionDao = saniubicacionDao;

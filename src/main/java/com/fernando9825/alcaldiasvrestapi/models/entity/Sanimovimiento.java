@@ -15,7 +15,7 @@ import java.util.Date;
 public class Sanimovimiento {
 
     @Id
-    @Size(min = 8, max = 8)
+    @Size(min = 8, max = 10)
     private String pagoId;
     /*
      * llaves que tiene asignacion:
