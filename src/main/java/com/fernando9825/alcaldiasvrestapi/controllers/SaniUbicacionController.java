@@ -2,6 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Saniubicacion;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.ISaniUbicacionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class SaniUbicacionController {
 
     private final ISaniUbicacionService saniubicacionService;
 
+    @Autowired
     public SaniUbicacionController(ISaniUbicacionService saniubicacionService) {
         this.saniubicacionService = saniubicacionService;
     }

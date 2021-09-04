@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping(path = "/api/")
 public class SaniTarifaController {
 
     private final ISaniTarifaService sanitarifaService;

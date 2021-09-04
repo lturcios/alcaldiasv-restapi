@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
-import com.fernando9825.alcaldiasvrestapi.models.entity.Saniusuario;
-import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.ISaniUserService;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Parkusuario;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IParkUserService;
 import com.fernando9825.alcaldiasvrestapi.security.SecurityConstants;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -23,41 +23,42 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/api/")
-public class SaniUserController {
+public class ParkUserController {
 
-    private final ISaniUserService saniuserService;
+    private final IParkUserService parkuserService;
 
     @Autowired
-    public SaniUserController(ISaniUserService saniuserService) {
-        this.saniuserService = saniuserService;
+    public ParkUserController(IParkUserService parkuserService) {
+        this.parkuserService = parkuserService;
     }
 
-    @PostMapping("saniuser")
-    public ResponseEntity<?> login(@RequestParam("email") String email,
-                                   @RequestParam("password") String pwd){
-
-        Saniusuario saniusuario = saniuserService.findById(email);
+    @PostMapping("parkuser")
+    public ResponseEntity<?> login(
+            @RequestParam("email") String email,
+            @RequestParam("password") String pwd
+    ){
+        Parkusuario parkusuario = parkuserService.findById(email);
         Map<String, Object> response = new HashMap<>();
 
-        if (saniusuario != null){
-            if (pwd.equals(saniusuario.getPassword())){
-                //Generamos el token
+        if(parkusuario != null){
+            if(pwd.equals(parkusuario.getPassword())){
+                //Llega el momento de generar el token
                 String token = getJWTToken(email);
 
                 response.put("message", "Please use the given token in every request, in order to " +
                         "get access to all API");
-                response.put("nombre", saniusuario.getNombre());
-                response.put("email", saniusuario.getEmail());
+                response.put("nombre", parkusuario.getNombre());
+                response.put("email", parkusuario.getEmail());
                 response.put("token", token);
-                response.put("institucion", saniusuario.getInstitucion());
-                response.put("ubicacion", saniusuario.getUbicacion());
-                // System.out.println(response.get("ubicacion"));
+                response.put("institucion", parkusuario.getInstitucion());
+                response.put("ubicacion", parkusuario.getUbicacion());
                 return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
             }
         }
 
         response.put("error", "email or password incorrect!");
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+
     }
 
     private String getJWTToken(String username) {
@@ -74,8 +75,6 @@ public class SaniUserController {
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                // descomentar, para establecer el tiempo de expiracion en el token
-                //.setExpiration(new Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512,
                         SecurityConstants.JWT_SECRET.getBytes()).compact();
 
