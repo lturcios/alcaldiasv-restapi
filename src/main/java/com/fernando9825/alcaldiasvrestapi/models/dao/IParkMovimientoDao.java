@@ -13,6 +13,8 @@ public interface IParkMovimientoDao extends JpaRepository<Parkmovimiento, String
 
     List<Parkmovimiento> findAllByUsuario(Parkusuario parkusuario);
 
+    Parkmovimiento findByPagoId(String pagoId);
+
     @Query(value = "select pm from Parkmovimiento pm where pm.usuario = ?1 and pm.fechaHorapago >= ?2")
     Optional<List<Parkmovimiento>> findAllByUsuarioAndFechaHorapago(Parkusuario parkusuario, Timestamp fechaHorapago);
 

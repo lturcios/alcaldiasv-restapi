@@ -39,6 +39,11 @@ public class ParkMovimientoImpl implements IParkMovimientoService {
     }
 
     @Override
+    public Parkmovimiento findById(String pagoId) {
+        return this.parkMovimientoDao.findByPagoId(pagoId);
+    }
+
+    @Override
     public Parkmovimiento save(Parkmovimiento parkmovimiento) {
         return this.parkMovimientoDao.save(parkmovimiento);
     }

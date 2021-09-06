@@ -15,7 +15,10 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/")
@@ -48,14 +51,17 @@ public class SaniMovimientoController {
         }
     }
 
-    @GetMapping(path = "sanimovimientos/last-thirty")
-    public ResponseEntity<?> getAllSaniMovimientosOfLastFifteenDaysByUsuarioEmail(@RequestParam(name = "email") String usuarioEmail){
+    @GetMapping(path = "sanimovimientos/last-fifteen")
+    public ResponseEntity<?> getAllSaniMovimientosOfLastFifteenDaysByUsuarioEmail(
+            @RequestParam(name = "email") String usuarioEmail){
         Saniusuario saniusuario = this.saniuserService.findById(usuarioEmail);
 
         if (saniusuario != null) {
             Date fechaActual = new Date();
             Duration temporalAmount = Duration.ofDays(15);
-            Timestamp fechaMenosDias = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
+            Timestamp fechaMenosDias = Timestamp
+                    .from(Date.from(fechaActual.toInstant().minus(temporalAmount))
+                            .toInstant());
 
             List<Sanimovimiento> sanimovimientos =
                     this.sanimovimientoService.findAllByUsuarioAndThirtyDays(saniusuario, fechaMenosDias);
@@ -85,7 +91,6 @@ public class SaniMovimientoController {
         Saniubicacion saniubicacion = this.saniubicacionService.findById(saniubicacionId);
         Saniusuario saniusuario = this.saniuserService.findById(usuarioEmail);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
         Date fechaHoraPagoDate;

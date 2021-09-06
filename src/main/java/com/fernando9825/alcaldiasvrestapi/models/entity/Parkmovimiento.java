@@ -7,6 +7,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -64,6 +65,36 @@ public class Parkmovimiento {
     @OneToOne
     @JoinColumn(name = "usuario_email_fk")
     private Parkusuario usuario;
+
+    public Parkmovimiento(
+            String pagoId,
+            Parkubicacion parkubicacion,
+            Date fechaHoraentra,
+            @Nullable Timestamp fechaHorasale,
+            Double precioUnitario,
+            @Nullable Integer tiempoMinutos,
+            @Nullable Double montoTotal,
+            String serieEntrada,
+            @Nullable String serieSalida,
+            @Nullable Timestamp fechaHorapago,
+            @Nullable String observaciones,
+            Parkusuario parkusuario) {
+
+        this.pagoId = pagoId;
+        this.ubicacion = parkubicacion;
+        this.fechaHoraentra = fechaHoraentra;
+        this.fechaHorasale = fechaHorasale;
+        this.precioUnitario = precioUnitario;
+        this.tiempoMinutos = tiempoMinutos;
+        this.montoTotal = montoTotal;
+        this.serieEntrada = serieEntrada;
+        this.serieSalida = serieSalida;
+        this.fechaHorapago = fechaHorapago;
+        this.observaciones = observaciones;
+        this.usuario = parkusuario;
+
+
+    }
 
 
     /* Getters And Setters  */
