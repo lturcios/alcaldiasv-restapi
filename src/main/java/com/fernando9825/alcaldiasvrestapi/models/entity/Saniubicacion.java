@@ -44,11 +44,11 @@ public class Saniubicacion {
         this.descripcion = descripcion;
     }
 
-    public String getObseracion() {
+    public String getObservacion() {
         return observacion;
     }
 
-    public void setObseracion(String obseracion) {
+    public void setObservacion(String obseracion) {
         this.observacion = obseracion;
     }
 

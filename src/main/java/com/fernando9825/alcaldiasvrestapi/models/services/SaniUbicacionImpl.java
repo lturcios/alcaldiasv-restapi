@@ -3,7 +3,6 @@ package com.fernando9825.alcaldiasvrestapi.models.services;
 import com.fernando9825.alcaldiasvrestapi.models.dao.ISaniUbicacionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Saniubicacion;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.ISaniUbicacionService;
-import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,13 +10,10 @@ import java.util.List;
 @Service
 public class SaniUbicacionImpl implements ISaniUbicacionService {
 
-    private final InstitucionInterfaceService institucionService;
-
     private final ISaniUbicacionDao ubicacionDao;
 
-    public SaniUbicacionImpl(ISaniUbicacionDao ubicacionDao, InstitucionInterfaceService institucionService){
+    public SaniUbicacionImpl(ISaniUbicacionDao ubicacionDao){
         this.ubicacionDao = ubicacionDao;
-        this.institucionService = institucionService;
     }
 
     @Override
@@ -27,9 +23,7 @@ public class SaniUbicacionImpl implements ISaniUbicacionService {
 
     @Override
     public List<Saniubicacion> findByInstitucionId(short institucionId) {
-        return this.ubicacionDao.findByInstitucionId(
-                this.institucionService.findById(institucionId)
-        );
+        return this.ubicacionDao.findByInstitucionId(institucionId);
     }
 
     @Override

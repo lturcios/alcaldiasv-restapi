@@ -13,6 +13,8 @@ public interface IParkMovimientoService {
 
     List<Parkmovimiento> findAllByUsuarioAndFechaHorapago(Parkusuario parkusuario, Timestamp fechaHorapago);
 
+    List<Parkmovimiento> findAllByUsuarioAndFechaHoraentra(Parkusuario parkusuario, Timestamp fechaHoraentra);
+
     Parkmovimiento findById(String pagoId);
 
     @Transactional

@@ -55,6 +55,7 @@ public class ParkMovimientoController {
     @GetMapping(path = "parkmovimientos/last-five")
     public ResponseEntity<?> findAllByUsuarioAndFechaHorapago(
             @RequestParam(name = "email") String usuarioEmail) {
+
         Parkusuario parkusuario = this.parkUserService.findById(usuarioEmail);
 
         if(parkusuario != null){
@@ -65,9 +66,10 @@ public class ParkMovimientoController {
                             .toInstant());
 
             List<Parkmovimiento> parkmovimientos =
-                    this.parkMovimientoService.findAllByUsuarioAndFechaHorapago(parkusuario, fechaMenosDias);
+                    this.parkMovimientoService.findAllByUsuarioAndFechaHoraentra(parkusuario, fechaMenosDias);
 
             return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
+
         } else {
             Map<String, Object> message = new HashMap<>();
             message.put("message", "User " + usuarioEmail + " does not exists");

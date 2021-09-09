@@ -40,7 +40,7 @@ public class ParkTarifaImpl implements IParkTarifaService {
     public List<Parktarifa> getAllParkTarifasByInstitucionIdAndUbicacion(short institucionId, int ubicacion) {
         return this.parkTarifaDao.findAllByInstitucionAndUbicacion(
                 this.institucionDao.findById(institucionId),
-                this.parkUbicacionDao.findById((short) ubicacion)
+                this.parkUbicacionDao.findById(ubicacion)
         );
     }
 }

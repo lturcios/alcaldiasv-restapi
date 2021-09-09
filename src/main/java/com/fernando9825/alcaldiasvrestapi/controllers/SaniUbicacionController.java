@@ -24,8 +24,11 @@ public class SaniUbicacionController {
     }
 
     @GetMapping(path = "saniubicacion/{institucionId}")
-    public ResponseEntity<?> findByInstitucionId(@PathVariable short institucionId){
-        List<Saniubicacion> saniubicaciones = this.saniubicacionService.findByInstitucionId(institucionId);
+    public ResponseEntity<?> findByInstitucionId(
+            @PathVariable short institucionId
+    ) {
+        List<Saniubicacion> saniubicaciones =
+                this.saniubicacionService.findByInstitucionId(institucionId);
         return (!saniubicaciones.isEmpty()) ? new ResponseEntity<>(saniubicaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

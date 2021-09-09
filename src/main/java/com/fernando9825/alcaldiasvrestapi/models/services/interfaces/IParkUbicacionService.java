@@ -10,10 +10,10 @@ public interface IParkUbicacionService {
 
     List<Parkubicacion> findByInstitucionId(short institucionId);
 
-    Parkubicacion findById(short parkubicacionId);
+    Parkubicacion findById(int parkubicacionId);
 
     Parkubicacion save(Parkubicacion parkubicacion);
 
-    void delete(short parkubicacionId);
+    void delete(int parkubicacionId);
 
 }

@@ -28,7 +28,7 @@ public class ParkUbicacionController {
             @PathVariable short institucionId
     ) {
         List<Parkubicacion> parkubicaciones =
-                parkUbicacionService.findByInstitucionId(institucionId);
+                this.parkUbicacionService.findByInstitucionId(institucionId);
         return (!parkubicaciones.isEmpty()) ? new ResponseEntity<>(parkubicaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

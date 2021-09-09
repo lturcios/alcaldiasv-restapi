@@ -34,13 +34,13 @@ public class Parkmovimiento {
     private Date fechaHorasale;
 
     @NotNull
-    private double precioUnitario;
+    private Double precioUnitario;
 
     @Nullable
-    private int tiempoMinutos;
+    private Integer tiempoMinutos;
 
     @Nullable
-    private double montoTotal;
+    private Double montoTotal;
 
     @Nullable
     private String serieEntrada;
@@ -65,6 +65,10 @@ public class Parkmovimiento {
     @OneToOne
     @JoinColumn(name = "usuario_email_fk")
     private Parkusuario usuario;
+
+    public Parkmovimiento(){
+
+    }
 
     public Parkmovimiento(
             String pagoId,
@@ -92,7 +96,6 @@ public class Parkmovimiento {
         this.fechaHorapago = fechaHorapago;
         this.observaciones = observaciones;
         this.usuario = parkusuario;
-
 
     }
 
@@ -131,27 +134,29 @@ public class Parkmovimiento {
         this.fechaHorasale = fechaHorasale;
     }
 
-    public double getPrecioUnitario() {
+    public Double getPrecioUnitario() {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(double precioUnitario) {
+    public void setPrecioUnitario(Double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
 
-    public int getTiempoMinutos() {
+    @Nullable
+    public Integer getTiempoMinutos() {
         return tiempoMinutos;
     }
 
-    public void setTiempoMinutos(int tiempoMinutos) {
+    public void setTiempoMinutos(@Nullable Integer tiempoMinutos) {
         this.tiempoMinutos = tiempoMinutos;
     }
 
-    public double getMontoTotal() {
+    @Nullable
+    public Double getMontoTotal() {
         return montoTotal;
     }
 
-    public void setMontoTotal(double montoTotal) {
+    public void setMontoTotal(@Nullable Double montoTotal) {
         this.montoTotal = montoTotal;
     }
 
