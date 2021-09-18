@@ -140,6 +140,7 @@ public class ParkMovimientoController {
                 parkmovimiento.setSerieSalida(serieSalida);
                 parkmovimiento.setTiempoMinutos(tiempoMinutos);
                 parkmovimiento.setMontoTotal(montoTotal);
+                this.parkMovimientoService.save(parkmovimiento);
                 response.put("status", HttpStatus.ACCEPTED.value());
                 return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
             }
