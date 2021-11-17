@@ -22,8 +22,10 @@ public class Usuario {
 
     @NotBlank
     @NotNull
-    @Size(min = 8, max = 16)
+    @Size(min = 6, max = 16)
     private String password;
+
+    private String devicePrefix = "";
 
     // llave foranea
     @NotNull
@@ -65,4 +67,9 @@ public class Usuario {
     public void setInstitucion(Institucion institucion) {
         this.institucion = institucion;
     }
+
+    public String getDevicePrefix() { return devicePrefix; }
+
+    public void setDevicePrefix(String devicePrefix) { this.devicePrefix = devicePrefix; }
+
 }
