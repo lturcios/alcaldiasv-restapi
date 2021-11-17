@@ -32,33 +32,51 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @PostMapping("user")
     public ResponseEntity<?> login(@RequestParam("email") String email,
-                                   @RequestParam("password") String pwd) {
-
+                                   @RequestParam("password") String pwd,
+                                   @RequestParam(required = false, name = "deviceid") String deviceid) {
 
         Usuario usuario = userService.findById(email);
         Map<String, Object> response = new HashMap<>();
 
         if (usuario != null) {
             if (pwd.equals(usuario.getPassword())) {
+                if (usuario.getDevicePrefix().isEmpty()){
+                    // generar el token
+                    String token = getJWTToken(email);
 
-                // generar el token
-                String token = getJWTToken(email);
-
-                response.put("message", "Please use the given token in every request, in order to " +
-                        "get access to all API");
-                response.put("nombre", usuario.getNombre());
-                response.put("email", email.trim());
-                response.put("token", token);
-                response.put("institucion", usuario.getInstitucion());
-
-                return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+                    response.put("message", "Please use the given token in every request, in order to " +
+                            "get access to all API");
+                    response.put("nombre", usuario.getNombre());
+                    response.put("email", email.trim());
+                    response.put("token", token);
+                    response.put("institucion", usuario.getInstitucion());
+                    usuario.setDevicePrefix(deviceid);
+                    userService.save(usuario);
+                    return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+                } else {
+                    response.put("error", "user already registered: " + usuario.getDevicePrefix());
+                    return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+                }
             }
         }
-
         response.put("error", "email or password incorrect!");
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("user/logout")
+    public ResponseEntity<?> logout(@RequestParam("email") String email){
+        Usuario usuario = userService.findById(email);
+        Map<String, Object> response = new HashMap<>();
+
+        if(usuario != null){
+            usuario.setDevicePrefix("");
+            userService.save(usuario);
+            response.put("message", email + " logged out!");
+            return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+        }
+        response.put("error", "email incorrect!");
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 

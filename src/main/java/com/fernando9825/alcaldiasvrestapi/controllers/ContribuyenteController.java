@@ -98,7 +98,6 @@ public class ContribuyenteController {
         contribuyente.setDireccion(updatedContribuyente.getDireccion());
         //contribuyente.setMunicipio(updatedContribuyente.getMunicipio());
 
-
         this.taxpayerService.save(contribuyente);
         return new ResponseEntity<>(contribuyente, HttpStatus.CREATED);
 
