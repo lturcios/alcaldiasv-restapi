@@ -34,6 +34,10 @@ public class Parktarifa {
     @NotNull
     private double precioUnitario;
 
+    @NotBlank
+    @Size(max = 6)
+    private String periodo;
+
     @NotNull
     //@DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.NONE)
     @Temporal(value = TemporalType.DATE)
@@ -53,6 +57,8 @@ public class Parktarifa {
     @JoinColumn(name = "ubicacion_id_fk", referencedColumnName = "id")
     private Parkubicacion ubicacion;
 
+    @NotNull
+    private int iconfile;
 
     /* Getters And Setters */
     public int getId() {
@@ -95,6 +101,10 @@ public class Parktarifa {
         this.precioUnitario = precioUnitario;
     }
 
+    public String getPeriodo() { return periodo; }
+
+    public void setPeriodo(String periodo) { this.periodo = periodo; }
+
     public Date getVigencia() {
         return vigencia;
     }
@@ -126,4 +136,8 @@ public class Parktarifa {
     public void setUbicacion(Parkubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public int getIconfile() { return iconfile; }
+    public void setIconfile(int iconfile) { this.iconfile = iconfile; }
+
 }

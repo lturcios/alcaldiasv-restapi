@@ -26,6 +26,9 @@ public class Parkmovimiento {
     private Parkubicacion ubicacion;
 
     @NotNull
+    private Integer codigoPresupuestario;
+
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHoraentra;
 
@@ -73,6 +76,7 @@ public class Parkmovimiento {
     public Parkmovimiento(
             String pagoId,
             Parkubicacion parkubicacion,
+            Integer codigoPresupuestario,
             Date fechaHoraentra,
             @Nullable Timestamp fechaHorasale,
             Double precioUnitario,
@@ -86,6 +90,7 @@ public class Parkmovimiento {
 
         this.pagoId = pagoId;
         this.ubicacion = parkubicacion;
+        this.codigoPresupuestario = codigoPresupuestario;
         this.fechaHoraentra = fechaHoraentra;
         this.fechaHorasale = fechaHorasale;
         this.precioUnitario = precioUnitario;
@@ -98,7 +103,6 @@ public class Parkmovimiento {
         this.usuario = parkusuario;
 
     }
-
 
     /* Getters And Setters  */
     public String getPagoId() {
@@ -116,6 +120,10 @@ public class Parkmovimiento {
     public void setUbicacion(Parkubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public Integer getCodigoPresupuestario() { return codigoPresupuestario; }
+
+    public void setCodigoPresupuestario(Integer codigoPresupuestario) { this.codigoPresupuestario = codigoPresupuestario; }
 
     public Date getFechaHoraentra() {
         return fechaHoraentra;

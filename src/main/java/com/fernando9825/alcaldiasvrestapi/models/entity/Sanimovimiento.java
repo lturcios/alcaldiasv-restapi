@@ -29,24 +29,32 @@ public class Sanimovimiento {
     @ManyToOne
     @JoinColumn(name = "ubicacion_id_fk", referencedColumnName = "id")
     private Saniubicacion ubicacion;
+
     @NotNull
     private double precioUnitario;
+
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHorapago;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHoraAnula;
+
     @Size(max = 200)
     private String observaciones;
+
     @Nullable
     private String serieInicial;
+
     @Nullable
     private String serieFinal;
+
     @JsonIgnore
     @NotNull
     @OneToOne
     @JoinColumn(name = "usuario_email_fk")
     private Saniusuario usuario;
+
     @Size(max = 10)
     private String genero;
 

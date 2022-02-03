@@ -20,6 +20,7 @@ public class Movimiento {
     @Id
     @Size(min = 8, max = 10)
     private String pagoId;
+
     @Nullable
     private Double saldoActual;
 
@@ -76,6 +77,9 @@ public class Movimiento {
     @Nullable
     private String serieFinal;
 
+    @Nullable
+    private String tipo;
+
     @JsonIgnore
     @NotNull
     @OneToOne
@@ -97,7 +101,8 @@ public class Movimiento {
                       @Size(min = 6, max = 12) String serieInicial,
                       @Size(min = 6, max = 12) String serieFinal,
                       @Nullable Double saldoActual,
-                      @Nullable Double saldoAnterior) {
+                      @Nullable Double saldoAnterior,
+                      @Nullable String tipo) {
         this.pagoId = pagoId;
         this.asignacion = asignacion;
         this.precioUnitario = precioUnitario;
@@ -112,6 +117,7 @@ public class Movimiento {
         this.serieFinal = serieFinal;
         this.saldoActual = saldoActual;
         this.saldoAnterior = saldoAnterior;
+        this.tipo = tipo;
     }
 
     public Date getFechaHorapago() {
@@ -245,4 +251,14 @@ public class Movimiento {
     public void setSaldoAnterior(@Nullable Double saldoAnterior) {
         this.saldoAnterior = saldoAnterior;
     }
+
+    @Nullable
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(@Nullable String tipo) {
+        this.tipo = tipo;
+    }
+
 }

@@ -162,7 +162,8 @@ public class MovimientoController {
                         serieInicial,
                         serieFinal,
                         saldoActual,
-                        saldoAnterior);
+                        saldoAnterior,
+                        tipo);
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());
@@ -183,7 +184,8 @@ public class MovimientoController {
                         serieInicial,
                         serieFinal,
                         saldoActual,
-                        saldoAnterior);
+                        saldoAnterior,
+                        tipo);
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());

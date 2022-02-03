@@ -81,6 +81,7 @@ public class ParkMovimientoController {
     public ResponseEntity<?> save(
             @Size(min =8) @RequestParam String pagoId,
             @RequestParam Short parkubicacionId,
+            @RequestParam Integer codigoPresupuestario,
             @RequestParam String fechaHoraentra,
             @RequestParam(required = false) String fechaHorasale,
             @RequestParam Double precioUnitario,
@@ -123,7 +124,7 @@ public class ParkMovimientoController {
             if(parkmovimiento == null) {
                 if (parkusuario != null && parkubicacion != null) {
                     Parkmovimiento parkmovimientoNuevo = new Parkmovimiento(
-                            pagoId, parkubicacion, entra, sale, precioUnitario,
+                            pagoId, parkubicacion, codigoPresupuestario, entra, sale, precioUnitario,
                             tiempoMinutos, montoTotal, serieEntrada, serieSalida, pago,
                             observaciones, parkusuario);
                     this.parkMovimientoService.save(parkmovimientoNuevo);
