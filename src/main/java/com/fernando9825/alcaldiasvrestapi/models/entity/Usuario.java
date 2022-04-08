@@ -27,6 +27,9 @@ public class Usuario {
 
     private String devicePrefix = "";
 
+    @NotNull
+    private int alcance;
+
     // llave foranea
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
@@ -34,7 +37,6 @@ public class Usuario {
     private Institucion institucion;
 
     // getters and setters
-
 
     public String getEmail() {
         return email;
@@ -72,4 +74,7 @@ public class Usuario {
 
     public void setDevicePrefix(String devicePrefix) { this.devicePrefix = devicePrefix; }
 
+    public int getAlcance() { return alcance; }
+
+    public void setAlcance(int alcance) { this.alcance = alcance; }
 }

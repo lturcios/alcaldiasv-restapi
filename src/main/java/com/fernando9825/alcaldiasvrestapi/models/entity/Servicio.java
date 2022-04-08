@@ -17,7 +17,7 @@ public class Servicio {
 
     //@JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
     @Column(name = "contrib_id_fk", nullable = false)
-    private int contribuyente;
+    private int contribuyenteId;
 
     @NotNull
     @Column(name = "codigo_presup", nullable = false)
@@ -57,12 +57,12 @@ public class Servicio {
         this.id = id;
     }
 
-    public int getContribuyente() {
-        return contribuyente;
+    public int getContribuyenteId() {
+        return contribuyenteId;
     }
 
-    public void setContribuyente(int contribuyente) {
-        this.contribuyente = contribuyente;
+    public void setContribuyenteId(int contribuyenteId) {
+        this.contribuyenteId = contribuyenteId;
     }
 
     public int getCodigoPresupuestario() {

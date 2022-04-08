@@ -52,6 +52,7 @@ public class UserController {
                     response.put("email", email.trim());
                     response.put("token", token);
                     response.put("institucion", usuario.getInstitucion());
+                    response.put("alcance", usuario.getAlcance());
                     // if(deviceid == null) deviceid = ""; // old version doesn't send this value, then replace to empty
                     usuario.setDevicePrefix(deviceid);
                     userService.save(usuario);
