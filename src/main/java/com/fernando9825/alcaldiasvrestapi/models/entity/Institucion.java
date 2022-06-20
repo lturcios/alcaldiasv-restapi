@@ -35,9 +35,10 @@ public class Institucion {
     @NotNull
     private Time horaCorte;
 
+    @NotNull
+    private Double fiestas;
 
-    // getters and setters
-
+// getters and setters
 
     public Time getHoraCorte() {
         return horaCorte;
@@ -86,4 +87,13 @@ public class Institucion {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public Double getFiestas() {
+        return fiestas;
+    }
+
+    public void setFiestas(Double fiestas) {
+        this.fiestas = fiestas;
+    }
+
 }
