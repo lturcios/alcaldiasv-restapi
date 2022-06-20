@@ -42,6 +42,14 @@ public class Tarifa {
     @Size(max = 200)
     private String referencia;
 
+    @NotNull
+    private boolean aplicafiestas;
+
+    @NotNull
+    private boolean aplicaintereses;
+
+    @NotNull
+    private boolean aplicamulta;
 
     // getters and setters
 
@@ -100,4 +108,17 @@ public class Tarifa {
     public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
+
+    public boolean isAplicafiestas() { return aplicafiestas; }
+
+    public void setAplicafiestas(boolean aplicafiestas) { this.aplicafiestas = aplicafiestas; }
+
+    public boolean isAplicaintereses() { return aplicaintereses; }
+
+    public void setAplicaintereses(boolean aplicaintereses) { this.aplicaintereses = aplicaintereses; }
+
+    public boolean isAplicamulta() { return aplicamulta; }
+
+    public void setAplicamulta(boolean aplicamulta) { this.aplicamulta = aplicamulta; }
+
 }

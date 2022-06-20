@@ -48,9 +48,7 @@ public class Puesto {
     @Size(max = 20)
     private String estado;
 
-
     // getters and setters
-
 
     public int getId() {
         return id;

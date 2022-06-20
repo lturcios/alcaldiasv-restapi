@@ -38,6 +38,9 @@ public class Institucion {
     @NotNull
     private Double fiestas;
 
+    @NotNull
+    private Double intereses;
+
 // getters and setters
 
     public Time getHoraCorte() {
@@ -88,12 +91,12 @@ public class Institucion {
         this.estado = estado;
     }
 
-    public Double getFiestas() {
-        return fiestas;
-    }
+    public Double getFiestas() { return fiestas; }
 
-    public void setFiestas(Double fiestas) {
-        this.fiestas = fiestas;
-    }
+    public void setFiestas(Double fiestas) { this.fiestas = fiestas; }
+
+    public Double getIntereses() { return intereses; }
+
+    public void setIntereses(Double intereses) { this.intereses = intereses; }
 
 }

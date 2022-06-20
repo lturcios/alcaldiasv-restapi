@@ -54,6 +54,15 @@ public class Movimiento {
     private double montoTotal;
 
     @NotNull
+    private double fiestas;
+
+    @NotNull
+    private double intereses;
+
+    @NotNull
+    private double multa;
+
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
 
@@ -261,4 +270,15 @@ public class Movimiento {
         this.tipo = tipo;
     }
 
+    public double getFiestas() { return fiestas; }
+
+    public void setFiestas(double fiestas) { this.fiestas = fiestas; }
+
+    public double getIntereses() { return intereses; }
+
+    public void setIntereses(double intereses) { this.intereses = intereses; }
+
+    public double getMulta() { return multa; }
+
+    public void setMulta(double multa) { this.multa = multa; }
 }
