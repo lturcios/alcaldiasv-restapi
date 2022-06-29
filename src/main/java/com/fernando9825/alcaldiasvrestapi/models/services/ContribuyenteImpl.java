@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IContribuyenteDao;
-import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionInterfaceService;
+import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IContribuyenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.List;
 public class ContribuyenteImpl implements IContribuyenteService {
 
     private final IContribuyenteDao contribuyenteDao;
-    private final InstitucionInterfaceService institucionDao;
+    private final InstitucionDao institucionDao;
 
     @Autowired
-    public ContribuyenteImpl(IContribuyenteDao contribuyenteDao, InstitucionInterfaceService institucionDao) {
+    public ContribuyenteImpl(IContribuyenteDao contribuyenteDao, InstitucionDao institucionDao) {
         this.contribuyenteDao = contribuyenteDao;
         this.institucionDao = institucionDao;
     }

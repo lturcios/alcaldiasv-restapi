@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IRutaDao;
-import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionInterfaceService;
+import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Ruta;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IRutaService;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ import java.util.List;
 public class RutaImpl implements IRutaService {
 
     private final IRutaDao rutaDao;
-    private final InstitucionInterfaceService institucionDao;
+    private final InstitucionDao institucionDao;
 
-    public RutaImpl(IRutaDao rutaDao, InstitucionInterfaceService institucionDao) {
+    public RutaImpl(IRutaDao rutaDao, InstitucionDao institucionDao) {
         this.rutaDao = rutaDao;
         this.institucionDao = institucionDao;
     }

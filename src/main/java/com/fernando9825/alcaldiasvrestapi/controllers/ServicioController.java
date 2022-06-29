@@ -27,7 +27,9 @@ public class ServicioController {
     }
 
     @GetMapping(path = "servicios/{institucionId}/{usuarioEmail}")
-    public ResponseEntity<?> findByInstitucionIdAndUsuarioEmail(@PathVariable short institucionId, @PathVariable String usuarioEmail){
+    public ResponseEntity<?> findByInstitucionIdAndUsuarioEmail(
+            @PathVariable short institucionId,
+            @PathVariable String usuarioEmail){
         if(!rutaService.findAllByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail).isEmpty()) {
             List<Servicio> servicios = this.servicioService.findByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail);
             return (!servicios.isEmpty()) ? new ResponseEntity<>(servicios, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);

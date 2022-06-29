@@ -2,7 +2,7 @@ package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.ISaniTarifaDao;
 import com.fernando9825.alcaldiasvrestapi.models.dao.ISaniUbicacionDao;
-import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionInterfaceService;
+import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Sanitarifa;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.ISaniTarifaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +14,13 @@ import java.util.List;
 public class SaniTarifaImpl implements ISaniTarifaService {
 
     private final ISaniTarifaDao saniTarifaDao;
-    private final InstitucionInterfaceService institucionDao;
+    private final InstitucionDao institucionDao;
     private final ISaniUbicacionDao saniubicacionDao;
 
     @Autowired
     public SaniTarifaImpl(
             ISaniTarifaDao saniTarifaDao,
-            InstitucionInterfaceService institucionDao,
+            InstitucionDao institucionDao,
             ISaniUbicacionDao saniubicacionDao
     ){
         this.saniTarifaDao = saniTarifaDao;

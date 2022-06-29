@@ -51,7 +51,7 @@ public class Movimiento {
     private double tarifaUnitario;
 
     @NotNull
-    private double montoTotal;
+    private double subTotal;
 
     @NotNull
     private double fiestas;
@@ -61,6 +61,9 @@ public class Movimiento {
 
     @NotNull
     private double multa;
+
+    @NotNull
+    private double montoTotal;
 
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -195,14 +198,6 @@ public class Movimiento {
         this.fechaFin = fechaFin;
     }
 
-//    public Date getFechaHorapago() {
-//        return fechaHorapago;
-//    }
-//
-//    public void setFechaHorapago(Date fechaHorapago) {
-//        this.fechaHorapago = fechaHorapago;
-//    }
-
     public Date getFechaHoraAnula() {
         return fechaHoraAnula;
     }
@@ -281,4 +276,8 @@ public class Movimiento {
     public double getMulta() { return multa; }
 
     public void setMulta(double multa) { this.multa = multa; }
+
+    public double getSubTotal() { return subTotal; }
+
+    public void setSubTotal(double subTotal) { this.subTotal = subTotal; }
 }

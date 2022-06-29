@@ -8,14 +8,13 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "servicios")
-public class Servicio {
+@Table(name = "impuestos")
+public class Impuesto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //@JoinColumn(name = "contrib_id_fk", referencedColumnName = "id", nullable = false)
     @Column(name = "contrib_id_fk", nullable = false)
     private int contribuyenteId;
 
