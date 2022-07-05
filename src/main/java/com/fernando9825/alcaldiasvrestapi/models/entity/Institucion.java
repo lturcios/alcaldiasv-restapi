@@ -1,5 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -40,6 +42,10 @@ public class Institucion {
 
     @NotNull
     private Double intereses;
+
+    @Lob
+    @Type(type="org.hibernate.type.ImageType")
+    private byte[] imagen;
 
 // getters and setters
 
@@ -98,5 +104,9 @@ public class Institucion {
     public Double getIntereses() { return intereses; }
 
     public void setIntereses(Double intereses) { this.intereses = intereses; }
+
+    public byte[] getImagen() { return imagen; }
+
+    public void setImagen(byte[] logo) { this.imagen = logo; }
 
 }

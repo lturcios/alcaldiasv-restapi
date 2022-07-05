@@ -28,7 +28,6 @@ public class SaniMovimientoController {
     private final ISaniUserService saniuserService;
     private final ISaniUbicacionService saniubicacionService;
 
-
     public SaniMovimientoController(ISaniMovimientoService sanimovimientoService,
                                     ISaniUserService saniuserService,
                                     ISaniUbicacionService saniubicacionService) {
@@ -101,7 +100,9 @@ public class SaniMovimientoController {
 
             if (saniusuario != null && saniubicacion != null) {
                 Sanimovimiento sanimovimiento = new Sanimovimiento(
-                        pagoId, saniubicacion, precioUnitario, timestamp, observaciones, saniusuario, serieInicial, serieFinal, genero);
+                        pagoId, saniubicacion, precioUnitario,
+                        timestamp, observaciones, saniusuario,
+                        serieInicial, serieFinal, genero);
 
                 this.sanimovimientoService.save(sanimovimiento);
                 response.put("status", HttpStatus.CREATED.value());
@@ -118,9 +119,5 @@ public class SaniMovimientoController {
             response.put("error", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-
-
     }
-
-
 }
