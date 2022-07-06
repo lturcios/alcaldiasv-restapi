@@ -35,8 +35,10 @@ public class DiverUserController {
     @PostMapping("diveruser")
     public ResponseEntity<?> login(@RequestParam("email") String email,
                                    @RequestParam("password") String pwd){
+
         Diverusuario diverusuario = this.diverUserService.findById(email);
         Map<String, Object> response = new HashMap<>();
+
         if(diverusuario != null){
             if(pwd.equals(diverusuario.getPassword())){
                 //Generamos el token

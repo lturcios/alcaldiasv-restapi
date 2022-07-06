@@ -26,11 +26,18 @@ public class InstitucionController {
 //        return this.getContribuyentesByInstitucionId(institucionId);
 //    }
 
-    @GetMapping(path = "file/{institucionId}")
+    @GetMapping(path = "/user/file/{institucionId}")
     public ResponseEntity<byte[]> getLogo(@PathVariable short institucionId){
         Institucion institucion = institucionService.findById(institucionId);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"logo.png\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"logo.jpg\"")
                 .body(institucion.getImagen());
+    }
+    @GetMapping(path = "/user/filed/{institucionId}")
+    public ResponseEntity<byte[]> getDrawer(@PathVariable short institucionId){
+        Institucion institucion = institucionService.findById(institucionId);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"drawer.jpg\"")
+                .body(institucion.getImagend());
     }
 }

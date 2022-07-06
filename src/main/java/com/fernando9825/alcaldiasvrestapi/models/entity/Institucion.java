@@ -47,6 +47,10 @@ public class Institucion {
     @Type(type="org.hibernate.type.ImageType")
     private byte[] imagen;
 
+    @Lob
+    @Type(type="org.hibernate.type.ImageType")
+    private byte[] imagend;
+
 // getters and setters
 
     public Time getHoraCorte() {
@@ -109,4 +113,7 @@ public class Institucion {
 
     public void setImagen(byte[] logo) { this.imagen = logo; }
 
+    public byte[] getImagend() { return imagend; }
+
+    public void setImagend(byte[] imagend) { this.imagend = imagend; }
 }

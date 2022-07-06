@@ -1,5 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,7 +21,12 @@ private int id;
     @Size(max = 200)
     private String observacion;
 
-    // llave foranea
+
+    @JsonIgnoreProperties(value = {
+        "nombre", "direccion", "telefono",
+            "estado", "horaCorte", "fiestas", "intereses",
+            "imagen"
+    })
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")

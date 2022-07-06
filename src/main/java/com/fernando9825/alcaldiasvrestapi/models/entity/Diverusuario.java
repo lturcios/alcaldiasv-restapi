@@ -1,5 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +33,7 @@ public class Diverusuario {
     private Institucion institucion;
 
     // llave foranea
+    @JsonIgnoreProperties(value = { "imagen" })
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ubicacion_id_fk", referencedColumnName = "id")
