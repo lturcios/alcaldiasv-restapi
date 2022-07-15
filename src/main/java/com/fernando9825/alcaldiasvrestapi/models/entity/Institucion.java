@@ -1,12 +1,14 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import org.hibernate.annotations.Type;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Time;
+import java.util.Date;
 
 @Entity
 @Table(name = "instituciones")
@@ -42,6 +44,14 @@ public class Institucion {
 
     @NotNull
     private Double intereses;
+
+    @Nullable
+    @Temporal(TemporalType.DATE)
+    private Date inicioExencion;
+
+    @Nullable
+    @Temporal(TemporalType.DATE)
+    private Date finalExencion;
 
     @Lob
     @Type(type="org.hibernate.type.ImageType")
@@ -116,4 +126,14 @@ public class Institucion {
     public byte[] getImagend() { return imagend; }
 
     public void setImagend(byte[] imagend) { this.imagend = imagend; }
+
+    @Nullable
+    public Date getInicioExencion() { return inicioExencion; }
+
+    public void setInicioExencion(@Nullable Date inicioExencion) { this.inicioExencion = inicioExencion; }
+
+    @Nullable
+    public Date getFinalExencion() { return finalExencion; }
+
+    public void setFinalExencion(@Nullable Date finalExencion) { this.finalExencion = finalExencion; }
 }
