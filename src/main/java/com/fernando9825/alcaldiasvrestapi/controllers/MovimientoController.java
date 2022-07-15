@@ -1,6 +1,8 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
-import com.fernando9825.alcaldiasvrestapi.models.entity.*;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Asignacion;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Movimiento;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +22,6 @@ public class MovimientoController {
     private final IMovimientoService movimientoService;
     private final IUserService userService;
     private final IAsignacionService asignacionService;
-    private final IContribuyenteService contribuyenteService;
-    private final IFinanciamientoService financiamientoService;
 
     public MovimientoController(IMovimientoService movimientoService,
                                 IUserService userService,
@@ -31,8 +31,6 @@ public class MovimientoController {
         this.movimientoService = movimientoService;
         this.userService = userService;
         this.asignacionService = asignacionService;
-        this.contribuyenteService = contribuyenteService;
-        this.financiamientoService = financiamientoService;
     }
 
     // obtener todas los movimientos por id del usuario que los efectuo
@@ -89,10 +87,8 @@ public class MovimientoController {
             @RequestParam(required = false) String fechaHoraAnula,
             @RequestParam String usuarioEmail,
             @RequestParam String serieInicial,
-            @RequestParam String serieFinal,
-            @RequestParam(required = false) Double saldoActual,
-            @RequestParam(required = false) Double saldoAnterior,
-            @RequestParam(required = false) String tipo) {
+            @RequestParam String serieFinal
+            ) {
 
         Map<String, Object> response = new HashMap<>();
 
@@ -119,33 +115,8 @@ public class MovimientoController {
             Timestamp timestamp = new java.sql.Timestamp(fechaHoraPagoDate.getTime());
             // codigo del camino feliz
             if (asignacion != null && usuario != null) {
-                if (tipo != null) {
-                    switch (tipo) {
-                        case "F":
-                            Contribuyente contrifinan = this.contribuyenteService.findById(asignacion.getContribuyente());
-                            Financiamiento financiamiento = this.financiamientoService.findByContribuyenteId(contrifinan.getId());
-                            if (financiamiento != null) {
-                                /* verificar que saldo en base de datos > saldo recibido */
-                                if (financiamiento.getSaldoActual() > saldoActual) {
-                                    financiamiento.setSaldoActual(saldoActual);
-                                    financiamiento.setSaldoAnterior(saldoAnterior);
-                                    financiamiento.setUltimoPago(fechaFinDate);
-                                }
-                            }
-                            break;
-                        case "A":
-                            /*  verificar que la fecha del ultimo pago recibida, sea siempre la ultima */
-                            if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
-                                // cambiando estado del ultimo pago
-                                asignacion.setUltimoPago(ultimoPagoDate);
-                            }
-                            break;
-                    }
-                } else {
-                    /* Segun la version de la app, puede ser que no envíe el tipo => se tratará como Asignacion */
-                    if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
-                        asignacion.setUltimoPago(ultimoPagoDate);
-                    }
+                if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
+                    asignacion.setUltimoPago(ultimoPagoDate);
                 }
 
                 Movimiento movimiento = new Movimiento(
@@ -160,10 +131,8 @@ public class MovimientoController {
                         observaciones,
                         usuario,
                         serieInicial,
-                        serieFinal,
-                        saldoActual,
-                        saldoAnterior,
-                        tipo);
+                        serieFinal
+                        );
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());
@@ -182,10 +151,8 @@ public class MovimientoController {
                         observaciones,
                         usuario,
                         serieInicial,
-                        serieFinal,
-                        saldoActual,
-                        saldoAnterior,
-                        tipo);
+                        serieFinal
+                );
 
                 this.movimientoService.save(movimiento);
                 response.put("status", HttpStatus.CREATED.value());

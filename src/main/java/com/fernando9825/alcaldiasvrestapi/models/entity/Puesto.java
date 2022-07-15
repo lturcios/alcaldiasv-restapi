@@ -38,7 +38,8 @@ public class Puesto {
 
     @NotNull
     @PositiveOrZero
-    private double medidaCalificacion;
+    @Column(name = "medida_calificacion")
+    private double medidaCalificaion;
 
     @NotNull
     @Size(max = 10)
@@ -100,12 +101,12 @@ public class Puesto {
         this.medidaCompensa = medidaCompensa;
     }
 
-    public double getMedidaCalificacion() {
-        return medidaCalificacion;
+    public double getMedidaCalificaion() {
+        return medidaCalificaion;
     }
 
-    public void setMedidaCalificacion(double medidaCalificacion) {
-        this.medidaCalificacion = medidaCalificacion;
+    public void setMedidaCalificaion(double medidaCalificacion) {
+        this.medidaCalificaion = medidaCalificacion;
     }
 
     public String getModulo() {

@@ -42,25 +42,18 @@ public class UserController {
 
         if (usuario != null) {
             if (pwd.equals(usuario.getPassword())) {
-                if (usuario.getDevicePrefix().isEmpty()){
-                    // generar el token
-                    String token = getJWTToken(email);
+                // generar el token
+                String token = getJWTToken(email);
 
-                    response.put("message", "Please use the given token in every request, in order to " +
-                            "get access to all API");
-                    response.put("nombre", usuario.getNombre());
-                    response.put("email", email.trim());
-                    response.put("token", token);
-                    response.put("institucion", usuario.getInstitucion());
-                    response.put("alcance", usuario.getAlcance());
-                    // if(deviceid == null) deviceid = ""; // old version doesn't send this value, then replace to empty
-                    usuario.setDevicePrefix(deviceid);
-                    userService.save(usuario);
-                    return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
-                } else {
-                    response.put("error", "user already registered: " + usuario.getDevicePrefix());
-                    return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
-                }
+                response.put("message", "Please use the given token in every request, in order to " +
+                        "get access to all API");
+                response.put("nombre", usuario.getNombre());
+                response.put("email", email.trim());
+                response.put("token", token);
+                response.put("institucion", usuario.getInstitucion());
+                // if(deviceid == null) deviceid = ""; // old version doesn't send this value, then replace to empty
+                userService.save(usuario);
+                return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
             }
         }
         response.put("error", "email or password incorrect!");
@@ -73,8 +66,7 @@ public class UserController {
         Map<String, Object> response = new HashMap<>();
 
         if(usuario != null){
-            usuario.setDevicePrefix("");
-            userService.save(usuario);
+            // userService.save(usuario);
             response.put("message", email + " logged out!");
             return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
         }

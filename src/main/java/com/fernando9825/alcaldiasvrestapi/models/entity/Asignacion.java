@@ -66,14 +66,6 @@ public class Asignacion {
     @Column(name = "codigo_presup", nullable = false)
     private int codigoPresupuestario;
 
-    @NotNull
-    @Column(name = "licencia", nullable = false)
-    private int licencia;
-
-    @NotNull
-    @Column(name = "codigo_licencia", nullable = false)
-    private int codigoLicencia;
-
 
     public int getId() {
         return id;
@@ -163,11 +155,4 @@ public class Asignacion {
         this.codigoPresupuestario = codigoPresupuestario;
     }
 
-    public int getLicencia() { return licencia; }
-
-    public void setLicencia(int licencia) { this.licencia = licencia; }
-
-    public int getCodigoLicencia() { return codigoLicencia; }
-
-    public void setCodigoLicencia(int codigoLicencia) { this.codigoLicencia = codigoLicencia; }
 }

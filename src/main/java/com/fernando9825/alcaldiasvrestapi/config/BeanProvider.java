@@ -14,4 +14,5 @@ public class BeanProvider {
     public String jwtSecret() {
         return jwtSecret;
     }
+
 }
