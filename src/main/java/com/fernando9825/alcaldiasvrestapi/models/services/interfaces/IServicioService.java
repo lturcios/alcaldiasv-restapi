@@ -16,6 +16,8 @@ public interface IServicioService {
 
     Servicio findById(int servicioId);
 
+    Servicio findByContribuyenteId(int contribuyenteId);
+
     Servicio save(Servicio servicio);
 
     void delete(int servicioId);

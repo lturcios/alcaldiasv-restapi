@@ -22,17 +22,20 @@ public class MovimientoController {
     private final IAsignacionService asignacionService;
     private final IContribuyenteService contribuyenteService;
     private final IFinanciamientoService financiamientoService;
+    private final IServicioService servicioService;
 
     public MovimientoController(IMovimientoService movimientoService,
                                 IUserService userService,
                                 IAsignacionService asignacionService,
                                 IContribuyenteService contribuyenteService,
-                                IFinanciamientoService financiamientoService) {
+                                IFinanciamientoService financiamientoService,
+                                IServicioService servicioService) {
         this.movimientoService = movimientoService;
         this.userService = userService;
         this.asignacionService = asignacionService;
         this.contribuyenteService = contribuyenteService;
         this.financiamientoService = financiamientoService;
+        this.servicioService = servicioService;
     }
 
     // obtener todas los movimientos por id del usuario que los efectuo
@@ -130,6 +133,16 @@ public class MovimientoController {
                                     financiamiento.setSaldoActual(saldoActual);
                                     financiamiento.setSaldoAnterior(saldoAnterior);
                                     financiamiento.setUltimoPago(fechaFinDate);
+                                }
+                            }
+                            break;
+                        case "S":
+                            Contribuyente contriservi = this.contribuyenteService.findById(asignacion.getContribuyente());
+                            Servicio servicio = this.servicioService.findByContribuyenteId(contriservi.getId());
+                            if (servicio != null) {
+                                /* verificar que saldo en base de datos > saldo recibido */
+                                if (servicio.getUltimoPago().getTime() < fechaFinDate.getTime()) {
+                                    servicio.setUltimoPago(fechaFinDate);
                                 }
                             }
                             break;

@@ -17,4 +17,6 @@ public interface IServicioDao extends JpaRepository<Servicio, Integer> {
     @Query("select s from Servicio AS s WHERE s.institucion.id = :institucion " +
             "AND s.puesto.id IN (SELECT p.id FROM Ruta AS r LEFT JOIN r.puestos AS p WHERE r.usuario.email = :usuario)")
     List<Servicio> findAllByInstitucionAndUsuario(short institucion, String usuario);
+
+    Servicio findByContribuyenteId(int contribuyenteId);
 }

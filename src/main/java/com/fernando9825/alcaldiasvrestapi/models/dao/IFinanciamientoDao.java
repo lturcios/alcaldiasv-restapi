@@ -12,7 +12,7 @@ public interface IFinanciamientoDao extends JpaRepository<Financiamiento, Intege
 
     Financiamiento findByInstitucionAndPuesto(Institucion institucion, Puesto puesto);
 
-    Financiamiento findByContribuyenteId(int contgribuyenteId);
+    Financiamiento findByContribuyenteId(int contribuyenteId);
 
     List<Financiamiento> findAllByInstitucion(Institucion institucion);
 

@@ -67,6 +67,11 @@ public class ServicioImpl implements IServicioService {
     }
 
     @Override
+    public Servicio findByContribuyenteId(int contribuyenteId) {
+        return this.servicioDao.findByContribuyenteId(contribuyenteId);
+    }
+
+    @Override
     public Servicio save(Servicio servicio) {
         return this.servicioDao.save(servicio);
     }

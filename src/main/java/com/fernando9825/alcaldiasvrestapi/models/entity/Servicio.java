@@ -23,6 +23,9 @@ public class Servicio {
     @Column(name = "codigo_presup", nullable = false)
     private int codigoPresupuestario;
 
+    @NotNull
+    private Double valorCuota;
+
     @Column(nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date fechaIngreso;
@@ -70,6 +73,14 @@ public class Servicio {
 
     public void setCodigoPresupuestario(int codigoPresupuestario) {
         this.codigoPresupuestario = codigoPresupuestario;
+    }
+
+    public Double getValorCuota() {
+        return valorCuota;
+    }
+
+    public void setValorCuota(Double valorCuota) {
+        this.valorCuota = valorCuota;
     }
 
     public Date getFechaIngreso() {
