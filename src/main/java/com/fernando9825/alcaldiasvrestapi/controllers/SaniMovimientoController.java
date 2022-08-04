@@ -77,6 +77,7 @@ public class SaniMovimientoController {
     public ResponseEntity<?> insertSaniMovimiento(
             @Size(min = 8) @RequestParam String pagoId,
             @RequestParam Integer saniubicacionId,
+            @RequestParam Integer codigoPresupuestario,
             @RequestParam Double precioUnitario,
             @RequestParam String fechaHoraPago,
             @RequestParam(required = false) String observaciones,
@@ -100,7 +101,7 @@ public class SaniMovimientoController {
 
             if (saniusuario != null && saniubicacion != null) {
                 Sanimovimiento sanimovimiento = new Sanimovimiento(
-                        pagoId, saniubicacion, precioUnitario,
+                        pagoId, saniubicacion, codigoPresupuestario, precioUnitario,
                         timestamp, observaciones, saniusuario,
                         serieInicial, serieFinal, genero);
 

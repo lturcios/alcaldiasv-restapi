@@ -31,6 +31,10 @@ public class Sanimovimiento {
     private Saniubicacion ubicacion;
 
     @NotNull
+    @Column(name = "codigo_presup", nullable = false)
+    private Integer codigoPresupuestario;
+
+    @NotNull
     private double precioUnitario;
 
     @NotNull
@@ -63,6 +67,7 @@ public class Sanimovimiento {
 
     public Sanimovimiento(@Size(min = 8) String pagoId,
                           Saniubicacion ubicacion,
+                          Integer codigoPresupuestario,
                           double precioUnitario,
                           Timestamp fechaHorapago,
                           @Size(max = 200) String observaciones,
@@ -72,6 +77,7 @@ public class Sanimovimiento {
                           @Size(max = 10) String genero) {
         this.pagoId = pagoId;
         this.ubicacion = ubicacion;
+        this.codigoPresupuestario = codigoPresupuestario;
         this.precioUnitario = precioUnitario;
         this.fechaHorapago = fechaHorapago;
         this.observaciones = observaciones;
@@ -164,5 +170,13 @@ public class Sanimovimiento {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public Integer getCodigoPresupuestario() {
+        return codigoPresupuestario;
+    }
+
+    public void setCodigoPresupuestario(Integer codigoPresupuestario) {
+        this.codigoPresupuestario = codigoPresupuestario;
     }
 }

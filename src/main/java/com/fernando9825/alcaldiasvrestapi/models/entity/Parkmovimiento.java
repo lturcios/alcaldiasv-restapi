@@ -26,6 +26,7 @@ public class Parkmovimiento {
     private Parkubicacion ubicacion;
 
     @NotNull
+    @Column(name = "codigo_presup", nullable = false)
     private Integer codigoPresupuestario;
 
     @NotNull
