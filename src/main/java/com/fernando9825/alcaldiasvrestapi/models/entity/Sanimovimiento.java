@@ -23,9 +23,8 @@ public class Sanimovimiento {
      *   codigo_presupuestaria (de tarifa)
      *   InstitucionId*/
     @JsonIgnoreProperties(value = {
-            "observaciones"
+            "observaciones", "institucion"
     })
-
     @ManyToOne
     @JoinColumn(name = "ubicacion_id_fk", referencedColumnName = "id")
     private Saniubicacion ubicacion;

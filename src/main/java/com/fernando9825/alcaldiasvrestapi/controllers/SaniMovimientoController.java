@@ -57,7 +57,7 @@ public class SaniMovimientoController {
 
         if (saniusuario != null) {
             Date fechaActual = new Date();
-            Duration temporalAmount = Duration.ofDays(15);
+            Duration temporalAmount = Duration.ofHours(15);
             Timestamp fechaMenosDias = Timestamp
                     .from(Date.from(fechaActual.toInstant().minus(temporalAmount))
                             .toInstant());

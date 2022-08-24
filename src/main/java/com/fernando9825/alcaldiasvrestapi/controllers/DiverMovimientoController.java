@@ -62,7 +62,7 @@ public class DiverMovimientoController {
 
         if(diverusuario != null) {
             Date fechaActual = new Date();
-            Duration temporalAmount = Duration.ofDays(15);
+            Duration temporalAmount = Duration.ofHours(15);
             Timestamp fechaMenosDias =
                     Timestamp.from(Date.from(
                             fechaActual.toInstant().minus(temporalAmount)).toInstant());
@@ -84,6 +84,7 @@ public class DiverMovimientoController {
             @RequestParam Integer diverubicacionId,
             @RequestParam Integer codigoPresupuestario,
             @RequestParam Double precioUnitario,
+            @RequestParam Double precioFiestas,
             @RequestParam String fechaHoraPago,
             @RequestParam(required = false) String observaciones,
             @RequestParam String usuarioEmail,
@@ -105,7 +106,7 @@ public class DiverMovimientoController {
             if(diverusuario != null && diverubicacion != null){
                 Divermovimiento divermovimiento = new Divermovimiento(
                         pagoId, diverubicacion, codigoPresupuestario,
-                        precioUnitario, timestamp, observaciones,
+                        precioUnitario, precioFiestas, timestamp, observaciones,
                         diverusuario, serieInicial, serieFinal);
                 this.diverMovimientoService.save(divermovimiento);
                 response.put("status", HttpStatus.CREATED.value());

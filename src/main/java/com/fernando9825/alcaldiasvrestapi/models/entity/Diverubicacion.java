@@ -32,7 +32,6 @@ private int id;
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
     private Institucion institucion;
 
-
     /* Getters and Setters */
     public int getId() {
         return id;

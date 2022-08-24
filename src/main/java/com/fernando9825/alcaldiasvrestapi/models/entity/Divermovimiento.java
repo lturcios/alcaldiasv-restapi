@@ -23,9 +23,8 @@ public class Divermovimiento {
      *   codigo_presupuestaria (de tarifa)
      *   InstitucionId*/
     @JsonIgnoreProperties(value = {
-            "observaciones"
+            "observaciones", "institucion"
     })
-
     @ManyToOne
     @JoinColumn(name = "ubicacion_id_fk", referencedColumnName = "id")
     private Diverubicacion ubicacion;
@@ -36,6 +35,9 @@ public class Divermovimiento {
 
     @NotNull
     private double precioUnitario;
+
+    @NotNull
+    private double precioFiestas;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -66,6 +68,7 @@ public class Divermovimiento {
                           Diverubicacion ubicacion,
                           Integer codigoPresupuestario,
                           double precioUnitario,
+                          double precioFiestas,
                           Timestamp fechaHorapago,
                           @Size(max = 200) String observaciones,
                           @NotNull Diverusuario usuario,
@@ -75,6 +78,7 @@ public class Divermovimiento {
         this.ubicacion = ubicacion;
         this.codigoPresupuestario = codigoPresupuestario;
         this.precioUnitario = precioUnitario;
+        this.precioFiestas = precioFiestas;
         this.fechaHorapago = fechaHorapago;
         this.observaciones = observaciones;
         this.usuario = usuario;
@@ -107,6 +111,14 @@ public class Divermovimiento {
 
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+
+    public double getPrecioFiestas() {
+        return precioFiestas;
+    }
+
+    public void setPrecioFiestas(double precioFiestas) {
+        this.precioFiestas = precioFiestas;
     }
 
     public Integer getCodigoPresupuestario() { return codigoPresupuestario; }

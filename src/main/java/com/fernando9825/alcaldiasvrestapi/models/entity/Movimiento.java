@@ -39,7 +39,6 @@ public class Movimiento {
             "puestoEgreso",
             "codigoPresupuestario"
     })
-
     @ManyToOne
     @JoinColumn(name = "asignacion_id_fk", referencedColumnName = "id")
     private Asignacion asignacion;

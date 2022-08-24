@@ -36,6 +36,9 @@ public class Divertarifa {
     private double precioUnitario;
 
     @NotNull
+    private double precioFiestas;
+
+    @NotNull
     //@DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.NONE)
     @Temporal(value = TemporalType.DATE)
     private Date vigencia;
@@ -94,6 +97,14 @@ public class Divertarifa {
 
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+
+    public double getPrecioFiestas() {
+        return precioFiestas;
+    }
+
+    public void setPrecioFiestas(double precioFiestas) {
+        this.precioFiestas = precioFiestas;
     }
 
     public Date getVigencia() {
