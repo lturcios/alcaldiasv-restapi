@@ -30,6 +30,11 @@ public class DiverMovimiento {
     @NotNull
     @Column(name = "codigo_presup", nullable = false)
     private int codigoPresupuestario;
+
+    @NotNull
+    @Column(name = "referencia", nullable = false)
+    private String referencia;
+
     @NotNull
     private double precioUnitario;
 
@@ -65,6 +70,7 @@ public class DiverMovimiento {
     public DiverMovimiento(String pagoId,
                            DiverUbicacion ubicacion,
                            int codigoPresupuestario,
+                           String referencia,
                            double precioUnitario,
                            double precioFiestas,
                            Date fechaHorapago,
@@ -74,6 +80,7 @@ public class DiverMovimiento {
                            Usuario usuario) {
         this.pagoId = pagoId;
         this.ubicacion = ubicacion;
+        this.referencia = referencia;
         this.codigoPresupuestario = codigoPresupuestario;
         this.precioUnitario = precioUnitario;
         this.precioFiestas = precioFiestas;
@@ -106,6 +113,14 @@ public class DiverMovimiento {
 
     public void setCodigoPresupuestario(int codigoPresupuestario) {
         this.codigoPresupuestario = codigoPresupuestario;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 
     public double getPrecioUnitario() {

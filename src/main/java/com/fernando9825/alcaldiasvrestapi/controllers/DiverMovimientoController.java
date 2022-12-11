@@ -82,6 +82,7 @@ public class DiverMovimientoController {
             @Size(min = 8) @RequestParam String pagoId,
             @RequestParam Integer diverubicacionId,
             @RequestParam Integer codigoPresupuestario,
+            @RequestParam String referencia,
             @RequestParam Double precioUnitario,
             @RequestParam Double precioFiestas,
             @RequestParam String fechaHoraPago,
@@ -104,7 +105,7 @@ public class DiverMovimientoController {
 
             if(diverusuario != null && diverubicacion != null){
                 DiverMovimiento divermovimiento = new DiverMovimiento(
-                        pagoId, diverubicacion, codigoPresupuestario,
+                        pagoId, diverubicacion, codigoPresupuestario, referencia,
                         precioUnitario, precioFiestas, timestamp, observaciones,
                         serieInicial, serieFinal, diverusuario);
                 this.diverMovimientoService.save(divermovimiento);
