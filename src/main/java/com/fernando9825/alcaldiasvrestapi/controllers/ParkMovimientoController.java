@@ -77,6 +77,13 @@ public class ParkMovimientoController {
         }
     }
 
+    @GetMapping(path = "parkmovimientos/ubicacion")
+    public ResponseEntity<?> findAllByUbicacionId(
+            @RequestParam(name = "ubicacionId") Integer ubicacionId) {
+        List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionId(ubicacionId);
+        return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
+    }
+
     @PostMapping(path = "parkmovimientos")
     public ResponseEntity<?> save(
             @Size(min =8) @RequestParam String pagoId,
