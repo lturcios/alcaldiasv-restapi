@@ -80,7 +80,12 @@ public class ParkMovimientoController {
     @GetMapping(path = "parkmovimientos/ubicacion")
     public ResponseEntity<?> findAllByUbicacionId(
             @RequestParam(name = "ubicacionId") Integer ubicacionId) {
-        List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionId(ubicacionId);
+
+        Date fechaActual = new Date();
+        Duration temporalAmount = Duration.ofDays(7);
+        Timestamp dateBefore = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
+
+        List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionId(ubicacionId, dateBefore);
         return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
     }
 

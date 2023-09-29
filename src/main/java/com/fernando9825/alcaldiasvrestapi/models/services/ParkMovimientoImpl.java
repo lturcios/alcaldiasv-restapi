@@ -44,8 +44,8 @@ public class ParkMovimientoImpl implements IParkMovimientoService {
     }
 
     @Override
-    public List<Parkmovimiento> findAllByUbicacionId(Integer ubicacionId) {
-        return this.parkMovimientoDao.findAllByUbicacion(ubicacionId).orElse(null);
+    public List<Parkmovimiento> findAllByUbicacionId(Integer ubicacionId, Timestamp fechaHoraentra) {
+        return this.parkMovimientoDao.findAllByUbicacion(ubicacionId, fechaHoraentra).orElse(null);
     }
 
     @Override
