@@ -17,6 +17,13 @@ public interface IParkMovimientoService {
 
     List<Parkmovimiento> findAllByUbicacionId(Integer ubicacionId);
 
+    List<Parkmovimiento> findAllByUbicacionAndFechaHorasaleIsEmpty(Integer ubicacionId);
+
+    List<Parkmovimiento> findAllByUbicacionAndFechaHorasaleIsEmptyE(Integer ubicacionId);
+
+    @Transactional
+    void updateAllByUbicacionAndFechaHorasaleIsEmpty(Integer ubicacionId, String observaciones);
+
     Parkmovimiento findById(String pagoId);
 
     @Transactional

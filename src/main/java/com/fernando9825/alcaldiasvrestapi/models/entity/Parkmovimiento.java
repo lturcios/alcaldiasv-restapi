@@ -19,7 +19,7 @@ public class Parkmovimiento {
     private String pagoId;
 
     @JsonIgnoreProperties(value = {
-            "observacion"
+            "descripcion", "observacion", "institucion"
     })
     @ManyToOne
     @JoinColumn(name = "ubicacion_id_fk", referencedColumnName = "id")

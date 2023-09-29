@@ -84,6 +84,20 @@ public class ParkMovimientoController {
         return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
     }
 
+    @GetMapping(path = "parkmovimientos/pendientes/ubicacion")
+    public ResponseEntity<?> findAllByUbicacionIdWithoutSalida(
+            @RequestParam(name = "ubicacionId") Integer ubicacionId,
+            @RequestParam(name = "pendiente") String pendiente) {
+        if(pendiente.equals("N")){
+            List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmptyE(ubicacionId);
+            return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
+        } else {
+            List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId);
+            this.parkMovimientoService.updateAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId, "D");
+            return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
+        }
+    }
+
     @PostMapping(path = "parkmovimientos")
     public ResponseEntity<?> save(
             @Size(min =8) @RequestParam String pagoId,
