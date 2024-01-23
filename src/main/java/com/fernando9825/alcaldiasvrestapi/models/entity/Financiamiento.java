@@ -1,6 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -54,6 +55,16 @@ public class Financiamiento {
 
     @OneToOne(targetEntity = Puesto.class)
     @JoinColumn(name = "puesto_id_fk", referencedColumnName = "id")
+    @JsonIgnoreProperties(value = {
+            "estadi",
+            "medidaCalificacion",
+            "medidaCompensa",
+            "medidaFondo",
+            "medidaFrente",
+            "modulo",
+            "institucion",
+            "sector"
+    })
     private Puesto puesto;
 
     @NotNull

@@ -31,11 +31,6 @@ public class AsignacionController {
         return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-//    @GetMapping(path = "asignaciones/{institucionId}/{puestoId}")
-//    public Asignacion getAsignaciones(@PathVariable short institucionId, @PathVariable int puestoId) {
-//        return this.asignacionService.findByInstitucionIdAndPuestoId(institucionId, puestoId);
-//    }
-
     @GetMapping(path = "asignaciones/{institucionId}/{usuarioEmail}")
     public ResponseEntity<?> findByInstitucionIdAndUsuarioEmail(@PathVariable short institucionId, @PathVariable String usuarioEmail) {
         if(!rutaService.findAllByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail).isEmpty()) {
