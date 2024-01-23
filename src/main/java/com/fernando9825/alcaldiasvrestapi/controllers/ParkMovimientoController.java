@@ -93,14 +93,14 @@ public class ParkMovimientoController {
     public ResponseEntity<?> findAllByUbicacionIdWithoutSalida(
             @RequestParam(name = "ubicacionId") Integer ubicacionId,
             @RequestParam(name = "pendiente") String pendiente) {
+        List<Parkmovimiento> parkmovimientos;
         if(pendiente.equals("N")){
-            List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmptyE(ubicacionId);
-            return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
+            parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmptyE(ubicacionId);
         } else {
-            List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId);
+            parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId);
             this.parkMovimientoService.updateAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId, "D");
-            return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
         }
+        return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
     }
 
     @PostMapping(path = "parkmovimientos")
@@ -173,7 +173,7 @@ public class ParkMovimientoController {
             }
 
         } catch (ParseException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             response.put("status", HttpStatus.BAD_REQUEST.value());
             response.put("error", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

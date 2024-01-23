@@ -54,8 +54,32 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     /**
      * Authentication method in Spring flow
-     *
-     * @param claims
+     * <p>
+     *     This method is used to authenticate the user in the Spring flow.
+     *     It uses the {@link SecurityContextHolder} to set the authentication
+     *     token in the context.
+     *     <br>
+     *     The {@link UsernamePasswordAuthenticationToken} is used to set the
+     *     authentication token in the context.
+     *     <br>
+     *     The {@link SimpleGrantedAuthority} is used to set the authorities
+     *     in the context.
+     *     <br>
+     *     The {@link Claims} is used to get the claims from the JWT token.
+     *     <br>
+     *     The {@link List} is used to get the list of authorities from the
+     *     claims.
+     *     <br>
+     * @since 1.0
+     * @see SecurityContextHolder
+     * @see UsernamePasswordAuthenticationToken
+     * @see SimpleGrantedAuthority
+     * @see Claims
+     * @see List
+     * @see Collectors
+     * @see SecurityConstants
+     * @see SecurityConstants#PREFIX
+     * @see SecurityConstants#JWT_SECRET
      */
     private void setUpSpringAuthentication(Claims claims) {
         @SuppressWarnings("unchecked")
