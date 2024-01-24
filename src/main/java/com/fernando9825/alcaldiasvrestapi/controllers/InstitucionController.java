@@ -1,9 +1,13 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Contribuyente;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Institucion;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +28,20 @@ public class InstitucionController {
     public List<Contribuyente> getContribuyentesByInstitucionId(Long institucionId){
         return this.getContribuyentesByInstitucionId(institucionId);
     }
+
+    @GetMapping(path = "/user/file/{institucionId}")
+    public ResponseEntity<byte[]> getLogo(@PathVariable short institucionId){
+        Institucion institucion = institucionService.findById(institucionId);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"logo.jpg\"")
+                .body(institucion.getImagen());
+    }
+    @GetMapping(path = "/user/filed/{institucionId}")
+    public ResponseEntity<byte[]> getDrawer(@PathVariable short institucionId){
+        Institucion institucion = institucionService.findById(institucionId);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"drawer.jpg\"")
+                .body(institucion.getImagend());
+    }
+
 }
