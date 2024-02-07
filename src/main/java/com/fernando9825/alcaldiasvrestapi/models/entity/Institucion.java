@@ -1,5 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
