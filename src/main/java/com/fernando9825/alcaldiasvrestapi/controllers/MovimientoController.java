@@ -137,10 +137,12 @@ public class MovimientoController {
                             break;
                         case "A":
                             /*  verificar que la fecha del ultimo pago recibida, sea siempre la ultima */
+                            /*
                             if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
                                 asignacion.setUltimoPago(ultimoPagoDate);
                             }
-                            break;
+                            */
+                           break;
                     }
                 } else {
                     /* Segun la version de la app, puede ser que no envíe el tipo => se tratará como Asignacion */

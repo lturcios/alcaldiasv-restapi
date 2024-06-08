@@ -9,23 +9,18 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-
     @Id
     @Email
     @Size(max = 100)
     private String email;
-
     @NotBlank
     @NotNull
     @Size(min = 8, max = 120)
     private String nombre;
-
     @NotBlank
     @NotNull
     @Size(min = 6, max = 16)
     private String password;
-
-    // llave foranea
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "institucion_id_fk", referencedColumnName = "id")
