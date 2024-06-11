@@ -1,7 +1,6 @@
 package com.fernando9825.alcaldiasvrestapi.models.services.interfaces;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Parkmovimiento;
-import com.fernando9825.alcaldiasvrestapi.models.entity.Parkusuario;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
@@ -11,9 +10,9 @@ public interface IParkMovimientoService {
 
     List<Parkmovimiento> findAllByUsuarioEmail(String usuarioEmail);
 
-    List<Parkmovimiento> findAllByUsuarioAndFechaHorapago(Parkusuario parkusuario, Timestamp fechaHorapago);
+    List<Parkmovimiento> findAllByUsuarioAndFechaHorapago(String parkusuario, Timestamp fechaHorapago);
 
-    List<Parkmovimiento> findAllByUsuarioAndFechaHoraentra(Parkusuario parkusuario, Timestamp fechaHoraentra);
+    List<Parkmovimiento> findAllByUsuarioAndFechaHoraentra(String parkusuario, Timestamp fechaHoraentra);
 
     List<Parkmovimiento> findAllByUbicacionId(Integer ubicacionId, Timestamp fechaHoraentra);
 

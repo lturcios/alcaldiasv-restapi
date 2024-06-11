@@ -1,6 +1,5 @@
 package com.fernando9825.alcaldiasvrestapi.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.lang.Nullable;
 
@@ -29,6 +28,7 @@ public class Parkmovimiento {
     @Column(name = "codigo_presup", nullable = false)
     private Integer codigoPresupuestario;
 
+    @Size(max = 10)
     private String placa;
 
     @NotNull
@@ -66,11 +66,12 @@ public class Parkmovimiento {
     @Size(max = 200)
     private String observaciones;
 
-    @JsonIgnore
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "usuario_email_fk")
-    private Parkusuario usuario;
+    @Column(name = "usuario_entrada", nullable = false)
+    private String usuarioEntrada;
+
+    @Nullable
+    @Column(name = "usuario_salida", nullable = true)
+    private String usuarioSalida;
 
     public Parkmovimiento(){
 
@@ -90,7 +91,8 @@ public class Parkmovimiento {
             @Nullable String serieSalida,
             @Nullable Timestamp fechaHorapago,
             @Nullable String observaciones,
-            Parkusuario parkusuario) {
+            String parkusuarioEntrada,
+            @Nullable String parkusuarioSalida){
 
         this.pagoId = pagoId;
         this.ubicacion = parkubicacion;
@@ -105,7 +107,8 @@ public class Parkmovimiento {
         this.serieSalida = serieSalida;
         this.fechaHorapago = fechaHorapago;
         this.observaciones = observaciones;
-        this.usuario = parkusuario;
+        this.usuarioEntrada = parkusuarioEntrada;
+        this.usuarioSalida = parkusuarioSalida;
 
     }
 
@@ -226,11 +229,20 @@ public class Parkmovimiento {
         this.observaciones = observaciones;
     }
 
-    public Parkusuario getUsuario() {
-        return usuario;
+    public String getUsuarioEntrada() {
+        return usuarioEntrada;
     }
 
-    public void setUsuario(Parkusuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioEntrada(@NotNull String usuarioEntrada) {
+        this.usuarioEntrada = usuarioEntrada;
+    }
+
+    @Nullable
+    public String getUsuarioSalida() {
+        return usuarioSalida;
+    }
+
+    public void setUsuarioSalida(@Nullable String usuarioSalida) {
+        this.usuarioSalida = usuarioSalida;
     }
 }

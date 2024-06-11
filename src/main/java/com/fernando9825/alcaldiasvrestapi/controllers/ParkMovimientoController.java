@@ -58,7 +58,7 @@ public class ParkMovimientoController {
 
         Parkusuario parkusuario = this.parkUserService.findById(usuarioEmail);
 
-        if(parkusuario != null){
+        if(usuarioEmail != null && !usuarioEmail.isEmpty()){
             Date fechaActual = new Date();
             Duration temporalAmount = Duration.ofDays(5);
             Timestamp fechaMenosDias = Timestamp
@@ -66,7 +66,7 @@ public class ParkMovimientoController {
                             .toInstant());
 
             List<Parkmovimiento> parkmovimientos =
-                    this.parkMovimientoService.findAllByUsuarioAndFechaHoraentra(parkusuario, fechaMenosDias);
+                    this.parkMovimientoService.findAllByUsuarioAndFechaHoraentra(usuarioEmail, fechaMenosDias);
 
             return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
 
@@ -118,12 +118,17 @@ public class ParkMovimientoController {
             @RequestParam(required = false) String serieSalida,
             @RequestParam(required = false) String fechaHorapago,
             @RequestParam(required = false) String observaciones,
-            @RequestParam String usuarioEmail
-    ) {
+            @RequestParam String usuarioEmailEntrada,
+            @RequestParam(required = false) String usuarioEmailSalida) {
+
         Map<String, Object> response = new HashMap<>();
         Parkubicacion parkubicacion = this.parkUbicacionService.findById(parkubicacionId);
-        Parkusuario parkusuario = this.parkUserService.findById(usuarioEmail);
+        Parkusuario parkusuarioEntrada = this.parkUserService.findById(usuarioEmailEntrada);
         Parkmovimiento parkmovimiento = this.parkMovimientoService.findById(pagoId);
+        Parkusuario parkusuarioSalida = null;
+        if(usuarioEmailSalida != null) {
+            parkusuarioSalida = this.parkUserService.findById(usuarioEmailSalida);
+        }
 
         SimpleDateFormat sdfFechaHora = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -149,11 +154,11 @@ public class ParkMovimientoController {
             entra = new Timestamp(fechaHoraDateEntra.getTime());
 
             if(parkmovimiento == null) {
-                if (parkusuario != null && parkubicacion != null) {
+                if (parkusuarioEntrada != null && parkubicacion != null) {
                     Parkmovimiento parkmovimientoNuevo = new Parkmovimiento(
                             pagoId, parkubicacion, codigoPresupuestario, placa, entra, sale, precioUnitario,
                             tiempoMinutos, montoTotal, serieEntrada, serieSalida, pago,
-                            observaciones, parkusuario);
+                            observaciones, parkusuarioEntrada.getEmail(), parkusuarioSalida != null ? parkusuarioSalida.getEmail() : null);
                     this.parkMovimientoService.save(parkmovimientoNuevo);
                     response.put("status", HttpStatus.CREATED.value());
                     return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -168,6 +173,7 @@ public class ParkMovimientoController {
                 parkmovimiento.setSerieSalida(serieSalida);
                 parkmovimiento.setTiempoMinutos(tiempoMinutos);
                 parkmovimiento.setMontoTotal(montoTotal);
+                parkmovimiento.setUsuarioSalida(parkusuarioSalida != null ? parkusuarioSalida.getEmail() : null);
                 this.parkMovimientoService.save(parkmovimiento);
                 response.put("status", HttpStatus.ACCEPTED.value());
                 return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
