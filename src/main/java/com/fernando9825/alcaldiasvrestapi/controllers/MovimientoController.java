@@ -108,19 +108,19 @@ public class MovimientoController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
-        Date ultimoPagoDate;
+        // Date ultimoPagoDate;
         Date fechaInicioDate;
         Date fechaFinDate;
         Date fechaHoraPagoDate;
 
         try {
-            ultimoPagoDate = simpleDateFormat.parse(ultimoPago);
+            // ultimoPagoDate = simpleDateFormat.parse(ultimoPago);
             fechaInicioDate = simpleDateFormat.parse(fechaInicio);
             fechaFinDate = simpleDateFormat.parse(fechaFin);
 
             fechaHoraPagoDate = sdfFechaHoraPago.parse(fechaHoraPago);
             Timestamp timestamp = new java.sql.Timestamp(fechaHoraPagoDate.getTime());
-            // codigo del camino feliz
+
             if (asignacion != null && usuario != null) {
                 if (tipo != null) {
                     switch (tipo) {
@@ -128,7 +128,6 @@ public class MovimientoController {
                             Contribuyente contrifinan = this.contribuyenteService.findById(asignacion.getContribuyente());
                             Financiamiento financiamiento = this.financiamientoService.findByContribuyenteId(contrifinan.getId());
                             if (financiamiento != null) {
-                                /* verificar que saldo en base de datos > saldo recibido */
                                 if (financiamiento.getSaldoActual() > saldoActual) {
                                     financiamiento.setSaldoActual(saldoActual);
                                     financiamiento.setSaldoAnterior(saldoAnterior);
@@ -148,17 +147,20 @@ public class MovimientoController {
                             break;
                         case "A":
                             /*  verificar que la fecha del ultimo pago recibida, sea siempre la ultima */
+                            /*
                             if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
-                                // cambiando estado del ultimo pago
                                 asignacion.setUltimoPago(ultimoPagoDate);
                             }
+                            */
                             break;
                     }
                 } else {
                     /* Segun la version de la app, puede ser que no envíe el tipo => se tratará como Asignacion */
+                    /*
                     if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
                         asignacion.setUltimoPago(ultimoPagoDate);
                     }
+                    */
                 }
 
                 Movimiento movimiento = new Movimiento(
