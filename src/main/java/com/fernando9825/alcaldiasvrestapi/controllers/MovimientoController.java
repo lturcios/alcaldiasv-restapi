@@ -146,9 +146,10 @@ public class MovimientoController {
                     }
                 } else {
                     /* Segun la version de la app, puede ser que no envíe el tipo => se tratará como Asignacion */
-                    if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
+                    /* if (asignacion.getUltimoPago().getTime() < fechaFinDate.getTime()) {
                         asignacion.setUltimoPago(ultimoPagoDate);
                     }
+                    */
                 }
 
                 Movimiento movimiento = new Movimiento(
