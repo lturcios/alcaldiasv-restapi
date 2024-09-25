@@ -58,10 +58,8 @@ public class MovimientoController {
         Usuario usuario = this.userService.findById(usuarioEmail);
 
         if (usuario != null) {
-
             Date fechaActual = new Date();
-
-            Duration temporalAmount = Duration.ofDays(7);
+            Duration temporalAmount = Duration.ofDays(3);
             Timestamp fechaMenosLastDays = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
             List<Movimiento> movimientos = this.movimientoService
                     .findAllByUsuarioAndThirtyDays(usuario, fechaMenosLastDays);
