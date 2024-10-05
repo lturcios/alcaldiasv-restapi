@@ -8,6 +8,7 @@ import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IParkUbicac
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IParkUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Size;
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping(path = "/api/")
@@ -36,6 +38,17 @@ public class ParkMovimientoController {
         this.parkMovimientoService = parkMovimientoService;
         this.parkUserService = parkUserService;
         this.parkUbicacionService = parkUbicacionService;
+    }
+
+    @GetMapping(path = "parkmovimiento")
+    public ResponseEntity<Parkmovimiento> getParkMovimiento(
+            @RequestParam(name = "pagoId") String pagoId) {
+        Parkmovimiento parkmovimiento = this.parkMovimientoService.findById(pagoId);
+        if (parkmovimiento == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(parkmovimiento, HttpStatus.OK);
+        }
     }
 
     @GetMapping(path = "parkmovimientos")
@@ -60,7 +73,7 @@ public class ParkMovimientoController {
 
         if(usuarioEmail != null && !usuarioEmail.isEmpty()){
             Date fechaActual = new Date();
-            Duration temporalAmount = Duration.ofDays(5);
+            Duration temporalAmount = Duration.ofDays(3);
             Timestamp fechaMenosDias = Timestamp
                     .from(Date.from(fechaActual.toInstant().minus(temporalAmount))
                             .toInstant());
@@ -103,8 +116,9 @@ public class ParkMovimientoController {
         return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
     }
 
+    @Async
     @PostMapping(path = "parkmovimientos")
-    public ResponseEntity<?> save(
+    public CompletableFuture<ResponseEntity<?>> save(
             @Size(min =8) @RequestParam String pagoId,
             @RequestParam Short parkubicacionId,
             @RequestParam Integer codigoPresupuestario,
@@ -125,9 +139,22 @@ public class ParkMovimientoController {
         Parkubicacion parkubicacion = this.parkUbicacionService.findById(parkubicacionId);
         Parkusuario parkusuarioEntrada = this.parkUserService.findById(usuarioEmailEntrada);
         Parkmovimiento parkmovimiento = this.parkMovimientoService.findById(pagoId);
-        Parkusuario parkusuarioSalida = null;
+        Parkusuario parkusuarioSalida;
+        String usuarioSalida;
+
         if(usuarioEmailSalida != null) {
             parkusuarioSalida = this.parkUserService.findById(usuarioEmailSalida);
+            if (parkusuarioSalida == null) {
+                usuarioSalida = null;
+                response.put("status", HttpStatus.BAD_REQUEST.value());
+                response.put("error", "User does not exists");
+                return CompletableFuture.completedFuture(new ResponseEntity<>(response, HttpStatus.BAD_REQUEST));
+            } else {
+                usuarioSalida = parkusuarioSalida.getEmail();
+            }
+        } else {
+            usuarioSalida = null;
+            parkusuarioSalida = null;
         }
 
         SimpleDateFormat sdfFechaHora = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -135,55 +162,75 @@ public class ParkMovimientoController {
         Date fechaHoraDatePago;
         Date fechaHoraDateEntra;
         Date fechaHoraDateSale;
+        Timestamp pago = null;
+        Timestamp sale = null;
+        Timestamp entra = null;
 
         try {
-            Timestamp pago = null;
-            if(fechaHorapago != null) {
+            if (fechaHorapago != null) {
                 fechaHoraDatePago = sdfFechaHora.parse(fechaHorapago);
                 pago = new Timestamp(fechaHoraDatePago.getTime());
             }
 
-            Timestamp sale = null;
-            if(fechaHorasale != null) {
+            if (fechaHorasale != null) {
                 fechaHoraDateSale = sdfFechaHora.parse(fechaHorasale);
                 sale = new Timestamp(fechaHoraDateSale.getTime());
             }
 
-            Timestamp entra = null;
             fechaHoraDateEntra = sdfFechaHora.parse(fechaHoraentra);
             entra = new Timestamp(fechaHoraDateEntra.getTime());
 
-            if(parkmovimiento == null) {
-                if (parkusuarioEntrada != null && parkubicacion != null) {
-                    Parkmovimiento parkmovimientoNuevo = new Parkmovimiento(
-                            pagoId, parkubicacion, codigoPresupuestario, placa, entra, sale, precioUnitario,
-                            tiempoMinutos, montoTotal, serieEntrada, serieSalida, pago,
-                            observaciones, parkusuarioEntrada.getEmail(), parkusuarioSalida != null ? parkusuarioSalida.getEmail() : null);
-                    this.parkMovimientoService.save(parkmovimientoNuevo);
-                    response.put("status", HttpStatus.CREATED.value());
-                    return new ResponseEntity<>(response, HttpStatus.CREATED);
-                } else {
-                    // codigo si falla algo (no llega el usuario)
-                    response.put("status", HttpStatus.NOT_FOUND.value());
-                    return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-                }
-            } else {
-                parkmovimiento.setFechaHorapago(pago);
-                parkmovimiento.setFechaHorasale(sale);
-                parkmovimiento.setSerieSalida(serieSalida);
-                parkmovimiento.setTiempoMinutos(tiempoMinutos);
-                parkmovimiento.setMontoTotal(montoTotal);
-                parkmovimiento.setUsuarioSalida(parkusuarioSalida != null ? parkusuarioSalida.getEmail() : null);
-                this.parkMovimientoService.save(parkmovimiento);
-                response.put("status", HttpStatus.ACCEPTED.value());
-                return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
-            }
-
-        } catch (ParseException e){
+        } catch (ParseException e) {
             System.out.println(e.getMessage());
             response.put("status", HttpStatus.BAD_REQUEST.value());
             response.put("error", e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return CompletableFuture.completedFuture(new ResponseEntity<>(response, HttpStatus.BAD_REQUEST));
+        }
+
+        if(parkmovimiento == null) {
+            Timestamp finalEntra = entra;
+            Timestamp finalSale = sale;
+            Timestamp finalPago = pago;
+            return CompletableFuture.supplyAsync(() -> {
+                try {
+                    if (parkusuarioEntrada != null && parkubicacion != null) {
+                        Parkmovimiento parkmovimientoNuevo = new Parkmovimiento(
+                                pagoId, parkubicacion, codigoPresupuestario, placa, finalEntra, finalSale, precioUnitario,
+                                tiempoMinutos, montoTotal, serieEntrada, serieSalida, finalPago,
+                                observaciones, parkusuarioEntrada.getEmail(), parkusuarioSalida != null ? parkusuarioSalida.getEmail() : null);
+                        this.parkMovimientoService.save(parkmovimientoNuevo);
+                        response.put("status", HttpStatus.CREATED.value());
+                        return new ResponseEntity<>(response, HttpStatus.CREATED);
+                    } else {
+                        response.put("status", HttpStatus.BAD_REQUEST.value());
+                        response.put("error", "User or location does not exists");
+                        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+                    }
+                } catch (Exception e) {
+                    response.put("status", HttpStatus.NOT_FOUND.value());
+                    return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+                }
+            });
+        } else {
+            Timestamp finalPago1 = pago;
+            Timestamp finalSale1 = sale;
+            return CompletableFuture.supplyAsync(() -> {
+                try {
+                    parkmovimiento.setFechaHorapago(finalPago1);
+                    parkmovimiento.setFechaHorasale(finalSale1);
+                    parkmovimiento.setSerieSalida(serieSalida);
+                    parkmovimiento.setTiempoMinutos(tiempoMinutos);
+                    parkmovimiento.setMontoTotal(montoTotal);
+                    parkmovimiento.setUsuarioSalida(usuarioSalida);
+                    this.parkMovimientoService.save(parkmovimiento);
+                    response.put("status", HttpStatus.ACCEPTED.value());
+                    return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+                } catch (Exception e) {
+                    response.put("status", HttpStatus.NOT_FOUND.value());
+                    return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+                }
+            });
         }
     }
+
 }
