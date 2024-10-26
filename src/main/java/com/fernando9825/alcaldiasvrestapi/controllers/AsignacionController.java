@@ -31,11 +31,6 @@ public class AsignacionController {
         return (!asignaciones.isEmpty()) ? new ResponseEntity<>(asignaciones, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-//    @GetMapping(path = "asignaciones/{institucionId}/{puestoId}")
-//    public Asignacion getAsignaciones(@PathVariable short institucionId, @PathVariable int puestoId) {
-//        return this.asignacionService.findByInstitucionIdAndPuestoId(institucionId, puestoId);
-//    }
-
     @GetMapping(path = "asignaciones/{institucionId}/{usuarioEmail}")
     public ResponseEntity<?> findByInstitucionIdAndUsuarioEmail(@PathVariable short institucionId, @PathVariable String usuarioEmail) {
         if(!rutaService.findAllByInstitucionIdAndUsuarioEmail(institucionId, usuarioEmail).isEmpty()) {
@@ -47,17 +42,4 @@ public class AsignacionController {
         }
     }
 
-    /*@PutMapping(path = "asignaciones/{asignacionId}")
-    public ResponseEntity<?> updateAsignacion(@Valid @RequestBody Asignacion updatedAsignacion,
-                                              @PathVariable Long asignacionId, BindingResult result){
-        if (result.hasErrors())
-            return new ResponseEntity<>(result.getAllErrors(), HttpStatus.BAD_REQUEST);
-
-        Asignacion asignacion = this.asignacionService.findById(asignacionId);
-
-        if (asignacion == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        asignacion.setObservaciones();
-    }*/
 }

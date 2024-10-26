@@ -49,9 +49,7 @@ public class FinanciamientoImpl implements IFinanciamientoService {
 
     @Override
     public List<Financiamiento> findByInstitucionId(short institucionId) {
-        return this.financiamientoDao.findAllByInstitucion(
-                this.institucionService.findById(institucionId)
-        );
+        return this.financiamientoDao.findAllByInstitucion(institucionId);
     }
 
     @Override
