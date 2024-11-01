@@ -218,6 +218,7 @@ public class ParkMovimientoController {
                 try {
                     parkmovimiento.setFechaHorapago(finalPago1);
                     parkmovimiento.setFechaHorasale(finalSale1);
+                    parkmovimiento.setSerieEntrada(serieEntrada);
                     parkmovimiento.setSerieSalida(serieSalida);
                     parkmovimiento.setTiempoMinutos(tiempoMinutos);
                     parkmovimiento.setMontoTotal(montoTotal);
