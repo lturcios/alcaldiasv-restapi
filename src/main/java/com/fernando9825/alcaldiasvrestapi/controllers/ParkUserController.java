@@ -42,9 +42,9 @@ public class ParkUserController {
 
         if(parkusuario != null){
             if(pwd.equals(parkusuario.getPassword())){
-                //Llega el momento de generar el token
+                parkusuario.setLastAction("login");
+                parkuserService.save(parkusuario);
                 String token = getJWTToken(email);
-
                 response.put("message", "Please use the given token in every request, in order to " +
                         "get access to all API");
                 response.put("nombre", parkusuario.getNombre());
@@ -58,7 +58,25 @@ public class ParkUserController {
 
         response.put("error", "email or password incorrect!");
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 
+    @PostMapping("parkuser/logout")
+    public ResponseEntity<?> logout(
+            @RequestParam("email") String email
+    ){
+        System.out.println("email: " + email);
+        Parkusuario parkusuario = parkuserService.findById(email);
+        Map<String, Object> response = new HashMap<>();
+
+        if(parkusuario != null){
+            parkusuario.setLastAction("logout");
+            parkuserService.save(parkusuario);
+            response.put("message", "User logged out successfully");
+            return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+        }
+
+        response.put("error", "User not found!");
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     private String getJWTToken(String username) {

@@ -16,6 +16,8 @@ public interface IParkMovimientoService {
 
     List<Parkmovimiento> findAllByUbicacionId(Integer ubicacionId, Timestamp fechaHoraentra);
 
+    List<Parkmovimiento> findAllByUbicacionIdAndUserEmail(Integer ubicacionId, String usuario, Timestamp fechaHoraentra);
+
     List<Parkmovimiento> findAllByUbicacionAndFechaHorasaleIsEmpty(Integer ubicacionId);
 
     List<Parkmovimiento> findAllByUbicacionAndFechaHorasaleIsEmptyE(Integer ubicacionId);

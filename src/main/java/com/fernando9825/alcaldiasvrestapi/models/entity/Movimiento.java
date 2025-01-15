@@ -18,7 +18,7 @@ public class Movimiento {
     }
 
     @Id
-    @Size(min = 8, max = 10)
+    @Size(min = 8, max = 16)
     private String pagoId;
 
     /*

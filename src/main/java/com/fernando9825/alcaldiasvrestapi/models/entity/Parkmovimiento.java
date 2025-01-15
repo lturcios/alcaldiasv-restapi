@@ -14,7 +14,7 @@ import java.util.Date;
 public class Parkmovimiento {
 
     @Id
-    @Size(min = 8, max = 10)
+    @Size(min = 8, max = 16)
     private String pagoId;
 
     @JsonIgnoreProperties(value = {

@@ -90,12 +90,25 @@ public class ParkMovimientoController {
         }
     }
 
+    // This method is currently used by UNICO and SALIDA
+    @GetMapping(path = "parkmovimientos/ubicacion/usuario")
+    public ResponseEntity<?> findAllByUbicacionIdAndUserEmail(
+            @RequestParam(name = "ubicacionId") Integer ubicacionId,
+            @RequestParam(name = "email") String usuarioEmail) {
+
+        Date fechaActual = new Date();
+        Duration temporalAmount = Duration.ofDays(2);
+        Timestamp dateBefore = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
+        List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionIdAndUserEmail(ubicacionId, usuarioEmail, dateBefore);
+        return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
+    }
+
     @GetMapping(path = "parkmovimientos/ubicacion")
     public ResponseEntity<?> findAllByUbicacionId(
             @RequestParam(name = "ubicacionId") Integer ubicacionId) {
 
         Date fechaActual = new Date();
-        Duration temporalAmount = Duration.ofDays(7);
+        Duration temporalAmount = Duration.ofDays(2);
         Timestamp dateBefore = Timestamp.from(Date.from(fechaActual.toInstant().minus(temporalAmount)).toInstant());
 
         List<Parkmovimiento> parkmovimientos = this.parkMovimientoService.findAllByUbicacionId(ubicacionId, dateBefore);
@@ -110,8 +123,9 @@ public class ParkMovimientoController {
         if(pendiente.equals("N")){
             parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmptyE(ubicacionId);
         } else {
-            parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId);
-            this.parkMovimientoService.updateAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId, "D");
+            // before without the E
+            parkmovimientos = this.parkMovimientoService.findAllByUbicacionAndFechaHorasaleIsEmptyE(ubicacionId);
+            // this.parkMovimientoService.updateAllByUbicacionAndFechaHorasaleIsEmpty(ubicacionId, "D");
         }
         return new ResponseEntity<>(parkmovimientos, HttpStatus.OK);
     }

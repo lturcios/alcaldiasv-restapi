@@ -24,6 +24,10 @@ public interface IParkMovimientoDao extends JpaRepository<Parkmovimiento, String
     @Query(value = "select pm from Parkmovimiento pm where pm.ubicacion.id = ?1 and pm.fechaHoraentra >= ?2")
     Optional<List<Parkmovimiento>> findAllByUbicacion(Integer ubicacionId, Timestamp fechaHoraentra);
 
+    @Query(value = "select pm from Parkmovimiento pm where (pm.ubicacion.id = ?1 and pm.usuarioSalida is null and pm.fechaHoraentra >= ?3 and pm.fechaHorasale is null) " +
+            "or (pm.ubicacion.id = ?1 and pm.usuarioSalida = ?2 and pm.fechaHoraentra >= ?3)")
+    Optional<List<Parkmovimiento>> findAllByUbicacionAndUsuarioSalida(Integer ubicacionId, String usuario, Timestamp fechaHoraentra);
+
     @Query(value = "select pm from Parkmovimiento pm where pm.ubicacion.id = ?1 and pm.fechaHorasale is null and pm.observaciones is null")
     Optional<List<Parkmovimiento>> findAllByUbicacionAndFechaHorasaleIsEmpty(Integer ubicacionId);
 
