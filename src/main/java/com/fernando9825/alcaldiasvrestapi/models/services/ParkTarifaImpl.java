@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ParkTarifaImpl implements IParkTarifaService {
@@ -41,6 +42,6 @@ public class ParkTarifaImpl implements IParkTarifaService {
         return this.parkTarifaDao.findAllByInstitucionAndUbicacion(
                 this.institucionDao.findById(institucionId),
                 this.parkUbicacionDao.findById(ubicacion)
-        );
+        ).stream().filter(Parktarifa::isVigente).collect(Collectors.toList());
     }
 }
