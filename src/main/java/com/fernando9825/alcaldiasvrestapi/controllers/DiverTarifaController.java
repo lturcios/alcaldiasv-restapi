@@ -26,7 +26,7 @@ public class DiverTarifaController {
         return this.diverTarifaService.getAllDiverTarifasByInstitucionId(institucionId);
     }
 
-    @GetMapping(path = "divertarifas/{institucionId}/diverubicacionId")
+    @GetMapping(path = "divertarifas/{institucionId}/{diverubicacionId}")
     public List<DiverTarifa> getAllTarifasByInstitucionIdAndUbicacion(
             @PathVariable short institucionId,
             @PathVariable int diverubicacionId

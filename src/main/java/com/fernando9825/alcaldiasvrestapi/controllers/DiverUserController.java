@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.controllers;
 
-import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
-import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IUserService;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Diverusuario;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IDiverUserService;
 import com.fernando9825.alcaldiasvrestapi.security.SecurityConstants;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,56 +21,60 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping(path = "/api/")
-public class UserController {
+public class DiverUserController {
 
-    private final IUserService userService;
+    private final IDiverUserService diveruserService;
 
     @Autowired
-    public UserController(IUserService userService) {
-        this.userService = userService;
+    public DiverUserController(IDiverUserService diveruserService) {
+        this.diveruserService = diveruserService;
     }
 
-    @PostMapping("user" )
-    public ResponseEntity<?> login(@RequestParam("email") String email,
-                                   @RequestParam("password") String pwd,
-                                   @RequestParam(required = false, name = "deviceid") String deviceid) {
-
-        Usuario usuario = userService.findById(email);
+    @PostMapping("diveruser")
+    public ResponseEntity<?> login(
+            @RequestParam("email") String email,
+            @RequestParam("password") String pwd
+    ) {
+        Diverusuario diverusuario = diveruserService.findById(email);
         Map<String, Object> response = new HashMap<>();
 
-        if (usuario != null) {
-            if (pwd.equals(usuario.getPassword())) {
-                // generar el token
+        if(diverusuario != null){
+            if(pwd.equals(diverusuario.getPassword())){
+                diverusuario.setLastAction("login");
+                diveruserService.save(diverusuario);
                 String token = getJWTToken(email);
-
-                response.put("message", "Please use the given token in every request, in order to " +
-                        "get access to all API");
-                response.put("nombre", usuario.getNombre());
-                response.put("email", email.trim());
+                response.put("message", "Login successful");
+                response.put("nombre", diverusuario.getNombre());
+                response.put("email", diverusuario.getEmail());
                 response.put("token", token);
-                response.put("institucion", usuario.getInstitucion());
-                // if(deviceid == null) deviceid = ""; // old version doesn't send this value, then replace to empty
-                userService.save(usuario);
+                response.put("institucion", diverusuario.getInstitucion());
+                response.put("ubicacion", diverusuario.getUbicacion());
                 return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
             }
         }
-        response.put("error", "email or password incorrect!");
+
+        response.put("error", "Email or password incorrect!");
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+
     }
 
-    @PostMapping({"user/logout", "diveruser/logout"})
-    public ResponseEntity<?> logout(@RequestParam("email") String email){
-        Usuario usuario = userService.findById(email);
+    @PostMapping("diveruser/logout")
+    public ResponseEntity<?> logout(
+            @RequestParam("email") String email
+    ) {
+        System.out.println("email: " + email);
+        Diverusuario diverusuario = diveruserService.findById(email);
         Map<String, Object> response = new HashMap<>();
-
-        if(usuario != null){
-            // userService.save(usuario);
-            response.put("message", email + " logged out!");
+        if (diverusuario != null) {
+            diverusuario.setLastAction("logout");
+            diveruserService.save(diverusuario);
+            response.put("message", "Logout successful");
             return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
         }
-        response.put("error", "email incorrect!");
+        response.put("error", "User not found!");
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
@@ -88,8 +92,6 @@ public class UserController {
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                // descomentar, para establecer el tiempo de expiracion en el token
-                //.setExpiration(new Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512,
                         SecurityConstants.JWT_SECRET.getBytes()).compact();
 
