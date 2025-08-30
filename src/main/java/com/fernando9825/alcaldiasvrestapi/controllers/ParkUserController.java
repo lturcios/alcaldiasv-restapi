@@ -2,30 +2,24 @@ package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Parkusuario;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IParkUserService;
-import com.fernando9825.alcaldiasvrestapi.security.SecurityConstants;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.fernando9825.alcaldiasvrestapi.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/api/")
 public class ParkUserController {
 
     private final IParkUserService parkuserService;
+    private final JWTUtil jwtUtil = new JWTUtil();
 
     @Autowired
     public ParkUserController(IParkUserService parkuserService) {
@@ -44,7 +38,7 @@ public class ParkUserController {
             if(pwd.equals(parkusuario.getPassword())){
                 parkusuario.setLastAction("login");
                 parkuserService.save(parkusuario);
-                String token = getJWTToken(email);
+                String token = jwtUtil.getJWTToken(email);
                 response.put("message", "Please use the given token in every request, in order to " +
                         "get access to all API");
                 response.put("nombre", parkusuario.getNombre());
@@ -77,26 +71,6 @@ public class ParkUserController {
 
         response.put("error", "User not found!");
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-    }
-
-    private String getJWTToken(String username) {
-
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList(SecurityConstants.ROLE_USER);
-
-        String token = Jwts
-                .builder()
-                .setId(SecurityConstants.JWT_ID)
-                .setSubject(username)
-                .claim("authorities",
-                        grantedAuthorities.stream()
-                                .map(GrantedAuthority::getAuthority)
-                                .collect(Collectors.toList()))
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .signWith(SignatureAlgorithm.HS512,
-                        SecurityConstants.JWT_SECRET.getBytes()).compact();
-
-        return SecurityConstants.PREFIX + token;
     }
 
 }

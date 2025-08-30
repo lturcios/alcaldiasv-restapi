@@ -38,8 +38,8 @@ public class Ruta {
     @Column(nullable = false)
     private String nombre;
 
-    // descripcion de la ruta
-    // por ejemplo, la ruta empiece desde la calle, que corta con ... hasta la avenida x
+    // Descripción de la ruta
+    // por ejemplo, la ruta empiece desde la calle, que corta con ... Hasta la avenida x
     @Size(max = 50)
     private String descripcion;
 

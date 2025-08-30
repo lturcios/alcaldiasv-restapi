@@ -2,10 +2,10 @@ package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.DiverMovimiento;
 import com.fernando9825.alcaldiasvrestapi.models.entity.DiverUbicacion;
-import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Diverusuario;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IDiverMovimientoService;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IDiverUbicacionService;
-import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IUserService;
+import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IDiverUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +25,12 @@ import java.util.Map;
 public class DiverMovimientoController {
 
     private final IDiverMovimientoService diverMovimientoService;
-    private final IUserService userService;
+    private final IDiverUserService userService;
     private final IDiverUbicacionService diverUbicacionService;
 
     public DiverMovimientoController(
             IDiverMovimientoService diverMovimientoService,
-            IUserService userService,
+            IDiverUserService userService,
             IDiverUbicacionService diverUbicacionService)
     {
         this.diverMovimientoService = diverMovimientoService;
@@ -42,7 +42,7 @@ public class DiverMovimientoController {
     public ResponseEntity<?> getAllDiverMovimientosByUsuarioEmail(
             @RequestParam(name = "email") String usuarioEmail
     ){
-        Usuario diverusuario = this.userService.findById(usuarioEmail);
+        Diverusuario diverusuario = this.userService.findById(usuarioEmail);
 
         if(diverusuario != null){
             return new ResponseEntity<>(
@@ -57,7 +57,7 @@ public class DiverMovimientoController {
     @GetMapping(path = "divermovimientos/last-fifteen")
     public ResponseEntity<?> getAllDiverMovimientosOfLastFifteenDaysByUsuarioEmail(
             @RequestParam(name = "email") String usuarioEmail){
-        Usuario diverusuario = this.userService.findById(usuarioEmail);
+        Diverusuario diverusuario = this.userService.findById(usuarioEmail);
 
         if(diverusuario != null) {
             Date fechaActual = new Date();
@@ -94,7 +94,7 @@ public class DiverMovimientoController {
         Map<String, Object> response = new HashMap<>();
 
         DiverUbicacion diverubicacion = this.diverUbicacionService.findById(diverubicacionId);
-        Usuario diverusuario = this.userService.findById(usuarioEmail);
+        Diverusuario diverusuario = this.userService.findById(usuarioEmail);
 
         SimpleDateFormat sdfFechaHoraPago = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Date fechaHoraPagoDate;

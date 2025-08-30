@@ -1,6 +1,6 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
-import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionInterfaceService;
+import com.fernando9825.alcaldiasvrestapi.models.dao.InstitucionDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.Institucion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class InstitucionImpl implements com.fernando9825.alcaldiasvrestapi.models.services.interfaces.InstitucionInterfaceService {
 
 
-    private final InstitucionInterfaceService institucionDao;
+    private final InstitucionDao institucionDao;
 
     @Autowired
-    public InstitucionImpl(InstitucionInterfaceService institucionDao) {
+    public InstitucionImpl(InstitucionDao institucionDao) {
         this.institucionDao = institucionDao;
     }
 

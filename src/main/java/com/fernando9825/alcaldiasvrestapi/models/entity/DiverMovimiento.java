@@ -61,7 +61,7 @@ public class DiverMovimiento {
     @NotNull
     @OneToOne
     @JoinColumn(name = "usuario_email_fk")
-    private Usuario usuario;
+    private Diverusuario usuario;
 
     public DiverMovimiento(){
 
@@ -77,7 +77,7 @@ public class DiverMovimiento {
                            String observaciones,
                            @Nullable String serieInicial,
                            @Nullable String serieFinal,
-                           Usuario usuario) {
+                           Diverusuario usuario) {
         this.pagoId = pagoId;
         this.ubicacion = ubicacion;
         this.referencia = referencia;
@@ -181,11 +181,11 @@ public class DiverMovimiento {
         this.serieFinal = serieFinal;
     }
 
-    public Usuario getUsuario() {
+    public Diverusuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Diverusuario usuario) {
         this.usuario = usuario;
     }
 }

@@ -2,24 +2,17 @@ package com.fernando9825.alcaldiasvrestapi.controllers;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.Diverusuario;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IDiverUserService;
-import com.fernando9825.alcaldiasvrestapi.security.SecurityConstants;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.fernando9825.alcaldiasvrestapi.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -27,6 +20,7 @@ import java.util.stream.Collectors;
 public class DiverUserController {
 
     private final IDiverUserService diveruserService;
+    private JWTUtil jwtUtil = new JWTUtil();
 
     @Autowired
     public DiverUserController(IDiverUserService diveruserService) {
@@ -45,7 +39,7 @@ public class DiverUserController {
             if(pwd.equals(diverusuario.getPassword())){
                 diverusuario.setLastAction("login");
                 diveruserService.save(diverusuario);
-                String token = getJWTToken(email);
+                String token = jwtUtil.getJWTToken(email);
                 response.put("message", "Login successful");
                 response.put("nombre", diverusuario.getNombre());
                 response.put("email", diverusuario.getEmail());
@@ -78,23 +72,4 @@ public class DiverUserController {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
-    private String getJWTToken(String username) {
-
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList(SecurityConstants.ROLE_USER);
-
-        String token = Jwts
-                .builder()
-                .setId(SecurityConstants.JWT_ID)
-                .setSubject(username)
-                .claim("authorities",
-                        grantedAuthorities.stream()
-                                .map(GrantedAuthority::getAuthority)
-                                .collect(Collectors.toList()))
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .signWith(SignatureAlgorithm.HS512,
-                        SecurityConstants.JWT_SECRET.getBytes()).compact();
-
-        return SecurityConstants.PREFIX + token;
-    }
 }

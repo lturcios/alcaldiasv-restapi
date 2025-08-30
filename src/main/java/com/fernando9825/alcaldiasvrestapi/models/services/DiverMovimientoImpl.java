@@ -1,9 +1,9 @@
 package com.fernando9825.alcaldiasvrestapi.models.services;
 
 import com.fernando9825.alcaldiasvrestapi.models.dao.IDiverMovimientoDao;
-import com.fernando9825.alcaldiasvrestapi.models.dao.IUserDao;
+import com.fernando9825.alcaldiasvrestapi.models.dao.IDiverUserDao;
 import com.fernando9825.alcaldiasvrestapi.models.entity.DiverMovimiento;
-import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Diverusuario;
 import com.fernando9825.alcaldiasvrestapi.models.services.interfaces.IDiverMovimientoService;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +14,9 @@ import java.util.List;
 public class DiverMovimientoImpl implements IDiverMovimientoService {
 
     private final IDiverMovimientoDao diverMovimientoDao;
-    private final IUserDao userDao;
+    private final IDiverUserDao userDao;
 
-    public DiverMovimientoImpl(IDiverMovimientoDao diverMovimientoDao, IUserDao userDao) {
+    public DiverMovimientoImpl(IDiverMovimientoDao diverMovimientoDao, IDiverUserDao userDao) {
         this.diverMovimientoDao = diverMovimientoDao;
         this.userDao = userDao;
     }
@@ -27,7 +27,7 @@ public class DiverMovimientoImpl implements IDiverMovimientoService {
     }
 
     @Override
-    public List<DiverMovimiento> findAllByUsuarioAndFechahorapago(Usuario usuario, Timestamp fechahorapago) {
+    public List<DiverMovimiento> findAllByUsuarioAndFechahorapago(Diverusuario usuario, Timestamp fechahorapago) {
         return this.diverMovimientoDao.findAllByUsuarioAndFechaHorapago(usuario, fechahorapago).orElse(null);
     }
 

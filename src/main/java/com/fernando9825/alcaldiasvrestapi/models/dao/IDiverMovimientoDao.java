@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.dao;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.DiverMovimiento;
-import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Diverusuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,8 +11,9 @@ import java.util.Optional;
 
 public interface IDiverMovimientoDao extends JpaRepository<DiverMovimiento, String> {
 
-    List<DiverMovimiento> findAllByUsuario(Usuario usuario);
+    List<DiverMovimiento> findAllByUsuario(Diverusuario usuario);
+
     @Query(value = "select a from DiverMovimiento a where a.usuario = ?1 and a.fechaHorapago >= ?2")
-    Optional<List<DiverMovimiento>> findAllByUsuarioAndFechaHorapago(Usuario usuario, Timestamp fechahorapago);
+    Optional<List<DiverMovimiento>> findAllByUsuarioAndFechaHorapago(Diverusuario usuario, Timestamp fechahorapago);
 
 }

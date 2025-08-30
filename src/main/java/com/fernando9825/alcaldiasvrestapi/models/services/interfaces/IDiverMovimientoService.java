@@ -1,7 +1,7 @@
 package com.fernando9825.alcaldiasvrestapi.models.services.interfaces;
 
 import com.fernando9825.alcaldiasvrestapi.models.entity.DiverMovimiento;
-import com.fernando9825.alcaldiasvrestapi.models.entity.Usuario;
+import com.fernando9825.alcaldiasvrestapi.models.entity.Diverusuario;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
@@ -11,7 +11,7 @@ public interface IDiverMovimientoService {
 
     List<DiverMovimiento> findAllByUsuarioEmail(String usuarioEmail);
 
-    List<DiverMovimiento> findAllByUsuarioAndFechahorapago(Usuario usuario, Timestamp fechahorapago);
+    List<DiverMovimiento> findAllByUsuarioAndFechahorapago(Diverusuario usuario, Timestamp fechahorapago);
 
     @Transactional
     DiverMovimiento save(DiverMovimiento diverMovimiento);
