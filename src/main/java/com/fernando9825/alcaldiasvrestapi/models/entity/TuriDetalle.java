@@ -36,6 +36,7 @@ public class TuriDetalle {
     public void setId(long id) {
         this.id = id;
     }
+
     public TuriMovimiento getPagoId() {
         return pagoId;
     }
