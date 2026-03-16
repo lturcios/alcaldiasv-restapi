@@ -73,6 +73,29 @@ public class SaniMovimientoController {
         }
     }
 
+    @GetMapping(path = "sanimovimientos/")
+    public ResponseEntity<?> getLastSaniMovimientosByUsuarioEmail(
+            @RequestParam(name = "email") String usuarioEmail){
+        Saniusuario saniusuario = this.saniuserService.findById(usuarioEmail);
+
+        if (saniusuario != null) {
+            Date fechaActual = new Date();
+            Duration temporalAmount = Duration.ofHours(3);
+            Timestamp fechaMenosDias = Timestamp
+                    .from(Date.from(fechaActual.toInstant().minus(temporalAmount))
+                            .toInstant());
+
+            List<Sanimovimiento> sanimovimientos =
+                    this.sanimovimientoService.findAllByUsuarioAndThirtyDays(saniusuario, fechaMenosDias);
+
+            return new ResponseEntity<>(sanimovimientos, HttpStatus.OK);
+        } else {
+            Map<String, Object> message = new HashMap<>();
+            message.put("message", "User " + usuarioEmail + " does not exists");
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping(path = "sanimovimientos")
     public ResponseEntity<?> insertSaniMovimiento(
             @Size(min = 8) @RequestParam String pagoId,
