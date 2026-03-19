@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "divermovimientos")
 public class DiverMovimiento {
     @Id
-    @Size(min = 8, max = 10)
+    @Size(min = 8, max = 16)
     private String pagoId;
     /*
      * llaves que tiene asignacion:
